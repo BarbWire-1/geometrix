@@ -42,9 +42,7 @@ export class Polygon {
         this._radius =radius;
         this.points = points;
         this.strokeWidth = strokeWidth;
-        this._coords = this.calcPoints();
     }
-    //@ts-ignore
     get radius() { return this.radius}
     set radius(newValue) {
         if (newValue) {
