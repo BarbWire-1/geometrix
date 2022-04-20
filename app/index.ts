@@ -6,34 +6,25 @@ import { dumpProperties, inspectObject } from "./devTools";
 import { createPoly } from "./regularPolygon";
 
 
-
-
-
-
 //GET ELEMENTS FOR POLYGON
 const gLines = document.getElementById("gLines") as GroupElement;
 const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as PolygonBG
 
 let poly = createPoly(100, 4, 10)
 
-let colors;
-let connectTo: number = 1;
+//now update in setInterval
+let connectTo: number = 3;
 
-
-let s = ['limegreen', 'aqua']
-let mine = ['magenta', 'orange']
-let girly = ['pink', 'magenta', 'white'];
-let bluish = ['aqua', 'limegreen', 'lightblue']
-let rainbow = [
-    'purple',
-    'blue',
-    'limegreen',
-    'yellow',
-    'orange',
-    'red',
+let themes = [
+    ['limegreen', 'aqua'],
+    ['magenta', 'orange'],
+    ['pink', 'magenta', 'white'],
+    ['aqua', 'limegreen', 'lightblue'],
+    ['purple', 'blue', 'limegreen', 'yellow', 'orange', 'red'],
+    ['orange'],
+    ['white', 'red', 'white','blue']
 ]
-
-colors = mine
+let colors = themes[4];
 //inspectObject('poly', poly)
 
 //later just x,y of use
@@ -57,11 +48,8 @@ const updatePolygon = () => {
         l.style.display = 'inline';
         l.style.strokeWidth = poly.strokeWidth
         
-        
-      
         let nextPt = pts[((i+connectTo)%poly.points )] ?? pts[0]
        
-    
         //startPoins
         l.x1 = pts[i].x;
         l.y1 = pts[i].y;
@@ -77,10 +65,10 @@ const updatePolygon = () => {
 setInterval(changeConnect, 1000)
 let i = 1;
 function changeConnect() {
-  
     i %= (poly.points-2)
     i += 1;
     connectTo = i;
+    colors = themes[i % themes.length]
     updatePolygon()
 }
 
@@ -93,37 +81,3 @@ function changeConnect() {
 poly.points = 12;// this doesn't update aaaaah! needs to take new coords of course!!!
 pts = poly._coords;
 updatePolygon()
-//needs to create new object for changes
-//getter/setter???
-//inspectObject('poly', poly)
-
-//TODO add lines[] to polygon with lines[i] = points
-
-//PLAY WITH DIFFERENT CONSTRUCTOR TYPES
-interface Point {
-    coordinates(): Iterable<number>;
-}
-
-class NDPoint implements Point {
-    private values: Iterable<number>;
-
-    constructor(coordinates: Iterable<number>) {
-        this.values = coordinates;
-    }
-    coordinates(): Iterable<number> {
-        return this.values;
-    }
-}
-class EmptyPoint implements Point {
-    coordinates(): Iterable<number> {
-        return [];
-    }
-}
-// 
-// inspectObject('2', new NDPoint([3, 4]))
-// inspectObject('3',new NDPoint([10, 10]));
-// // new NDPoint(new IterableOf(10));
-// // new NDPoint(new IterableOf(10, 10));
-// // new NDPoint(new IterableOf(10, 10, 10));
-// // new NDPoint(new IterableOf(10, 10, 10, 10));
-// // new NDPoint([10, 10, 10]);
