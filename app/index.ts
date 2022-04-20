@@ -3,7 +3,8 @@
 
 import document from "document";
 import { dumpProperties, inspectObject } from "./devTools";
-import {  createPoly} from "./regularPolygon";
+import { createPoly } from "./regularPolygon";
+
 
 
 
@@ -118,11 +119,11 @@ class EmptyPoint implements Point {
         return [];
     }
 }
-
-inspectObject('2', new NDPoint([3, 4]))
-inspectObject('3',new NDPoint([10, 10]));
-// new NDPoint(new IterableOf(10));
-// new NDPoint(new IterableOf(10, 10));
-// new NDPoint(new IterableOf(10, 10, 10));
-// new NDPoint(new IterableOf(10, 10, 10, 10));
-// new NDPoint([10, 10, 10]);
+// 
+// inspectObject('2', new NDPoint([3, 4]))
+// inspectObject('3',new NDPoint([10, 10]));
+// // new NDPoint(new IterableOf(10));
+// // new NDPoint(new IterableOf(10, 10));
+// // new NDPoint(new IterableOf(10, 10, 10));
+// // new NDPoint(new IterableOf(10, 10, 10, 10));
+// // new NDPoint([10, 10, 10]);
