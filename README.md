@@ -13,6 +13,8 @@ ___
 * connection between points (next point),
 * fills perline/ fill-themes (1 to ... get applied per %points)
 
-working now as single object(class), planned to widgetise
-(in TS with an own type incl all needed attributes and methods)
+working now as single object (class) now *somehow* , planned to widgetise
+(in TS with an own type incl all needed attributes and methods, and would like to make it really nice code)
+
+As novice to this, I'd be happy for any ideas... so please feel invited 😁
 

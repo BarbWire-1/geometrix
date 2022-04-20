@@ -3,4 +3,4 @@ build
 *.zip
 Backup -f
 .vscode
-devTools
+devTools.js
