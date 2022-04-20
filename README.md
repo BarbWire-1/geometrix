@@ -11,7 +11,7 @@ ___
 * size of circle,
 * number of points,
 * connection between points (next point),
-* fills perline/ fill-themes (1 to number of points)
+* fills perline/ fill-themes (1 to ... get applied per %points)
 
 working now as single object(class), planned to widgetise
 (in TS with an own type incl all needed attributes and methods)
