@@ -11,7 +11,24 @@ export class Point  {
         this.y = y;
     }
 };
+//TEST COORDS***********************************************************************************************
+interface ICoords {
+    coordinates(): Iterable<number>;
+}
+class Coords implements ICoords {
+    private values: Iterable<number>;
 
+    constructor(coordinates: Iterable<number>) {
+        this.values = coordinates;
+    }
+    coordinates(): Iterable<number> {
+        return this.values;
+    }
+}
+new Coords([3, 4])
+
+// evtl use coords instead of x,y x1..... and just start/end for lines
+//********************************************************************************************************** */
 //TODO check this **** underscore-use!!!
 
 // creates a fix Polygon (just as is or as bg for progressPoly)

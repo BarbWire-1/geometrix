@@ -2,7 +2,7 @@
 'use strict';
 
 import document from "document";
-//import { dumpProperties, inspectObject } from "./devTools";
+import { dumpProperties, inspectObject } from "./devTools";
 import {  createPoly} from "./regularPolygon";
 
 
@@ -97,3 +97,32 @@ updatePolygon()
 //inspectObject('poly', poly)
 
 //TODO add lines[] to polygon with lines[i] = points
+
+//PLAY WITH DIFFERENT CONSTRUCTOR TYPES
+interface Point {
+    coordinates(): Iterable<number>;
+}
+
+class NDPoint implements Point {
+    private values: Iterable<number>;
+
+    constructor(coordinates: Iterable<number>) {
+        this.values = coordinates;
+    }
+    coordinates(): Iterable<number> {
+        return this.values;
+    }
+}
+class EmptyPoint implements Point {
+    coordinates(): Iterable<number> {
+        return [];
+    }
+}
+
+inspectObject('2', new NDPoint([3, 4]))
+inspectObject('3',new NDPoint([10, 10]));
+// new NDPoint(new IterableOf(10));
+// new NDPoint(new IterableOf(10, 10));
+// new NDPoint(new IterableOf(10, 10, 10));
+// new NDPoint(new IterableOf(10, 10, 10, 10));
+// new NDPoint([10, 10, 10]);
