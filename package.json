@@ -1,0 +1,36 @@
+{
+	"name": "geometrix",
+	"version": "0.0.1",
+	"private": true,
+	"license": "UNLICENSED",
+	"scripts": {
+		"build": "fitbit-build",
+		"debug": "fitbit"
+	},
+	"devDependencies": {
+		"@fitbit/sdk": "~6.1.0",
+		"@fitbit/sdk-cli": "^1.7.3",
+		"fitbit-sdk-types": "^7.0.5"
+	},
+	"fitbit": {
+		"appUUID": "77045c7d-b3a4-4789-ad0d-f67d34ae0332",
+		"appType": "app",
+		"appDisplayName": "Geometrix",
+		"iconFile": "resources/icon.png",
+		"wipeColor": "#8bc34a",
+		"requestedPermissions": [
+			"access_activity",
+			"access_heart_rate"
+		],
+		"buildTargets": [
+			"atlas",
+			"vulcan"
+		],
+		"i18n": {
+			"en-US": {
+				"name": "Geometrix"
+			}
+		},
+		"defaultLanguage": "en-US"
+	}
+}
