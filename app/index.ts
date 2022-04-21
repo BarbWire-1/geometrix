@@ -12,7 +12,8 @@ const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown a
 //This is not really correct for now: Polygon isn't an array, but needs to include one
 //Or it finally goes on a single use
 let poly = createPolygon()
-
+// if create poly directly as getElements... as Polygon, lines still undefined.
+// guess need a symbol/use for that
 
 poly.radius = 100;
 poly.points = 12;
