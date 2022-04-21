@@ -9,7 +9,7 @@ class Point {
     }
 };
 
- class Polygon {
+ abstract class APolygon {
 
     radius: number;
     points: number;
@@ -77,6 +77,11 @@ class Point {
 
 //TODO : add getters / setters
 //TODO : add line connection and fill-logic
+//TODO how to use abstract classes? problem still constructor/getters a setters
+
+class Polygon extends APolygon {
+    
+}
 export let test = new Polygon(100, 5, 2)
 inspectObject('test', test)
 
