@@ -69,14 +69,18 @@ center.y = 168
         }
     };
  }
-setInterval(changeConnect, 1000)
+setInterval(changeConnect, 1000);
 let i = 1;
+let a = 0;
 function changeConnect() {
-    i %= (poly.points-2)
+    i %= (poly.points - 2);
     i += 1;
     poly.next = i;
-    colors = themes[i % themes.length]
-    updatePolygon()
+
+    
+    colors = themes[a % themes.length];
+    a++;
+    updatePolygon();
 }
 
 
@@ -85,7 +89,7 @@ function changeConnect() {
 
 
 
-poly.points = 9;
+poly.points = 8;
 
 
 //TODO add this logic to abstract class in PolyAllMethods
