@@ -16,16 +16,17 @@ class Point {
     private length: number;
     private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
-    //     style?: {
-    //         opacity: number;
-    //         display: 'inherit' | 'inline' | 'none';
-    //         strokeWidth?: number;
-    // 
-    //     }
-    //     x1?: number;
-    //     y1?: number;
-    //     x2?: number;
-    //     y2?: number;
+        style?: {
+            opacity: number;
+            display: 'inherit' | 'inline' | 'none';
+            strokeWidth?: number;
+            fill?: string;
+    
+        }
+        x1?: number;
+        y1?: number;
+        x2?: number;
+        y2?: number;
 
     constructor( radius, points, strokeWidth) {
         this._radius = radius;
@@ -102,7 +103,7 @@ class Point {
 //TODO : add line connection and fill-logic
 
 
-class Polygon extends APolygon {
+export class Polygon extends APolygon {
     
 }
 export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
