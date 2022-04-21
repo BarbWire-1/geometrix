@@ -8,7 +8,7 @@ import { Polygon,createPolygon } from './classPolygon';
 
 //GET ELEMENTS FOR POLYGON
 const gLines = document.getElementById("gLines") as GroupElement;
-const lines = gLines.getElementsByClassName("lines") as unknown as Polygon[]//unknown as PolygonBG
+const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as PolygonBG
 //This is not really correct for now: Polygon isn't an array, but needs to include one
 //Or it finally goes on a single use
 let poly = createPolygon()

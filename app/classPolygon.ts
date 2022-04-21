@@ -24,13 +24,12 @@ class Line {
 
 
 
- abstract class APolygon {
+abstract class APolygon {
+    lines: Line[];
     private length: number;
     private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
-    lines: LineElement[]; //or simply take this? think not, as includes more attr which should be private
-        
-
+   
     constructor( radius, points, strokeWidth) {
         this._radius = radius;
         this._points = points;
@@ -39,6 +38,7 @@ class Line {
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
     };
+    
      //getter/setter 
      private _radius: number;
      get radius() { return this._radius }
@@ -51,6 +51,11 @@ class Line {
      set points(newValue) {
          this._points = newValue;
          this._refresh();
+         
+        //  for (let i = 0; i < this._points; i++) { //lines undefined
+        //      this.lines.push(this._points[i])
+        //      inspectObject('lines', this.lines)
+        // }
      };
      private _strokeWidth: number;
      get strokeWidth() { return this._strokeWidth }
