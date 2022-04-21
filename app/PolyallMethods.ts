@@ -9,6 +9,8 @@ class Point {
     }
 };
 
+
+
  abstract class APolygon {
 
     radius: number;
@@ -41,16 +43,14 @@ class Point {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         this.radius -= this.strokeWidth % 2 === 0 ? this.strokeWidth / 2 : Math.floor(this.strokeWidth / 2);
-        console.log(this.radius)
         const fract = (2 * Math.PI / this.points);
-        console.log(fract)
       
         for (let i: number = 0; i < this.points; i++) {
             p.push(new Point(0, 0))
             p[i].x = Math.round( this.radius * Math.cos(i * fract));
             p[i].y = Math.round(this.radius * Math.sin(i * fract));
         }
-        console.log(JSON.stringify(p))
+        //console.log(JSON.stringify(p))
         return p;
         
     };
@@ -83,7 +83,34 @@ class Polygon extends APolygon {
     
 }
 export let test = new Polygon(100, 5, 2)
-inspectObject('test', test)
+//inspectObject('test', test)
 
 //TODO how avoid showing _rad/rad when introducing getters/setters?
 // constructor OR getters/setters???
+
+
+class Person {
+    constructor(name: string) {
+        this._name = name;
+    }
+    private _name: string;
+    
+    get name() {
+        return this._name;
+    }
+    
+    set name(name: string) {
+        if (name.length > 10) {
+            throw new Error("Name has a max length of 10");
+            
+        }
+        this._name = name;
+    }
+    doStuff() {
+        console.log(`${this._name} is happy about this found.`)
+    }
+}
+const me = new Person('Barb')
+me.doStuff();
+
+//OOOH... I think, this is, what I've been looking for!
