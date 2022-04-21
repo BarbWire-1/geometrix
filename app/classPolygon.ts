@@ -24,7 +24,7 @@ class Line /*implements Styled*/{
 }
 
 abstract class APolygon {
-    lines: Line[];
+    private lines: Line[];
     private length: number;
     private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
