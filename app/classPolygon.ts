@@ -29,10 +29,11 @@ abstract class APolygon {
     private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
    
-    constructor( radius, points, strokeWidth) {
+    constructor( radius, points, strokeWidth,next) {
         this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
+        this._next = next;
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
@@ -62,7 +63,13 @@ abstract class APolygon {
      set strokeWidth(newValue) {
          this._strokeWidth = newValue;
          this._refresh();
-     };
+    };
+    private _next: number;
+    get next() { return this._next }
+    set next(newValue) {
+        this._next = newValue;
+        this._refresh();
+    };
      
     //METHODS
     private _refresh() {
@@ -104,7 +111,7 @@ abstract class APolygon {
             l[i].x1 = pts[i].x;
             l[i].y1 = pts[i].y;
             //end points
-            let nextPt = pts[i % this._points] ?? pts[0];
+            let nextPt = pts[(i+this._next) % this._points] ?? pts[0];
             l[i].x2 = nextPt.x;
             l[i].y2 = nextPt.y;
         };
@@ -119,6 +126,7 @@ abstract class APolygon {
         return Number(Math.sqrt(dx * dx + dy * dy));
     };
     //_gradient for ALL needed to calculate x,y progress!
+    // TODO now get distance with connectPoints from line!!! (if at all)
     private _gradient() {
         let g: number[] = [];
         for (let i: number = 0; i < this.points; i++) {
@@ -140,9 +148,9 @@ abstract class APolygon {
 export class Polygon extends APolygon {    
 }
 
-export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
+export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 1) => {
     if (validInput(points) == true) {
-        return new Polygon(radius, points, strokeWidth);
+        return new Polygon(radius, points, strokeWidth, next);
     } return;
 }
 
