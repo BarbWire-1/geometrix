@@ -45,7 +45,7 @@ center.y = 168
 // pass values of object her to lineElements
 let pts = poly.coords;
 
-const updatePolygon = () => {
+ const updatePolygon = () => {
     lines.forEach(el => {
         el.style.display = 'none'
     });
@@ -53,30 +53,28 @@ const updatePolygon = () => {
     for (let i = 0; i < poly.points; i++) {
     
         let l = lines[i];
+        let _l = poly.lines[i]
         
         l.style.display = 'inline';
-        l.style.strokeWidth = poly.strokeWidth
+        l.style.strokeWidth = poly.strokeWidth;
         
-        let nextPt = pts[((i+connectTo)%poly.points )] ?? pts[0]
-       
-        //startPoins
-        l.x1 = pts[i].x;
-        l.y1 = pts[i].y;
-        //connects lines
-        l.x2 = nextPt.x;
-        l.y2 = nextPt.y;
-        
+        l.x1 = _l.x1;
+        l.y1 = _l.y1;
+        l.x2 = _l.x2;
+        l.y2 = _l.y2;
+   
+ 
         if (colors !== undefined) {
             lines[i].style.fill = colors[i % colors?.length]
         }
     };
-}
+ }
 setInterval(changeConnect, 1000)
 let i = 1;
 function changeConnect() {
     i %= (poly.points-2)
     i += 1;
-    connectTo = i;
+    poly.next = i;
     colors = themes[i % themes.length]
     updatePolygon()
 }
