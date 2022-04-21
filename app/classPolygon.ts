@@ -23,13 +23,6 @@ class Line /*implements Styled*/{
     };
 }
 
-let testLine = new Line(4,15,36,48)
-// inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
-// console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
-//TODO not sure, if storing here in this double form or using a method instead
-
-
-
 abstract class APolygon {
     lines: Line[];
     private length: number;
@@ -44,7 +37,6 @@ abstract class APolygon {
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
         this.lines = this._iLines();
-        //TODO define lines from calcPoints
     };
    
      //getter/setter 
@@ -95,38 +87,32 @@ abstract class APolygon {
         return p;
         
     };
+    //TODO add <next> to define connected points, now just +1
     private _iLines() {
         let l: Line[] = [];
-       
+        let pts = this.coords;
         // l.forEach(el => {
         //     el.style.display = 'none';
         //     console.log(el.style.display)
         //    // el.style.fill = 'pink'
         // });
-        let pts = this.coords
+        
        
         for (let i = 0; i < this._points; i++) {
-            l.push(new Line())//something wrong in the logic  
-            l[i].x1 = pts[i].x
-            l[i].y1 = pts[i].y
-            
-            let nextPt = pts[i % this._points] ?? pts[0]
-            l[i].x2 = nextPt.x
-            l[i].y2 = nextPt.y
+            l.push(new Line());
+            //start points
+            l[i].x1 = pts[i].x;
+            l[i].y1 = pts[i].y;
+            //end points
+            let nextPt = pts[i % this._points] ?? pts[0];
+            l[i].x2 = nextPt.x;
+            l[i].y2 = nextPt.y;
         };
-    
         //console.log(JSON.stringify(l))
-        inspectObject('coords:', this.coords)
-        inspectObject('linePoints:', l)
-        console.log(this.coords.length)
-        console.log(l.length)
         return l;
-    }
-    private _createLines() {
-        //TODO add <next> to define connected points
-        // then create lines here from coords
-    }
-    // PROGRESS
+    };
+
+    // NEEDED FOR PROGRESS ONLY
     private _len(s, e) {
         let dx = e.x - s.x;
         let dy = e.y - s.y;
@@ -148,15 +134,15 @@ abstract class APolygon {
 };
 
 
-//TODO : add line connection and fill-logic
+//TODO : add line connection and fill-logic/can't get style implemented.... grrrr
 
 
-export class Polygon extends APolygon {
-    
+export class Polygon extends APolygon {    
 }
+
 export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     if (validInput(points) == true) {
-        return new Polygon(radius, points, strokeWidth)
+        return new Polygon(radius, points, strokeWidth);
     } return;
 }
 
