@@ -98,9 +98,9 @@ class Point {
     };
 };
 
-//TODO : add getters / setters
+
 //TODO : add line connection and fill-logic
-//TODO how to use abstract classes? problem still constructor/getters a setters
+
 
 class Polygon extends APolygon {
     
