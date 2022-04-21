@@ -10,13 +10,7 @@ class Point {
     }
 };
 // need to make this a styled object???
-class Line implements Styled{
-    private style: { // missing properties from <STYLED> so check for partial?
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        strokeWidth: number;
-        fill: string;
-    };
+class Line /*implements Styled*/{
     x1: number;
     y1: number;
     x2: number;
@@ -25,28 +19,13 @@ class Line implements Styled{
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
-        this.y2 = y2;
-        // this.style = _style
-        
-     
+        this.y2 = y2; 
     };
-    
-    get _style() {
-        return {
-            get fill() { return this._style.fill },
-            set fill(color) { this._style.fill = color },
-            get opacity() { return this._style.opacity },
-            set opacity(num) { this._style.opacity = num },
-            get display() { return this._style.display },
-            set display(val) { this._style.display = val },
-        }
-    }
-   
 }
 
 let testLine = new Line(4,15,36,48)
-inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
-console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
+// inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
+// console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
 //TODO not sure, if storing here in this double form or using a method instead
 
 
@@ -96,29 +75,8 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
+        this.lines = this._iLines();
         this.length = this._len(this.coords[1], this.coords[0]);
-
-//         this.lines.forEach(el => {
-//             el.style.display = 'none'
-//         });
-// 
-//         for (let i = 0; i < this._points; i++) {
-//             let l = this.lines[i];
-//             let pts = this._points 
-//             l.style.display = 'inline';
-//             l.style.strokeWidth = this.strokeWidth
-// 
-//             let nextPt = pts[i % pts] ?? pts[0]
-// 
-//             //startPoins
-//             l.x1 = pts[i].x;
-//             l.y1 = pts[i].y;
-//             //connects lines
-//             l.x2 = nextPt.x;
-//             l.y2 = nextPt.y;
-// 
-//         };
-    
         this.gradient = this._gradient();
     };
     
@@ -139,38 +97,29 @@ abstract class APolygon {
     };
     private _iLines() {
         let l: Line[] = [];
-        console.log(JSON.stringify(l))
+       
         // l.forEach(el => {
         //     el.style.display = 'none';
         //     console.log(el.style.display)
         //    // el.style.fill = 'pink'
         // });
-        let c = this.coords
+        let pts = this.coords
+       
         for (let i = 0; i < this._points; i++) {
-           
-            l.push(new Line())//something wrong in the logic 
-            JSON.stringify(l)
-            l[i].style.fill = 'pink'
-//             let pts = this._points
-//             l[i].style.display = 'inline';
-//             l[i].style.strokeWidth = this.strokeWidth
-// 
-//             let nextPt = pts[i % pts] ?? pts[0]
-// 
-//             //startPoins
-//             l[i].x1 = pts[i].x;
-//             l[i].y1 = pts[i].y;
-//             //connects lines
-//             l[i].x2 = nextPt.x;
-//             l[i].y2 = nextPt.y;
-            //l[0].style.fill = 'orange'
-            console.log(`should be x1: ${JSON.stringify(l[i].x1)}`)
-            //but returns point coords.
-            //TODO check logic
-
+            l.push(new Line())//something wrong in the logic  
+            l[i].x1 = pts[i].x
+            l[i].y1 = pts[i].y
+            
+            let nextPt = pts[i % this._points] ?? pts[0]
+            l[i].x2 = nextPt.x
+            l[i].y2 = nextPt.y
         };
-        
-        inspectObject('l0:',l[0])
+    
+        //console.log(JSON.stringify(l))
+        inspectObject('coords:', this.coords)
+        inspectObject('linePoints:', l)
+        console.log(this.coords.length)
+        console.log(l.length)
         return l;
     }
     private _createLines() {
