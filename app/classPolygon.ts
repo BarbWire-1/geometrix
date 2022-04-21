@@ -9,6 +9,7 @@ class Point {
         this.y = y;
     }
 };
+// get coords x,y to connect to x1,y1 and x2,y2 here in Line?
 class Line {
     style?: {
         opacity: number;
