@@ -9,31 +9,29 @@ class Point {
         this.y = y;
     }
 };
-// get coords x,y to connect to x1,y1 and x2,y2 here in Line?
+
 class Line {
     style: {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         strokeWidth?: number;
         fill: string;
-    }
-    private start: Point;
-    private end: Point;
+    };
     x1: number;
     y1: number;
     x2: number;
     y2: number;
-    constructor(start, end) {
-        this.start = start;
-        this.end = end;
-        this.x1 = this.start[0];
-        this.y1 = this.start[1];
-        this.x2 = this.end[0];
-        this.y2 = this.end[1];  
-    }
+    constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+     
+    };
+   
 }
 
-let testLine = new Line([4, 15], [16, 29])
+let testLine = new Line(4,15,36,48)
 inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
 console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
 //TODO not sure, if storing here in this double form or using a method instead
@@ -129,14 +127,17 @@ abstract class APolygon {
     private _iLines() {
         let l: Line[] = [];
         console.log(JSON.stringify(l))
-        // this.lines.forEach(el => {
-        //     el.style.display = 'none'
+        // l.forEach(el => {
+        //     el.style.display = 'none';
+        //     console.log(el.style.display)
+        //    // el.style.fill = 'pink'
         // });
         let c = this.coords
         for (let i = 0; i < this._points; i++) {
            
-            l.push(new Line([0,0], [0,0]))//something wrong in the logic 
+            l.push(new Line())//something wrong in the logic 
             JSON.stringify(l)
+            //l[i].style.fill = 'pink'
 //             let pts = this._points
 //             l[i].style.display = 'inline';
 //             l[i].style.strokeWidth = this.strokeWidth
@@ -149,11 +150,14 @@ abstract class APolygon {
 //             //connects lines
 //             l[i].x2 = nextPt.x;
 //             l[i].y2 = nextPt.y;
+            //l[0].style.fill = 'orange'
             console.log(`should be x1: ${JSON.stringify(l[i].x1)}`)
             //but returns point coords.
             //TODO check logic
 
         };
+        
+        inspectObject('l0:',l[0])
         return l;
     }
     private _createLines() {
