@@ -11,12 +11,7 @@ class Point {
 };
 
 class Line {
-    style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        strokeWidth?: number;
-        fill: string;
-    };
+   
     x1: number;
     y1: number;
     x2: number;
@@ -26,9 +21,19 @@ class Line {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        
      
     };
-   
+    get style() { return this._style }
+    set style(newValue) { this._style = newValue}
+            
+    
+    private _style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        strokeWidth: number;
+        fill: string;
+    };
 }
 
 let testLine = new Line(4,15,36,48)
@@ -137,7 +142,7 @@ abstract class APolygon {
            
             l.push(new Line())//something wrong in the logic 
             JSON.stringify(l)
-            //l[i].style.fill = 'pink'
+            l[i].style.fill = 'pink'
 //             let pts = this._points
 //             l[i].style.display = 'inline';
 //             l[i].style.strokeWidth = this.strokeWidth
