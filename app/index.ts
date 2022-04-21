@@ -81,3 +81,5 @@ function changeConnect() {
 poly.points = 12;// this doesn't update aaaaah! needs to take new coords of course!!!
 pts = poly._coords;
 updatePolygon()
+
+
