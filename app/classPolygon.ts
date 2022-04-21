@@ -69,7 +69,10 @@ abstract class APolygon {
         if (validInput(this.points) == true) {
             this._points = newValue;
             this._refresh();
-        } return;
+        } else {
+            console.warn('Please choose a valid number of points.')
+            return;
+        }
      };
      private _strokeWidth: number;
      get strokeWidth() { return this._strokeWidth }

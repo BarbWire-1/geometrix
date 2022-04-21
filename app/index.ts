@@ -16,7 +16,7 @@ let poly = createPolygon()
 // guess need a symbol/use for that
 
 poly.radius = 100;
-poly.points = 12;
+poly.points = 2;
 poly.strokeWidth = 5;
 
 
