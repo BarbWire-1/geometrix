@@ -10,8 +10,13 @@ class Point {
     }
 };
 // need to make this a styled object???
-class Line {
-    
+class Line implements Styled{
+    private style: { // missing properties from <STYLED> so check for partial?
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        strokeWidth: number;
+        fill: string;
+    };
     x1: number;
     y1: number;
     x2: number;
@@ -21,17 +26,12 @@ class Line {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        // this.style = _style
         
      
     };
-    _style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        strokeWidth: number;
-        fill: string;
-    };
     
-    get style() {
+    get _style() {
         return {
             get fill() { return this._style.fill },
             set fill(color) { this._style.fill = color },
@@ -41,8 +41,6 @@ class Line {
             set display(val) { this._style.display = val },
         }
     }
-            
-    
    
 }
 
@@ -152,7 +150,7 @@ abstract class APolygon {
            
             l.push(new Line())//something wrong in the logic 
             JSON.stringify(l)
-            l[i]._style.fill = 'pink'
+            l[i].style.fill = 'pink'
 //             let pts = this._points
 //             l[i].style.display = 'inline';
 //             l[i].style.strokeWidth = this.strokeWidth
