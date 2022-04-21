@@ -19,10 +19,10 @@ class Line {
     }
     private start: Point;
     private end: Point;
-    x1?: number;
-    y1?: number;
-    x2?: number;
-    y2?: number;
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
     constructor(start, end) {
         this.start = start;
         this.end = end;
@@ -37,6 +37,8 @@ let testLine = new Line([4, 15], [16, 29])
 inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
 console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
 //TODO not sure, if storing here in this double form or using a method instead
+
+
 
 abstract class APolygon {
     lines: Line[];
@@ -53,7 +55,7 @@ abstract class APolygon {
         this.gradient = this._gradient();
         //TODO define lines from calcPoints
     };
-    
+   
      //getter/setter 
      private _radius: number;
      get radius() { return this._radius }
@@ -78,6 +80,7 @@ abstract class APolygon {
     private _refresh() {
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
+
 //         this.lines.forEach(el => {
 //             el.style.display = 'none'
 //         });
@@ -117,6 +120,10 @@ abstract class APolygon {
         return p;
         
     };
+    private _createLines() {
+        //TODO add <next> to define connected points
+        // then create lines here from coords
+    }
     // PROGRESS
     private _len(s, e) {
         let dx = e.x - s.x;
