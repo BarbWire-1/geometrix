@@ -1,10 +1,10 @@
 # geometrix
-little useless playfile with regular polygons
+A little useless playfile with regular polygons
 ___
 ![2022-04-20 12 36 21](https://user-images.githubusercontent.com/67426447/164214924-8a885771-38a9-4c41-a00b-df79f5a753b7.gif)
 
 ## work in progress:
-Playfile to get an idea how to structure using interfaces/classes/types
+trying to get an idea how to structure using interfaces/classes/types
 
 
 ### dynamically:
