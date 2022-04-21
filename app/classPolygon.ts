@@ -149,6 +149,9 @@ abstract class APolygon {
 //             //connects lines
 //             l[i].x2 = nextPt.x;
 //             l[i].y2 = nextPt.y;
+            console.log(`should be x1: ${JSON.stringify(l[i].x1)}`)
+            //but returns point coords.
+            //TODO check logic
 
         };
         return l;
