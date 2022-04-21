@@ -13,12 +13,12 @@ class Point {
 
  abstract class APolygon {
 
-    radius: number;
+    //radius: number;
     points: number;
     strokeWidth: number;
-    readonly length: number;
-    readonly grad: number[];
-    readonly coords: Point[];
+    private length: number;
+    private grad: number[];
+    private coords: Point[];
     //     style?: {
     //         opacity: number;
     //         display: 'inherit' | 'inline' | 'none';
@@ -31,24 +31,32 @@ class Point {
     //     y2?: number;
 
     constructor( radius, points, strokeWidth) {
-        this.radius = radius;
+        this._radius = radius;
         this.points = points;
         this.strokeWidth = strokeWidth;
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.grad = this._gradient();
-    };
+     };
+     private _radius: number;
+     get radius() { return this._radius }
+     set radius(newValue) {
+         this._radius = newValue;
+         this.coords = this._calcPoints();
+         this.length = this._len(this.coords[1], this.coords[0]);
+         this.grad = this._gradient();
+     }
     //METHODS
     private _calcPoints() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
-        this.radius -= this.strokeWidth % 2 === 0 ? this.strokeWidth / 2 : Math.floor(this.strokeWidth / 2);
+        this._radius -= this.strokeWidth % 2 === 0 ? this.strokeWidth / 2 : Math.floor(this.strokeWidth / 2);
         const fract = (2 * Math.PI / this.points);
       
         for (let i: number = 0; i < this.points; i++) {
             p.push(new Point(0, 0))
-            p[i].x = Math.round( this.radius * Math.cos(i * fract));
-            p[i].y = Math.round(this.radius * Math.sin(i * fract));
+            p[i].x = Math.round( this._radius * Math.cos(i * fract));
+            p[i].y = Math.round(this._radius * Math.sin(i * fract));
         }
         //console.log(JSON.stringify(p))
         return p;
