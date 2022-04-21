@@ -74,10 +74,11 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        this.lines = this._iLines();
-        this.length = this._len(this.coords[1], this.coords[0]);
-        this.gradient = this._gradient();
+        this.lines = this._iLines(); // is this necessary? as depending
+        // this.length = this._len(this.coords[1], this.coords[0]);
+        // this.gradient = this._gradient();
     };
+    //TODO check where recalculating needs to be initiated codewise
     
     private _calcPoints() {
         let p: Point[] = []
