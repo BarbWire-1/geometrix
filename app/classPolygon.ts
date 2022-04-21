@@ -14,7 +14,7 @@ class Point {
 
  abstract class APolygon {
     private length: number;
-    private grad: number[];
+    private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
     //     style?: {
     //         opacity: number;
@@ -33,7 +33,7 @@ class Point {
         this._strokeWidth = strokeWidth;
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
-        this.grad = this._gradient();
+        this.gradient = this._gradient();
      };
      //getter/setter 
      private _radius: number;
@@ -59,7 +59,7 @@ class Point {
      private _refresh() {
          this.coords = this._calcPoints();
          this.length = this._len(this.coords[1], this.coords[0]);
-         this.grad = this._gradient();   
+         this.gradient = this._gradient();   
      };
      
     private _calcPoints() {
