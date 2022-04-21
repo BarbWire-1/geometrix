@@ -6,10 +6,10 @@ let range = {
 
 export const isInt = (n: number) => {
     let isValid: boolean = false;
-    if (n == Math.round(n)) {
+    if (n === Math.round(n)) {
         isValid = true;
     }
-    return isValid;
+     return isValid;
 };
 
 export const inRange = (n: number, min: number, max: number) => {
@@ -24,7 +24,7 @@ export const inRange = (n: number, min: number, max: number) => {
 
 export const validInput = (n) => {
     let isValid: boolean = false;
-    if (isInt(n) == true && inRange(n, range.min, range.max) == true) {
+    if (isInt(n) === true && inRange(n, range.min, range.max) == true) {
         isValid = true;
     } else {
         console.warn(n + notValid)

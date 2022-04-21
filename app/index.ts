@@ -43,7 +43,7 @@ center.y = 168
 
 //TODO: do this in class directly to update for changed settings!!!
 // pass values of object her to lineElements
-let pts = poly.coords;
+
 
  const updatePolygon = () => {
     lines.forEach(el => {
@@ -62,7 +62,7 @@ let pts = poly.coords;
         l.y1 = _l.y1;
         l.x2 = _l.x2;
         l.y2 = _l.y2;
-   
+       
  
         if (colors !== undefined) {
             lines[i].style.fill = colors[i % colors?.length]
@@ -85,9 +85,8 @@ function changeConnect() {
 
 
 
-poly.points = 9;// this doesn't update aaaaah! needs to take new coords of course!!!
-pts = poly.coords;
-//updatePolygon()
+poly.points = 9;
+
 
 //TODO add this logic to abstract class in PolyAllMethods
 

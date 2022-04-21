@@ -24,10 +24,10 @@ class Line /*implements Styled*/{
 }
 
 abstract class APolygon {
-     lines: Line[]; //back to private?
+    lines: Line[]; //back to private?
     private length: number;
     private gradient: number[];
-    coords: Point[]; // back to private when line calc in here!
+    private coords: Point[]; // back to private when line calc in here!
    
     constructor( radius, points, strokeWidth,next) {
         this._radius = radius;
@@ -69,6 +69,7 @@ abstract class APolygon {
     set next(newValue) {
         this._next = newValue;
         this._refresh();
+        //console.log(this._next)
     };
      
     //METHODS
