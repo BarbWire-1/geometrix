@@ -17,8 +17,8 @@ class Line {
         strokeWidth?: number;
         fill?: string;
     }
-    start: Point;
-    end: Point;
+    private start: Point;
+    private end: Point;
     x1?: number;
     y1?: number;
     x2?: number;
@@ -26,17 +26,17 @@ class Line {
     constructor(start, end) {
         this.start = start;
         this.end = end;
-    }
-    connect() {
-        this.start.x = this.x1;
-        this.start.y = this.y1;
-        this.end.x = this.x2;
-        this.end.y = this.y2;
+        this.x1 = this.start[0];
+        this.y1 = this.start[1];
+        this.x2 = this.end[0];
+        this.y2 = this.end[1];  
     }
 }
-let testLine = new Line([4, 15], [16, 29])
-inspectObject('testLine', testLine)
 
+let testLine = new Line([4, 15], [16, 29])
+inspectObject('testLine', testLine) // start: [4,15], end: [16,29] 
+console.log(JSON.stringify(testLine)) //{"start":[4,15],"end":[16,29],"x1":4,"y1":15,"x2":16,"y2":29} 
+//TODO not sure, if storing here in this double form or using a method instead
 
 abstract class APolygon {
     lines: Line[];
