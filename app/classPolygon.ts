@@ -63,11 +63,13 @@ abstract class APolygon {
          this._radius = newValue;
          this._refresh();
      };
-     private _points: number;
-     get points() { return this._points }
-     set points(newValue) {
-         this._points = newValue;
-         this._refresh();
+    private _points: number;
+    get points() { return this._points }
+    set points(newValue) {
+        if (validInput(this.points) == true) {
+            this._points = newValue;
+            this._refresh();
+        } return;
      };
      private _strokeWidth: number;
      get strokeWidth() { return this._strokeWidth }
