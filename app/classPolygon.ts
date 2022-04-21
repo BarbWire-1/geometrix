@@ -134,8 +134,8 @@ abstract class APolygon {
         // });
         let c = this.coords
         for (let i = 0; i < this._points; i++) {
-            let nextPt = c[i % this.points] ?? c[0]
-            l.push(new Line([this.coords[i]], [this.coords[(i + 1) ?? 0]]))//something wrong in the logic 
+           
+            l.push(new Line([0,0], [0,0]))//something wrong in the logic 
             JSON.stringify(l)
 //             let pts = this._points
 //             l[i].style.display = 'inline';
