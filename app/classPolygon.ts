@@ -83,13 +83,14 @@ abstract class APolygon {
     private _calcPoints() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
-        this._radius -= this._strokeWidth % 2 === 0 ? this._strokeWidth / 2 : Math.floor(this._strokeWidth / 2);
+        let iRadius = this._radius;
+        iRadius -= /*this._strokeWidth % 2 === 0 ? this._strokeWidth / 2 : */Math.floor(this._strokeWidth / 2);
         const fract = (2 * Math.PI / this._points);
       
         for (let i: number = 0; i < this._points; i++) {
             p.push(new Point(0, 0))
-            p[i].x = Math.round( this._radius * Math.cos(i * fract));
-            p[i].y = Math.round(this._radius * Math.sin(i * fract));
+            p[i].x = Math.round( iRadius * Math.cos(i * fract));
+            p[i].y = Math.round( iRadius * Math.sin(i * fract));
         }
         //console.log(JSON.stringify(p))
         return p;
