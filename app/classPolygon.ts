@@ -83,10 +83,10 @@ abstract class APolygon {
     private _calcPoints() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
-        this._radius -= this.strokeWidth % 2 === 0 ? this.strokeWidth / 2 : Math.floor(this.strokeWidth / 2);
-        const fract = (2 * Math.PI / this.points);
+        this._radius -= this._strokeWidth % 2 === 0 ? this._strokeWidth / 2 : Math.floor(this._strokeWidth / 2);
+        const fract = (2 * Math.PI / this._points);
       
-        for (let i: number = 0; i < this.points; i++) {
+        for (let i: number = 0; i < this._points; i++) {
             p.push(new Point(0, 0))
             p[i].x = Math.round( this._radius * Math.cos(i * fract));
             p[i].y = Math.round(this._radius * Math.sin(i * fract));
@@ -130,9 +130,9 @@ abstract class APolygon {
     // TODO now get distance with connectPoints from line!!! (if at all)
     private _gradient() {
         let g: number[] = [];
-        for (let i: number = 0; i < this.points; i++) {
+        for (let i: number = 0; i < this._points; i++) {
             //g.push(0)
-            let nextI = (i + 1) % this.points;
+            let nextI = (i + 1) % this._points;
             let dx = this.coords[nextI].x - this.coords[i].x;
             let dy = this.coords[nextI].y - this.coords[i].y;
             let gr = (dx / dy);
