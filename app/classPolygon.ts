@@ -17,12 +17,25 @@ class Line {
         strokeWidth?: number;
         fill?: string;
     }
+    start: Point;
+    end: Point;
     x1?: number;
     y1?: number;
     x2?: number;
     y2?: number;
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+    }
+    connect() {
+        this.start.x = this.x1;
+        this.start.y = this.y1;
+        this.end.x = this.x2;
+        this.end.y = this.y2;
+    }
 }
-
+let testLine = new Line([4, 15], [16, 29])
+inspectObject('testLine', testLine)
 
 
 abstract class APolygon {
