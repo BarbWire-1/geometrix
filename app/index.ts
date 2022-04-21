@@ -16,7 +16,7 @@ let poly = createPolygon()
 // guess need a symbol/use for that
 
 poly.radius = 100;
-poly.points = 2;
+poly.points = 4;
 poly.strokeWidth = 5;
 
 
@@ -87,9 +87,9 @@ function changeConnect() {
 
 
 
-poly.points = 12;// this doesn't update aaaaah! needs to take new coords of course!!!
+poly.points = 9;// this doesn't update aaaaah! needs to take new coords of course!!!
 pts = poly.coords;
-updatePolygon()
+//updatePolygon()
 
 //TODO add this logic to abstract class in PolyAllMethods
 
