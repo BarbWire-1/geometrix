@@ -52,11 +52,6 @@ abstract class APolygon {
      set points(newValue) {
          this._points = newValue;
          this._refresh();
-         
-        //  for (let i = 0; i < this._points; i++) { //lines undefined
-        //      this.lines.push(this._points[i])
-        //      inspectObject('lines', this.lines)
-        // }
      };
      private _strokeWidth: number;
      get strokeWidth() { return this._strokeWidth }
