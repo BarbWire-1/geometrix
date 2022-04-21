@@ -4,6 +4,7 @@
 import document from "document";
 import { dumpProperties, inspectObject } from "./devTools";
 import { createPoly } from "./regularPolygon";
+import {test} from './PolyallMethods'
 
 
 //GET ELEMENTS FOR POLYGON
@@ -11,7 +12,9 @@ const gLines = document.getElementById("gLines") as GroupElement;
 const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as PolygonBG
 
 let poly = createPoly(100, 4, 10)
+inspectObject('test', test)
 
+test.points = 10;
 //now update in setInterval
 let connectTo: number = 3;
 

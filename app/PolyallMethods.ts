@@ -77,5 +77,8 @@ class Point {
 
 //TODO : add getters / setters
 //TODO : add line connection and fill-logic
-let test = new Polygon(100, 5, 2)
+export let test = new Polygon(100, 5, 2)
 inspectObject('test', test)
+
+//TODO how avoid showing _rad/rad when introducing getters/setters?
+// constructor OR getters/setters???
