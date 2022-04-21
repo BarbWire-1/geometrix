@@ -12,10 +12,6 @@ class Point {
 
 
  abstract class APolygon {
-
-    //radius: number;
-    points: number;
-    strokeWidth: number;
     private length: number;
     private grad: number[];
     private coords: Point[];
@@ -30,23 +26,41 @@ class Point {
     //     x2?: number;
     //     y2?: number;
 
-    constructor( radius, points, strokeWidth) {
+    constructor( radius = 100, points = 5, strokeWidth = 2) {
         this._radius = radius;
-        this.points = points;
-        this.strokeWidth = strokeWidth;
+        this._points = points;
+        this._strokeWidth = strokeWidth;
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.grad = this._gradient();
      };
+     //getter/setter 
      private _radius: number;
      get radius() { return this._radius }
      set radius(newValue) {
          this._radius = newValue;
+         this._refresh();
+     };
+     private _points: number;
+     get points() { return this._points }
+     set points(newValue) {
+         this._points = newValue;
+         this._refresh();
+     };
+     private _strokeWidth: number;
+     get strokeWidth() { return this._strokeWidth }
+     set strokeWidth(newValue) {
+         this._strokeWidth = newValue;
+         this._refresh();
+     };
+     
+    //METHODS
+     private _refresh() {
          this.coords = this._calcPoints();
          this.length = this._len(this.coords[1], this.coords[0]);
-         this.grad = this._gradient();
-     }
-    //METHODS
+         this.grad = this._gradient();   
+     };
+     
     private _calcPoints() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
@@ -93,32 +107,3 @@ class Polygon extends APolygon {
 export let test = new Polygon(100, 5, 2)
 //inspectObject('test', test)
 
-//TODO how avoid showing _rad/rad when introducing getters/setters?
-// constructor OR getters/setters???
-
-
-class Person {
-    constructor(name: string) {
-        this._name = name;
-    }
-    private _name: string;
-    
-    get name() {
-        return this._name;
-    }
-    
-    set name(name: string) {
-        if (name.length > 10) {
-            throw new Error("Name has a max length of 10");
-            
-        }
-        this._name = name;
-    }
-    doStuff() {
-        console.log(`${this._name} is happy about this found.`)
-    }
-}
-const me = new Person('Barb')
-me.doStuff();
-
-//OOOH... I think, this is, what I've been looking for!

@@ -15,6 +15,7 @@ let poly = createPoly(100, 4, 10)
 
 
 test.radius = 10;
+test.points = 12;
 
 inspectObject('test', test)
 //now update in setInterval
