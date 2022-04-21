@@ -11,11 +11,11 @@ class Point {
 };
 // get coords x,y to connect to x1,y1 and x2,y2 here in Line?
 class Line {
-    style?: {
+    style: {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         strokeWidth?: number;
-        fill?: string;
+        fill: string;
     }
     private start: Point;
     private end: Point;
@@ -53,6 +53,7 @@ abstract class APolygon {
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
+        this.lines = this._iLines();
         //TODO define lines from calcPoints
     };
    
@@ -109,7 +110,7 @@ abstract class APolygon {
     
         this.gradient = this._gradient();
     };
-     
+    
     private _calcPoints() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
@@ -125,6 +126,33 @@ abstract class APolygon {
         return p;
         
     };
+    private _iLines() {
+        let l: Line[] = [];
+        console.log(JSON.stringify(l))
+        // this.lines.forEach(el => {
+        //     el.style.display = 'none'
+        // });
+        let c = this.coords
+        for (let i = 0; i < this._points; i++) {
+            let nextPt = c[i % this.points] ?? c[0]
+            l.push(new Line([this.coords[i]], [this.coords[(i + 1) ?? 0]]))//something wrong in the logic 
+            JSON.stringify(l)
+//             let pts = this._points
+//             l[i].style.display = 'inline';
+//             l[i].style.strokeWidth = this.strokeWidth
+// 
+//             let nextPt = pts[i % pts] ?? pts[0]
+// 
+//             //startPoins
+//             l[i].x1 = pts[i].x;
+//             l[i].y1 = pts[i].y;
+//             //connects lines
+//             l[i].x2 = nextPt.x;
+//             l[i].y2 = nextPt.y;
+
+        };
+        return l;
+    }
     private _createLines() {
         //TODO add <next> to define connected points
         // then create lines here from coords
