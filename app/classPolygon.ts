@@ -37,6 +37,7 @@ abstract class APolygon {
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
+        //TODO define lines from calcPoints
     };
     
      //getter/setter 
@@ -65,11 +66,32 @@ abstract class APolygon {
      };
      
     //METHODS
-     private _refresh() {
-         this.coords = this._calcPoints();
-         this.length = this._len(this.coords[1], this.coords[0]);
-         this.gradient = this._gradient();   
-     };
+    private _refresh() {
+        this.coords = this._calcPoints();
+        this.length = this._len(this.coords[1], this.coords[0]);
+//         this.lines.forEach(el => {
+//             el.style.display = 'none'
+//         });
+// 
+//         for (let i = 0; i < this._points; i++) {
+//             let l = this.lines[i];
+//             let pts = this._points 
+//             l.style.display = 'inline';
+//             l.style.strokeWidth = this.strokeWidth
+// 
+//             let nextPt = pts[i % pts] ?? pts[0]
+// 
+//             //startPoins
+//             l.x1 = pts[i].x;
+//             l.y1 = pts[i].y;
+//             //connects lines
+//             l.x2 = nextPt.x;
+//             l.y2 = nextPt.y;
+// 
+//         };
+    
+        this.gradient = this._gradient();
+    };
      
     private _calcPoints() {
         let p: Point[] = []
