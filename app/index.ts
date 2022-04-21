@@ -3,21 +3,22 @@
 
 import document from "document";
 import { dumpProperties, inspectObject } from "./devTools";
-import { createPoly } from "./regularPolygon";
-import {test} from './PolyallMethods'
+import { createPolygon } from './classPolygon';
 
 
 //GET ELEMENTS FOR POLYGON
 const gLines = document.getElementById("gLines") as GroupElement;
 const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as PolygonBG
 
-let poly = createPoly(100, 4, 10)
+let poly = createPolygon()
 
 
-test.radius = 10;
-test.points = 12;
+poly.radius = 100;
+poly.points = 12;
+poly.strokeWidth = 5;
 
-inspectObject('test', test)
+
+inspectObject('poly', poly)
 //now update in setInterval
 let connectTo: number = 3;
 
@@ -40,7 +41,7 @@ center.y = 168
 
 //TODO: do this in class directly to update for changed settings!!!
 // pass values of object her to lineElements
-let pts = poly._coords;
+let pts = poly.coords;
 
 const updatePolygon = () => {
     lines.forEach(el => {
@@ -85,7 +86,9 @@ function changeConnect() {
 
 
 poly.points = 12;// this doesn't update aaaaah! needs to take new coords of course!!!
-pts = poly._coords;
+pts = poly.coords;
 updatePolygon()
+
+//TODO add this logic to abstract class in PolyAllMethods
 
 

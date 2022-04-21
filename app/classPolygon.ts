@@ -1,4 +1,5 @@
 import { inspectObject } from "./devTools";
+import { validInput } from "./validation";
 
 class Point {
     x: number;
@@ -14,7 +15,7 @@ class Point {
  abstract class APolygon {
     private length: number;
     private grad: number[];
-    private coords: Point[];
+    coords: Point[]; // back to private when line calc in here!
     //     style?: {
     //         opacity: number;
     //         display: 'inherit' | 'inline' | 'none';
@@ -26,7 +27,7 @@ class Point {
     //     x2?: number;
     //     y2?: number;
 
-    constructor( radius = 100, points = 5, strokeWidth = 2) {
+    constructor( radius, points, strokeWidth) {
         this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
@@ -76,7 +77,7 @@ class Point {
         return p;
         
     };
-    // needed for cal
+    // PROGRESS
     private _len(s, e) {
         let dx = e.x - s.x;
         let dy = e.y - s.y;
@@ -104,6 +105,9 @@ class Point {
 class Polygon extends APolygon {
     
 }
-export let test = new Polygon(100, 5, 2)
-//inspectObject('test', test)
+export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
+    if (validInput(points) == true) {
+        return new Polygon(radius, points, strokeWidth)
+    } return;
+}
 
