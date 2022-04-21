@@ -9,6 +9,18 @@ class Point {
         this.y = y;
     }
 };
+class Line {
+    style?: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        strokeWidth?: number;
+        fill?: string;
+    }
+    x1?: number;
+    y1?: number;
+    x2?: number;
+    y2?: number;
+}
 
 
 
@@ -16,17 +28,8 @@ class Point {
     private length: number;
     private gradient: number[];
     coords: Point[]; // back to private when line calc in here!
-        style?: {
-            opacity: number;
-            display: 'inherit' | 'inline' | 'none';
-            strokeWidth?: number;
-            fill?: string;
-    
-        }
-        x1?: number;
-        y1?: number;
-        x2?: number;
-        y2?: number;
+    lines: LineElement[]; //or simply take this? think not, as includes more attr which should be private
+        
 
     constructor( radius, points, strokeWidth) {
         this._radius = radius;
@@ -35,7 +38,7 @@ class Point {
         this.coords = this._calcPoints();
         this.length = this._len(this.coords[1], this.coords[0]);
         this.gradient = this._gradient();
-     };
+    };
      //getter/setter 
      private _radius: number;
      get radius() { return this._radius }
