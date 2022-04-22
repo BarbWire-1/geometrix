@@ -29,7 +29,7 @@ class Point {
 // }
 
 abstract class APolygon {
-    private lines: number; //quick fake to call _iLines. set fun to void later
+    lines: number; //quick fake to call _iLines. set fun to void later
     private length: number;
     private gradient: number[];
     private coords: Point[]; // back to private when line calc in here!
@@ -81,7 +81,7 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        //this.lines = this._iLines();// TODO check this for changed function. Now doesn't update
+        this.lines = this._iLines();// TODO check this for changed function. Now doesn't update
         // this.length = this._len(this.coords[1], this.coords[0]);
         // this.gradient = this._gradient();
     };

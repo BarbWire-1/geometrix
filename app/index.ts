@@ -43,52 +43,42 @@ center.y = 168
 //TODO: do this in class directly to update for changed settings!!!
 // pass values of object her to lineElements
 
-// 
-//  const updatePolygon = () => {
-//     lines.forEach(el => {
-//         el.style.display = 'none'
-//     });
-//     
-//     for (let i = 0; i < poly.points; i++) {
-//     
-//         let l = lines[i];
-//         let _l = poly.lines[i]
-//         
-//         l.style.display = 'inline';
-//         l.style.strokeWidth = poly.strokeWidth;
-//         
-//         l.x1 = _l.x1;
-//         l.y1 = _l.y1;
-//         l.x2 = _l.x2;
-//         l.y2 = _l.y2;
-//        
-//  
-//         if (colors !== undefined) {
-//             lines[i].style.fill = colors[i % colors?.length]
-//         }
-//     };
-//  }
-// setInterval(changeConnect, 1000);
-// let i = 1;
-// let a = 0;
-// function changeConnect() {
-//     i %= (poly.points - 2);
-//     i += 1;
-//     poly.next = i;
-// 
-//     
-//     colors = themes[a % themes.length];
-//     a++;
-//     updatePolygon();
-// }
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// poly.points = 8;
+
+const updateColors = () => {
+    for (let i = 0; i < poly.points; i++) {
+        if (colors !== undefined) {
+            lines[i].style.fill = colors[i % colors?.length]
+        }
+    };
+};
+
+// just to see it works :) 
+// but a flaw in logic (skips one in between)
+setInterval(changeConnect, 1000);
+let i = 1;
+let a = 0;
+let p = 0;
+function changeConnect() {
+    poly.points = 3 + (p % 10)
+    p++
+    i %= (poly.points);
+    i += 1;
+    poly.next = p-1;
+    poly.strokeWidth = (1+2*i)%10
+
+    
+    colors = themes[a % themes.length];
+    a++;
+updateColors();
+}
+
+
+
+
+
+
+
+poly.points = 8;
 
 
 //TODO add this logic to abstract class in PolyAllMethods
