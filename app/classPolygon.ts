@@ -14,25 +14,13 @@ class Point {
         this.y = y;
     }
 };
-// // need to make this a styled object???
-// class Line /*implements Styled*/{
-//     x1: number;
-//     y1: number;
-//     x2: number;
-//     y2: number;
-//     constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
-//         this.x1 = x1;
-//         this.y1 = y1;
-//         this.x2 = x2;
-//         this.y2 = y2; 
-//     };
-// }
+
 
 abstract class APolygon {
-    lines: number; //quick fake to call _iLines. set fun to void later
+    lines: number; //necessary to call, as acting on outer lines (???)
     private length: number;
     private gradient: number[];
-    private coords: Point[]; // back to private when line calc in here!
+    private coords: Point[]; 
    
    
     constructor( radius, points, strokeWidth,next) {
@@ -47,28 +35,29 @@ abstract class APolygon {
     };
    
      //getter/setter 
-     private _radius: number;
-     get radius() { return this._radius }
-     set radius(newValue) {
-         this._radius = newValue;
-         this._refresh();
-     };
+    private _radius: number;
+    get radius() { return this._radius }
+    set radius(newValue) {
+        this._radius = newValue;
+        this._refresh();
+    };
+
     private _points: number;
     get points() { return this._points }
     set points(newValue) {
-        if (validInput(this.points) == true) {
+    if (validInput(this.points) == true) {
             this._points = newValue;
             this._refresh();
         } else {
             console.warn('Please choose a valid number of points.')
             return;
         }
-     };
-     private _strokeWidth: number;
-     get strokeWidth() { return this._strokeWidth }
-     set strokeWidth(newValue) {
-         this._strokeWidth = newValue;
-         this._refresh();
+    };
+    private _strokeWidth: number;
+    get strokeWidth() { return this._strokeWidth }
+    set strokeWidth(newValue) {
+        this._strokeWidth = newValue;
+        this._refresh();
     };
     private _next: number;
     get next() { return this._next }
@@ -81,7 +70,7 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        this.lines = this._iLines();// TODO check this for changed function. Now doesn't update
+        this.lines = this._iLines();
         // this.length = this._len(this.coords[1], this.coords[0]);
         // this.gradient = this._gradient();
     };
@@ -102,11 +91,10 @@ abstract class APolygon {
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
 
         };
-        //console.log('calcPoints executed!')
-        //console.log(JSON.stringify(p))
+    
         return p; 
     };
-    //TODO add <next> to define connected points, now just +1
+   
     private _iLines() {
         let ols =  outerLines;
         let pts = this.coords;
@@ -134,22 +122,15 @@ abstract class APolygon {
                 ol.x2 = nextPt.x;
                 ol.y2 = nextPt.y;
               
-
             }
             
-           
-            // //start points
-            // l[i].x1 = pts[i].x;
-            // l[i].y1 = pts[i].y;
-            // //end points
-            // //let nextPt = pts[(i+this._next) % this._points] ?? pts[0];
-            // l[i].x2 = nextPt.x;
-            // l[i].y2 = nextPt.y;
         };
-        //console.log(JSON.stringify(l))
-       return 0;
+       return 0;//just to call it. ugly
     };
 
+    
+    
+    
     // NEEDED FOR PROGRESS ONLY
     private _len(s, e) {
         let dx = e.x - s.x;
@@ -173,15 +154,17 @@ abstract class APolygon {
 };
 
 
-//TODO : add line connection and fill-logic/can't get style implemented.... grrrr
+
 
 
 export class Polygon extends APolygon {    
-}
+};
 
 export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 1) => {
     if (validInput(points) == true) {
         return new Polygon(radius, points, strokeWidth, next);
     } return;
-}
+};
+
+//TODO restructure index.view to symbol and rewrite to use.children instead of LineElement[]
 
