@@ -1,5 +1,10 @@
 import { inspectObject } from "./devTools";
 import { validInput } from "./validation";
+import document from 'document'
+
+//GET ELEMENTS FOR POLYGON
+const gLines = document.getElementById("gLines") as GroupElement;
+const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
 
 class Point {
     x: number;
@@ -28,6 +33,7 @@ abstract class APolygon {
     private length: number;
     private gradient: number[];
     private coords: Point[]; // back to private when line calc in here!
+   
    
     constructor( radius, points, strokeWidth,next) {
         this._radius = radius;
@@ -75,7 +81,7 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        this.lines = this._iLines(); // is this necessary? as depending
+        //this.lines = this._iLines(); // is this necessary? as depending
         // this.length = this._len(this.coords[1], this.coords[0]);
         // this.gradient = this._gradient();
     };
@@ -87,19 +93,19 @@ abstract class APolygon {
         let iRadius = this._radius;
         iRadius -= /*this._strokeWidth % 2 === 0 ? this._strokeWidth / 2 : */Math.floor(this._strokeWidth / 2);
         const fract = (2 * Math.PI / this._points);
-      
+        
+        //TODO adjust to start at 0,-r again
         for (let i: number = 0; i < this._points; i++) {
             p.push(new Point(0, 0))
             p[i].x = Math.round( iRadius * Math.cos(i * fract));
             p[i].y = Math.round( iRadius * Math.sin(i * fract));
         }
         //console.log(JSON.stringify(p))
-        return p;
-        
+        return p; 
     };
     //TODO add <next> to define connected points, now just +1
     private _iLines() {
-        let l: Line[] = [];
+        let ol =  outerLines;
         let pts = this.coords;
         // l.forEach(el => {
         //     el.style.display = 'none';
@@ -107,19 +113,43 @@ abstract class APolygon {
         //    // el.style.fill = 'pink'
         // });
         
-       
+        // now integrated outer lines here, but dont like having so many objects
+        // passing their values around
+        //TODO go for partial Types? But if deriving from interface can't set methods private
+        // at least split in different classes for more or less static/dynamic
         for (let i = 0; i < this._points; i++) {
-            l.push(new Line());
-            //start points
-            l[i].x1 = pts[i].x;
-            l[i].y1 = pts[i].y;
-            //end points
-            let nextPt = pts[(i+this._next) % this._points] ?? pts[0];
-            l[i].x2 = nextPt.x;
-            l[i].y2 = nextPt.y;
+            ol.forEach(el => {
+                el.style.display = 'none'
+            });
+
+            for (let i = 0; i < this.points; i++) {
+
+                let l = ol[i];
+
+                l.style.display = 'inline';
+                l.style.strokeWidth = this.strokeWidth;
+
+                l.x1 = pts[i].x;
+                l.y1 = pts[i].y;
+                //end points
+                let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
+                l.x2 = nextPt.x;
+                l.y2 = nextPt.y;
+                inspectObject('outerLines', l)
+
+            }
+            
+           
+            // //start points
+            // l[i].x1 = pts[i].x;
+            // l[i].y1 = pts[i].y;
+            // //end points
+            // //let nextPt = pts[(i+this._next) % this._points] ?? pts[0];
+            // l[i].x2 = nextPt.x;
+            // l[i].y2 = nextPt.y;
         };
         //console.log(JSON.stringify(l))
-        return l;
+       return ol;
     };
 
     // NEEDED FOR PROGRESS ONLY
