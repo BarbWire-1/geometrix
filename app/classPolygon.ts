@@ -15,68 +15,59 @@ class Point {
     }
 };
 
-
 abstract class APolygon {
     private lines: void;
     private length: number;
     private gradient: number[];
-    private coords: Point[]; 
+    private layout: void;
    
    
-    constructor( radius, points, strokeWidth,next) {
+    constructor(radius, points, strokeWidth, next) {
         this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
         this._next = next;
-        this.coords = this._calcPoints();
-        this.length = this._len(this.coords[1], this.coords[0]);
-        this.gradient = this._gradient();
-        this.lines = this._iLines();
+        this.layout = this._recalc();
     };
    
-     //getter/setter 
+    //GETTER/SETTER
     private _radius: number;
     get radius() { return this._radius }
     set radius(newValue) {
         this._radius = newValue;
-        this._refresh();
+        this._recalc();
     };
 
     private _points: number;
     get points() { return this._points }
     set points(newValue) {
-    if (validInput(this.points) == true) {
+        if (validInput(this.points) == true) {
             this._points = newValue;
-            this._refresh();
+            this._recalc();
         } else {
             console.warn('Please choose a valid number of points.')
             return;
         }
     };
+    
     private _strokeWidth: number;
     get strokeWidth() { return this._strokeWidth }
     set strokeWidth(newValue) {
         this._strokeWidth = newValue;
-        this._refresh();
+        this._recalc();
     };
+    
     private _next: number;
     get next() { return this._next }
     set next(newValue) {
         this._next = newValue;
-        this._refresh();
-        //console.log(this._next)
+        this._recalc();
     };
      
     //METHODS
-    private _refresh() {
-        this.coords = this._calcPoints();
-        this.lines = this._iLines();
-        // this.length = this._len(this.coords[1], this.coords[0]);
-        // this.gradient = this._gradient();
-    };
     //TODO check where recalculating needs to be initiated codewise
     
-    private _calcPoints() {
+    private _recalc() {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius = this._radius;
@@ -93,68 +84,32 @@ abstract class APolygon {
             i++;
 
         };
-    
-        return p; 
-    };
-   
-    private _iLines() {
-        let ols =  outerLines;
-        let pts = this.coords;
-        
-        // now integrated outer lines here, but dont like having so many objects
-        // passing their values around
-        //TODO go for partial Types? But if deriving from interface can't set methods private
-        // at least split in different classes for more or less static/dynamic
-       // set back to 'none' before change to remove previous
-        ols.forEach(el => {
+
+        // set back to 'none' before change to remove previous
+        outerLines.forEach(el => {
             el.style.display = 'none'
         });
-        let i = 0;
-        while (i < this._points){
-            let ol = ols[i];
+        i = 0;
+        while (i < this._points) {
+            let ol = outerLines[i];
             // sts only used lines back to 'inline
             ol.style.display = 'inline';
             ol.style.strokeWidth = this.strokeWidth;
             //start points
-            ol.x1 = pts[i].x;
-            ol.y1 = pts[i].y;
+            ol.x1 = p[i].x;
+            ol.y1 = p[i].y;
             //end points
-            let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
+            let nextPt = p[(i + this._next) % this._points] ?? p[0];
             ol.x2 = nextPt.x;
             ol.y2 = nextPt.y;
             i++;
+        
         };
-       
-    };
-
-    
-    
-    
-    // NEEDED FOR PROGRESS ONLY
-    private _len(s, e) {
-        let dx = e.x - s.x;
-        let dy = e.y - s.y;
-        return Number(Math.sqrt(dx * dx + dy * dy));
-    };
-    //_gradient for ALL needed to calculate x,y progress!
-    // TODO now get distance with connectPoints from line!!! (if at all)
-    private _gradient() {
-        let g: number[] = [];
-        let i = 0;
-        while (i < this._points) {
-            //g.push(0)
-            let nextI = (i + 1) % this._points;
-            let dx = this.coords[nextI].x - this.coords[i].x;
-            let dy = this.coords[nextI].y - this.coords[i].y;
-            let gr = (dx / dy);
-            g.push(gr);
-            i++;
-        }
-        return g;
     };
 };
-
-
+    
+    
+    
 
 
 

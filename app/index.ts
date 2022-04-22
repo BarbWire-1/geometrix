@@ -83,7 +83,7 @@ updateColors();
 
 
 
-poly.points = 12;
+//poly.points = 12;
 
 
 //TODO add this logic to abstract class in PolyAllMethods
