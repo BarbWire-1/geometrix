@@ -68,6 +68,7 @@ abstract class APolygon {
     //TODO check where recalculating needs to be initiated codewise
     
     private _recalc() {
+       
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius = this._radius;
@@ -107,7 +108,10 @@ abstract class APolygon {
         };
     };
 };
-    
+//TODO NOT SURE ABOUT THIS
+// check for new value to process only needed parts when calling? Or split again?
+
+// Possible pro: I wouldn't need an outer coords array, but could always pass values inside the refresh...
     
     
 
