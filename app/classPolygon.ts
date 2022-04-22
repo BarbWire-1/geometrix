@@ -14,22 +14,22 @@ class Point {
         this.y = y;
     }
 };
-// need to make this a styled object???
-class Line /*implements Styled*/{
-    x1: number;
-    y1: number;
-    x2: number;
-    y2: number;
-    constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2; 
-    };
-}
+// // need to make this a styled object???
+// class Line /*implements Styled*/{
+//     x1: number;
+//     y1: number;
+//     x2: number;
+//     y2: number;
+//     constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
+//         this.x1 = x1;
+//         this.y1 = y1;
+//         this.x2 = x2;
+//         this.y2 = y2; 
+//     };
+// }
 
 abstract class APolygon {
-    lines: Line[]; //back to private?
+    private lines: number; //quick fake to call _iLines. set fun to void later
     private length: number;
     private gradient: number[];
     private coords: Point[]; // back to private when line calc in here!
@@ -135,7 +135,7 @@ abstract class APolygon {
                 let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
                 l.x2 = nextPt.x;
                 l.y2 = nextPt.y;
-                inspectObject('outerLines', l)
+              
 
             }
             
@@ -149,7 +149,7 @@ abstract class APolygon {
             // l[i].y2 = nextPt.y;
         };
         //console.log(JSON.stringify(l))
-       return ol;
+       return 0;
     };
 
     // NEEDED FOR PROGRESS ONLY

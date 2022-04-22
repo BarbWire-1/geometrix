@@ -19,7 +19,6 @@ poly.radius = 100;
 poly.points = 4;
 poly.strokeWidth = 5;
 
-
 inspectObject('poly', poly)
 //now update in setInterval
 let connectTo: number = 3;
