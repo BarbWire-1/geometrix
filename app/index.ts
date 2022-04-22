@@ -34,7 +34,9 @@ let themes = [
     ['orange'],
     ['white', 'red', 'white','blue']
 ]
-let colors = themes[4];
+let colors;
+poly.fill = 'pink'
+//let colors = themes[4];
 //inspectObject('poly', poly)
 
 //later just x,y of use
@@ -71,9 +73,9 @@ function changeConnect() {
     poly.strokeWidth = 2 + i % 8;
     poly.radius = 50 + 10 * i;
 
-    a %= themes.length;
-    colors = themes[a];
-    a++;
+    // a %= themes.length;
+    // colors = themes[a];
+    // a++;
 updateColors();
 }
 
