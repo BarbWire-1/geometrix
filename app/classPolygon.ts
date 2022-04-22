@@ -17,7 +17,7 @@ class Point {
 
 
 abstract class APolygon {
-    lines: number; //necessary to call, as acting on outer lines (???)
+    private lines: void;
     private length: number;
     private gradient: number[];
     private coords: Point[]; 
@@ -124,9 +124,7 @@ abstract class APolygon {
             ol.y2 = nextPt.y;
             i++;
         };
-            
-    
-       return 0;//just to call it. ugly
+       
     };
 
     
