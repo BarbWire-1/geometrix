@@ -53,22 +53,23 @@ const updateColors = () => {
 };
 
 // just to see it works :) 
-// but a flaw in logic (skips one in between)
 setInterval(changeConnect, 1000);
 let i = 1;
 let a = 0;
 let p = 0;
 function changeConnect() {
-    poly.points = 3 + (p % 10)
-    p++
+    p %= 10;
+    poly.next = p + 1;
+    poly.points = 3 + p
+    p++;
+    
     i %= (poly.points);
     i += 1;
-    poly.next = p-1;
-    poly.strokeWidth = 2 + i % 8
-    poly.radius = 50 + 10*i
+    poly.strokeWidth = 2 + i % 8;
+    poly.radius = 50 + 10 * i;
 
-    
-    colors = themes[a % themes.length];
+    a %= themes.length;
+    colors = themes[a];
     a++;
 updateColors();
 }
