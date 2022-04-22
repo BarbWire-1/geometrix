@@ -64,7 +64,7 @@ function changeConnect() {
     i %= (poly.points);
     i += 1;
     poly.next = p-1;
-    poly.strokeWidth = (1+2*i)%10
+    poly.strokeWidth = 2+i%8
 
     
     colors = themes[a % themes.length];
