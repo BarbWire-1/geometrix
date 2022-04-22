@@ -81,7 +81,7 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        this.lines = this._iLines();
+        //this.lines = this._iLines();// TODO check this for changed function. Now doesn't update
         // this.length = this._len(this.coords[1], this.coords[0]);
         // this.gradient = this._gradient();
     };
@@ -108,7 +108,7 @@ abstract class APolygon {
     };
     //TODO add <next> to define connected points, now just +1
     private _iLines() {
-        let ol =  outerLines;
+        let ols =  outerLines;
         let pts = this.coords;
         
         // now integrated outer lines here, but dont like having so many objects
@@ -116,23 +116,23 @@ abstract class APolygon {
         //TODO go for partial Types? But if deriving from interface can't set methods private
         // at least split in different classes for more or less static/dynamic
         for (let i = 0; i < this._points; i++) {
-            ol.forEach(el => {
+            ols.forEach(el => {
                 el.style.display = 'none'
             });
 
             for (let i = 0; i < this.points; i++) {
 
-                let l = ol[i];
+                let ol = ols[i];
 
-                l.style.display = 'inline';
-                l.style.strokeWidth = this.strokeWidth;
+                ol.style.display = 'inline';
+                ol.style.strokeWidth = this.strokeWidth;
 
-                l.x1 = pts[i].x;
-                l.y1 = pts[i].y;
+                ol.x1 = pts[i].x;
+                ol.y1 = pts[i].y;
                 //end points
                 let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
-                l.x2 = nextPt.x;
-                l.y2 = nextPt.y;
+                ol.x2 = nextPt.x;
+                ol.y2 = nextPt.y;
               
 
             }
