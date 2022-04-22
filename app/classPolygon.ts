@@ -91,15 +91,18 @@ abstract class APolygon {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius = this._radius;
-        iRadius -= /*this._strokeWidth % 2 === 0 ? this._strokeWidth / 2 : */Math.floor(this._strokeWidth / 2);
-        const fract = (2 * Math.PI / this._points);
+        iRadius -= Math.round(this._strokeWidth / 2);
         
-        //TODO adjust to start at 0,-r again
+        const fract = (2 * Math.PI / this._points);
         for (let i: number = 0; i < this._points; i++) {
             p.push(new Point(0, 0))
-            p[i].x = Math.round( iRadius * Math.cos(i * fract));
-            p[i].y = Math.round( iRadius * Math.sin(i * fract));
-        }
+            //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
+            //to start at top, running clockwise
+            p[i].y = Math.round(iRadius * - Math.cos(i * fract));
+            p[i].x = Math.round(iRadius * Math.sin(i * fract));
+
+        };
+        //console.log('calcPoints executed!')
         //console.log(JSON.stringify(p))
         return p; 
     };
