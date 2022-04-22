@@ -17,8 +17,6 @@ class Point {
 
 abstract class APolygon {
     private lines: void;
-    private length: number;
-    private gradient: number[];
     private layout: void;
    
    
