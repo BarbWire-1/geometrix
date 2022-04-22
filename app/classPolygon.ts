@@ -83,12 +83,14 @@ abstract class APolygon {
         iRadius -= Math.round(this._strokeWidth / 2);
         
         const fract = (2 * Math.PI / this._points);
-        for (let i: number = 0; i < this._points; i++) {
+        let i = 0;
+        while (i < this._points) {
             p.push(new Point(0, 0))
             //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
             //to start at top, running clockwise
             p[i].y = Math.round(iRadius * - Math.cos(i * fract));
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
+            i++;
 
         };
     
@@ -103,28 +105,27 @@ abstract class APolygon {
         // passing their values around
         //TODO go for partial Types? But if deriving from interface can't set methods private
         // at least split in different classes for more or less static/dynamic
-        for (let i = 0; i < this._points; i++) {
-            ols.forEach(el => {
-                el.style.display = 'none'
-            });
-
-            for (let i = 0; i < this.points; i++) {
-
-                let ol = ols[i];
-
-                ol.style.display = 'inline';
-                ol.style.strokeWidth = this.strokeWidth;
-
-                ol.x1 = pts[i].x;
-                ol.y1 = pts[i].y;
-                //end points
-                let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
-                ol.x2 = nextPt.x;
-                ol.y2 = nextPt.y;
-              
-            }
-            
+       // set back to 'none' before change to remove previous
+        ols.forEach(el => {
+            el.style.display = 'none'
+        });
+        let i = 0;
+        while (i < this._points){
+            let ol = ols[i];
+            // sts only used lines back to 'inline
+            ol.style.display = 'inline';
+            ol.style.strokeWidth = this.strokeWidth;
+            //start points
+            ol.x1 = pts[i].x;
+            ol.y1 = pts[i].y;
+            //end points
+            let nextPt = pts[(i + this._next) % this._points] ?? pts[0];
+            ol.x2 = nextPt.x;
+            ol.y2 = nextPt.y;
+            i++;
         };
+            
+    
        return 0;//just to call it. ugly
     };
 
@@ -141,13 +142,15 @@ abstract class APolygon {
     // TODO now get distance with connectPoints from line!!! (if at all)
     private _gradient() {
         let g: number[] = [];
-        for (let i: number = 0; i < this._points; i++) {
+        let i = 0;
+        while (i < this._points) {
             //g.push(0)
             let nextI = (i + 1) % this._points;
             let dx = this.coords[nextI].x - this.coords[i].x;
             let dy = this.coords[nextI].y - this.coords[i].y;
             let gr = (dx / dy);
             g.push(gr);
+            i++;
         }
         return g;
     };
