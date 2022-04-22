@@ -81,7 +81,7 @@ abstract class APolygon {
     //METHODS
     private _refresh() {
         this.coords = this._calcPoints();
-        //this.lines = this._iLines(); // is this necessary? as depending
+        this.lines = this._iLines();
         // this.length = this._len(this.coords[1], this.coords[0]);
         // this.gradient = this._gradient();
     };
@@ -110,11 +110,6 @@ abstract class APolygon {
     private _iLines() {
         let ol =  outerLines;
         let pts = this.coords;
-        // l.forEach(el => {
-        //     el.style.display = 'none';
-        //     console.log(el.style.display)
-        //    // el.style.fill = 'pink'
-        // });
         
         // now integrated outer lines here, but dont like having so many objects
         // passing their values around
