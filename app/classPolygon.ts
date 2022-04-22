@@ -3,8 +3,8 @@ import { validInput } from "./validation";
 import document from 'document'
 
 //GET ELEMENTS FOR POLYGON
-const gLines = document.getElementById("gLines") as GroupElement;
-const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
+export const gLines = document.getElementById("gLines") as GroupElement;
+export const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
 
 class Point {
     x: number;

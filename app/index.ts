@@ -1,23 +1,25 @@
 
 'use strict';
 
-import document from "document";
 import { dumpProperties, inspectObject } from "./devTools";
-import { Polygon,createPolygon } from './classPolygon';
+import { gLines, outerLines, createPolygon } from './classPolygon';
 
 
 //GET ELEMENTS FOR POLYGON
-const gLines = document.getElementById("gLines") as GroupElement;
-const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as Polygon["lines"]//style is missing to type this directly this way
+// const gLines = document.getElementById("gLines") as GroupElement;
+// const lines = gLines.getElementsByClassName("lines") as LineElement[]//unknown as Polygon["lines"]//style is missing to type this directly this way
 //This is not really correct for now: Polygon isn't an array, but needs to include one
-//Or it finally goes on a single use
-let poly = createPolygon()
-// if create poly directly as getElements... as Polygon, poly.lines still undefined.
-// guess need a symbol/use for that
+//Or it finally goes on a single use?
+// now refer to same elements in class
 
-poly.radius = 100;
-poly.points = 4;
-poly.strokeWidth = 5;
+//create with defaults
+let poly = createPolygon()
+
+//created as {radius: 50, points: 5, strokeWidth: 2, next: 1}
+// currently only abstract as no LineElements connected
+let poly2 = createPolygon(50,5,2,1)
+
+
 
 inspectObject('poly', poly)
 //now update in setInterval
@@ -47,7 +49,8 @@ center.y = 168
 const updateColors = () => {
     for (let i = 0; i < poly.points; i++) {
         if (colors !== undefined) {
-            lines[i].style.fill = colors[i % colors?.length]
+            
+           outerLines[i].style.fill = colors[i % colors?.length]
         }
     };
 };
