@@ -169,3 +169,5 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 
 
 //TODO restructure index.view to symbol and rewrite to use.children instead of LineElement[]
 
+//TODO 00 make _calcPoints/_iLine one expression.
+// Logic a bit tricky wo return and in a while instead for...
