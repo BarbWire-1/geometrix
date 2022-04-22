@@ -16,11 +16,9 @@ class Point {
 };
 
 abstract class APolygon {
-    private lines: void;
     private layout: void;
    
-   
-    constructor(radius, points, strokeWidth, next) {
+    constructor(radius: number, points: number, strokeWidth: number, next: number) {
         this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
@@ -65,15 +63,15 @@ abstract class APolygon {
     //METHODS
     //TODO check where recalculating needs to be initiated codewise
     
-    private _recalc() {
+    private _recalc(): void {
        
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
-        let iRadius = this._radius;
+        let iRadius: number = this._radius;
         iRadius -= Math.round(this._strokeWidth / 2);
         
-        const fract = (2 * Math.PI / this._points);
-        let i = 0;
+        const fract: number = (2 * Math.PI / this._points);
+        let i: number = 0;
         while (i < this._points) {
             p.push(new Point(0, 0))
             //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
@@ -84,10 +82,11 @@ abstract class APolygon {
 
         };
 
-        // set back to 'none' before change to remove previous
+        // necessary to set back to 'none' before change to remove previous
         outerLines.forEach(el => {
             el.style.display = 'none'
         });
+        
         i = 0;
         while (i < this._points) {
             let ol = outerLines[i];
