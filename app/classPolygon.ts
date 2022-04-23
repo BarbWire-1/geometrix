@@ -55,8 +55,14 @@ abstract class APolygon {
     defineProp(key, privateKey) {
         Object.defineProperty(this, key, {
             set(newValue) {
-                [privateKey] = newValue;
-                this._recalc()
+                //TODO this doesn't snap
+                if (validInput(this._points) === true) {
+                    this._points = newValue;
+                    this._recalc();
+                } else {
+                    console.warn('Please choose a valid number of points.')
+                    return;
+                }
             },
             get() { return [privateKey] },
         }); 

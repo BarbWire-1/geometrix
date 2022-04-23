@@ -56,7 +56,7 @@ const updateColors = () => {
         }
     };
 };
-poly._points = 12
+poly._points = 15
 // just to see it works :) 
 setInterval(changeConnect, 1000);
 let i = 0;
