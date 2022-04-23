@@ -35,52 +35,54 @@ interface Line
 abstract class APolygon {
     private layout: void;
     lines: Line[];
+    _radius: number;
+    _points: number;
+    _next: number;
+   
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
-       
-        this._radius = radius; 
-        this._points = points;
-        this._strokeWidth = strokeWidth;
-        this._next = next;
+        //TODO try to expose key insted of privKey (Which I can't set to private here, as gets written)
+        this._radius = this.defineProp(radius, this._radius)
+        this._points = this.defineProp(points, this._points)
+        this._strokeWidth = strokeWidth;// TODO: why does this not behave? check use in methods
+        this._next = this.defineProp(next, this._next)
         this.layout = this._recalc();
         this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
+        
     };
     
    //got adjusted run on this._radius
-    //TODO check this. there MUST be a way...
-    // defineProp(obj, key, prvateKey) {
-    //
-    //         set(newValue) { obj[privateKey] = newValue; },
-    //         get() { return obj[privateKey] },
-    //     });
-    // };
+    defineProp(key, privateKey) {
+        Object.defineProperty(this, key, {
+            set(newValue) {
+                [privateKey] = newValue;
+                this._recalc()
+            },
+            get() { return [privateKey] },
+        }); 
+        return key
+    };
    
-    // private _line: LineElement;// 🚫
-    // get line() { return this._line }
-    // set line(newValue) {
-    //     this._line = newValue;
-    //     this._recalc();
-    // };
     
     //GETTER/SETTER
-    private _radius: number;
-    get radius() { return this._radius }
-    set radius(newValue) {
-        this._radius = newValue;
-        this._recalc();
-    };
+    // private _radius: number;
+    // get radius() { return this._radius }
+    //  set radius(newValue) {
+    //     this._radius = newValue;
+    //     this._recalc();
+    //  };
     
-    private _points: number;
-    get points() { return this._points }
-    set points(newValue) {
-        if (validInput(this.points) == true) {
-            this._points = newValue;
-            this._recalc();
-        } else {
-            console.warn('Please choose a valid number of points.')
-            return;
-        }
-    };
+    // private _points: number;
+    // get points() { return this._points }
+    // set points(newValue) {
+    //     if (validInput(this.points) == true) {
+    //         this._points = newValue;
+    //         this._recalc();
+    //     } else {
+    //         console.warn('Please choose a valid number of points.')
+    //         return;
+    //     }
+    // };
     
     private _strokeWidth: number;
     get strokeWidth() { return this._strokeWidth }
@@ -88,13 +90,13 @@ abstract class APolygon {
         this._strokeWidth = newValue;
         this._recalc();
     };
-    
-    private _next: number;
-    get next() { return this._next }
-    set next(newValue) {
-        this._next = newValue;
-        this._recalc();
-    };
+    // 
+    // private _next: number;
+    // get next() { return this._next }
+    // set next(newValue) {
+    //     this._next = newValue;
+    //     this._recalc();
+    // };
    
    
     //METHODS
@@ -129,7 +131,7 @@ abstract class APolygon {
             let l = outerLines[i];
             
             l.style.display = 'inline';
-            l.style.strokeWidth = this.strokeWidth;
+            l.style.strokeWidth = this._strokeWidth;
             //start points
             l.x1 = p[i].x;
             l.y1 = p[i].y;
