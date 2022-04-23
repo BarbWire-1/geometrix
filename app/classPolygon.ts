@@ -27,9 +27,11 @@ abstract class APolygon {
         this.layout = this._recalc();
        
     };
+    
+    
     //TODO check this. there MUST be a way...
     // defineProp(obj, key, prvateKey) {
-    //     Object.defineProperty(obj, key, {
+    //    
     //         set(newValue) { obj[privateKey] = newValue; },
     //         get() { return obj[privateKey] },
     //     });
