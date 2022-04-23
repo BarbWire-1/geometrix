@@ -6,6 +6,9 @@ import document from 'document'
 export const gLines = document.getElementById("gLines") as GroupElement;
 export const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
 
+
+
+
 class Point {
     x: number;
     y: number;
@@ -17,13 +20,16 @@ class Point {
 
 abstract class APolygon {
     private layout: void;
+    //radius: number;
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
+        //this._radius = Number(this.defineProperties(this, 'radius'));
         this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
         this._next = next;
         this.layout = this._recalc();
+       
     };
    
     //GETTER/SETTER
@@ -61,7 +67,26 @@ abstract class APolygon {
     };
      
     //METHODS
-    //TODO check where recalculating needs to be initiated codewise
+    
+   //there's a logic mistake in here... doesn't get applied 
+   defineProperties(target: Object, key: string) {
+        let value: string = this[`_${key}`];;
+
+        const get = function () {
+            console.log(`${key} value: ${value}`);
+            return value;
+        };
+
+        const set = function (val: string) {
+            console.log(`new ${key} value: ${val}`);
+            value = val;
+            this._recalc()
+        };
+        Object.defineProperty(target, key, { set, get });
+        
+        return value;
+    }
+
     
     private _recalc(): void {
        
@@ -127,3 +152,18 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 
 
 //TODO 00 make _calcPoints/_iLine one expression.
 // Logic a bit tricky wo return and in a while instead for...
+
+export function propertyInformation(target: Object, propertyKey: string) {
+    let value: string = this[propertyKey];
+
+    const get = function () {
+        console.log(`${propertyKey} value: ${value}`);
+        return value;
+    };
+
+    const set = function (val: string) {
+        console.log(`new ${propertyKey} value: ${val}`);
+        value = val;
+    };
+    Object.defineProperty(target, propertyKey, { set, get });
+}

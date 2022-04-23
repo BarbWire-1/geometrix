@@ -2,7 +2,7 @@
 'use strict';
 
 import { dumpProperties, inspectObject } from "./devTools";
-import { gLines, outerLines, createPolygon } from './classPolygon';
+import { gLines, outerLines, createPolygon,propertyInformation, Polygon } from './classPolygon';
 
 
 //GET ELEMENTS FOR POLYGON
@@ -13,7 +13,7 @@ import { gLines, outerLines, createPolygon } from './classPolygon';
 // now refer to same elements in class
 
 //create with defaults
-let poly = createPolygon()
+let poly = createPolygon(50, 5, 2, 1)
 
 //created as {radius: 50, points: 5, strokeWidth: 2, next: 1}
 // currently only abstract as no LineElements connected
@@ -35,8 +35,7 @@ let themes = [
     ['white', 'red', 'white','blue']
 ]
 let colors;
-poly.fill = 'pink'
-//let colors = themes[4];
+colors = themes[2];
 //inspectObject('poly', poly)
 
 //later just x,y of use
