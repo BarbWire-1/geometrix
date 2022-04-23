@@ -59,7 +59,7 @@ abstract class APolygon {
         }); 
         return key
     };
-   
+   //TODO add validation for points to _calcPoints
     
     //GETTER/SETTER
     // private _radius: number;
