@@ -54,10 +54,7 @@ abstract class APolygon {
    //got adjusted run on this._radius
     private defineProp(key, privateKey) {
         Object.defineProperty(this, key, {
-            set(newValue) {
-                //TODO this doesn't snap
-                    privateKey = newValue;
-            },
+            set(newValue) { privateKey = newValue;},
             get() { return [privateKey] },
         }); 
         return key
