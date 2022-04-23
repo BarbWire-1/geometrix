@@ -17,7 +17,8 @@ class Point {
 
 abstract class APolygon {
     private layout: void;
-    lines: LineElement[];
+    //line: LineElement;
+    lines: LineElement[];//🚫 experimental.not working (yet 🤞🏻)
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
        
@@ -26,20 +27,28 @@ abstract class APolygon {
         this._strokeWidth = strokeWidth;
         this._next = next;
         this.layout = this._recalc();
-        this.lines = outerLines;
+        this.lines = outerLines;//🚫
+        this._line = this.lines[0]
        
     };
     
-    
+   
     //TODO check this. there MUST be a way...
     // defineProp(obj, key, prvateKey) {
-    //    
+    //
     //         set(newValue) { obj[privateKey] = newValue; },
     //         get() { return obj[privateKey] },
     //     });
     // };
+   
+    private _line: LineElement;// 🚫
+    get line() { return this._line }
+    set line(newValue) {
+        this._line = newValue;
+        this._recalc();
+    };
     //GETTER/SETTER
-   private _radius: number;
+    private _radius: number;
     get radius() { return this._radius }
     set radius(newValue) {
         this._radius = newValue;
@@ -98,7 +107,7 @@ abstract class APolygon {
         outerLines.forEach(el => {
             el.style.display = 'none'
         });
-        
+       
         i = 0;
         while (i < this._points) {
             let l = outerLines[i];
@@ -115,16 +124,9 @@ abstract class APolygon {
             i++;
         
         };
+        console.log(this._line.x1) //🚫 Cannot read property 'x1' of undefined
     };
 };
-//TODO NOT SURE ABOUT THIS
-// check for new value to process only needed parts when calling? Or split again?
-
-// Possible pro: I wouldn't need an outer coords array, but could always pass values inside the refresh...
-    
-    
-
-
 
 export class Polygon extends APolygon {    
 };
