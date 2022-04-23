@@ -20,7 +20,7 @@ let poly = createPolygon(50, 5, 2, 1)
 let poly2 = createPolygon(50,5,2,1)
 
 let testFill = poly.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
-console.log(testFill)//empty
+console.log(testFill)//
 inspectObject('poly', poly)
 inspectObject('poly-lines', poly.lines[0])//empty
 //now update in setInterval
@@ -49,21 +49,21 @@ center.y = 168
 
 
 const updateColors = () => {
-    for (let i = 0; i < poly.points; i++) {
+    for (let i = 0; i < poly._points; i++) {
         if (colors !== undefined) {
             
            poly.lines[i].style.fill = colors[i % colors?.length]
         }
     };
 };
-poly.points = 12
+poly._points = 12
 // just to see it works :) 
 setInterval(changeConnect, 1000);
 let i = 0;
 let a = 0;
 let p = 0;
 function changeConnect() {
-    let pts = poly.points;
+    let pts = poly._points;
     // p %= 10;
     // poly.next = p + 1;
     // poly.points = 3 + p
@@ -73,11 +73,11 @@ function changeConnect() {
     i = i % pts;
   
     poly.strokeWidth = 2 + (i % pts);
-    poly.radius = 50 + 10 * (i % pts);
+    poly._radius = 50 + 10 * (i % pts);
     
-    poly.next = i + 1;
+    poly._next = i + 1;
     i++;
-    i = poly.next !== 11 ? i : 0;
+    i = poly._next !== 11 ? i : 0;
     // console.log(`i: ${i}, next: ${poly.next}`)
   
     
