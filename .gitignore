@@ -6,3 +6,5 @@ Backup -f
 devTools.js
 st.ts
 st.js
+*.txt
+*.yaml
