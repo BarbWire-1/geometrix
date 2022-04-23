@@ -46,7 +46,7 @@ abstract class APolygon {
         this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
     };
     
-   
+   //got adjusted run on this._radius
     //TODO check this. there MUST be a way...
     // defineProp(obj, key, prvateKey) {
     //
