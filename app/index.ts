@@ -56,7 +56,7 @@ const updateColors = () => {
         }
     };
 };
-poly._points = 15
+//poly._points = 15
 // just to see it works :) 
 setInterval(changeConnect, 1000);
 let i = 0;
@@ -64,12 +64,12 @@ let a = 0;
 let p = 0;
 function changeConnect() {
     let pts = poly._points;
-    // p %= 10;
-    // poly.next = p + 1;
-    // poly.points = 3 + p
-    // p++;
-    //
-    // i %= (poly.points);
+    p %= 10;
+    poly._next = p + 1;
+    poly._points = 3 + p
+    p++;
+    
+    i %= (poly._points);
     i = i % pts;
   
     poly.strokeWidth = 2 + (i % pts);
@@ -85,7 +85,8 @@ function changeConnect() {
     a %= themes.length;
     colors = themes[a];
     a++;
-updateColors();
+    updateColors();
+    inspectObject('poly', poly)
 }
 
 

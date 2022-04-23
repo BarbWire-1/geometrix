@@ -52,17 +52,11 @@ abstract class APolygon {
     };
     
    //got adjusted run on this._radius
-    defineProp(key, privateKey) {
+    private defineProp(key, privateKey) {
         Object.defineProperty(this, key, {
             set(newValue) {
                 //TODO this doesn't snap
-                if (validInput(this._points) === true) {
-                    this._points = newValue;
-                    this._recalc();
-                } else {
-                    console.warn('Please choose a valid number of points.')
-                    return;
-                }
+                    privateKey = newValue;
             },
             get() { return [privateKey] },
         }); 
