@@ -2,7 +2,7 @@
 'use strict';
 
 import { dumpProperties, inspectObject } from "./devTools";
-import { gLines, outerLines, createPolygon,propertyInformation, Polygon } from './classPolygon';
+import { gLines, outerLines, createPolygon, Polygon } from './classPolygon';
 
 
 //GET ELEMENTS FOR POLYGON

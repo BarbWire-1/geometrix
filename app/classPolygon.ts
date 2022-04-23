@@ -20,11 +20,11 @@ class Point {
 
 abstract class APolygon {
     private layout: void;
-    //radius: number;
+    radius: number;
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
-        //this._radius = Number(this.defineProperties(this, 'radius'));
-        this._radius = radius;
+        this._radius = Number(this.defineProperties(this, 'radius'));
+        //this._radius = radius;
         this._points = points;
         this._strokeWidth = strokeWidth;
         this._next = next;
@@ -34,11 +34,11 @@ abstract class APolygon {
    
     //GETTER/SETTER
     private _radius: number;
-    get radius() { return this._radius }
-    set radius(newValue) {
-        this._radius = newValue;
-        this._recalc();
-    };
+    // get radius() { return this._radius }
+    // set radius(newValue) {
+    //     this._radius = newValue;
+    //     this._recalc();
+    // };
 
     private _points: number;
     get points() { return this._points }
@@ -70,21 +70,25 @@ abstract class APolygon {
     
    //there's a logic mistake in here... doesn't get applied 
    defineProperties(target: Object, key: string) {
-        let value: string = this[`_${key}`];;
-
+        let value = this[`_${key}`];;
+        let val: any; // allow number or string
         const get = function () {
             console.log(`${key} value: ${value}`);
             return value;
         };
-
-        const set = function (val: string) {
+      
+        const set = function (val) {
             console.log(`new ${key} value: ${val}`);
             value = val;
+            
             this._recalc()
+            return val;
         };
         Object.defineProperty(target, key, { set, get });
         
-        return value;
+       return 100;
+       // return val => NaN WHY???
+       // Cannot set property to 'NaN'. Invalid value: Value out of bounds for native type
     }
 
     
@@ -152,18 +156,3 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 
 
 //TODO 00 make _calcPoints/_iLine one expression.
 // Logic a bit tricky wo return and in a while instead for...
-
-export function propertyInformation(target: Object, propertyKey: string) {
-    let value: string = this[propertyKey];
-
-    const get = function () {
-        console.log(`${propertyKey} value: ${value}`);
-        return value;
-    };
-
-    const set = function (val: string) {
-        console.log(`new ${propertyKey} value: ${val}`);
-        value = val;
-    };
-    Object.defineProperty(target, propertyKey, { set, get });
-}
