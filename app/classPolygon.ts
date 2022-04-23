@@ -6,9 +6,6 @@ import document from 'document'
 export const gLines = document.getElementById("gLines") as GroupElement;
 export const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
 
-
-
-
 class Point {
     x: number;
     y: number;
@@ -20,27 +17,31 @@ class Point {
 
 abstract class APolygon {
     private layout: void;
-    radius: number;
-    private _radius: number;
    
-    constructor(_radius: number, points: number, strokeWidth: number, next: number) {
-        this._radius = Number(this.defineProperties(this, 'radius'));
-        //this._radius = radius;
+    constructor(radius: number, points: number, strokeWidth: number, next: number) {
+       
+        this._radius = radius; 
         this._points = points;
         this._strokeWidth = strokeWidth;
         this._next = next;
         this.layout = this._recalc();
        
     };
-   
-    //GETTER/SETTER
-   // private _radius: number;
-    // get radius() { return this._radius }
-    // set radius(newValue) {
-    //     this._radius = newValue;
-    //     this._recalc();
+    //TODO check this. there MUST be a way...
+    // defineProp(obj, key, prvateKey) {
+    //     Object.defineProperty(obj, key, {
+    //         set(newValue) { obj[privateKey] = newValue; },
+    //         get() { return obj[privateKey] },
+    //     });
     // };
-
+    //GETTER/SETTER
+   private _radius: number;
+    get radius() { return this._radius }
+    set radius(newValue) {
+        this._radius = newValue;
+        this._recalc();
+    };
+    
     private _points: number;
     get points() { return this._points }
     set points(newValue) {
@@ -66,38 +67,9 @@ abstract class APolygon {
         this._next = newValue;
         this._recalc();
     };
-     
+   
+   
     //METHODS
-    //TODO check for tartget/source here getter/setter gon different
-   //there's a logic mistake in here... doesn't get applied 
-   defineProperties(target: Object, key: string) {
-        let value = this[key];
-        let val: any; // allow number or string
-        const get = function () {
-            console.log(`getter: ${key} value: ${value}`);//getter: _radius value: 100 - not updating
-            return value;
-        };
-      
-        const set = function (val) {
-            console.log(`setter: new ${key} value: ${val}`);//setter: new radius value: 70 - updating
-            value = val;
-           
-            this._recalc()
-            //console.log(this._radius)
-           // console.log(val)
-            //return val;
-           
-        };
-        Object.defineProperty(target, key, { set, get });
-      // this._recalc()
-       return 100;
-       //console.log(val)
-       //return val)// => NaN WHY???
-       
-       // Cannot set property to 'NaN'. Invalid value: Value out of bounds for native type
-    }
-
-    
     private _recalc(): void {
        
         let p: Point[] = []
