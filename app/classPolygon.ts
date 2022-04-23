@@ -17,6 +17,7 @@ class Point {
 
 abstract class APolygon {
     private layout: void;
+    lines: LineElement[];
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
        
@@ -25,6 +26,7 @@ abstract class APolygon {
         this._strokeWidth = strokeWidth;
         this._next = next;
         this.layout = this._recalc();
+        this.lines = outerLines;
        
     };
     
@@ -88,6 +90,7 @@ abstract class APolygon {
             p[i].y = Math.round(iRadius * - Math.cos(i * fract));
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
+           
 
         };
 
@@ -98,17 +101,17 @@ abstract class APolygon {
         
         i = 0;
         while (i < this._points) {
-            let ol = outerLines[i];
+            let l = outerLines[i];
             // sts only used lines back to 'inline
-            ol.style.display = 'inline';
-            ol.style.strokeWidth = this.strokeWidth;
+            l.style.display = 'inline';
+            l.style.strokeWidth = this.strokeWidth;
             //start points
-            ol.x1 = p[i].x;
-            ol.y1 = p[i].y;
+            l.x1 = p[i].x;
+            l.y1 = p[i].y;
             //end points
             let nextPt = p[(i + this._next) % this._points] ?? p[0];
-            ol.x2 = nextPt.x;
-            ol.y2 = nextPt.y;
+            l.x2 = nextPt.x;
+            l.y2 = nextPt.y;
             i++;
         
         };

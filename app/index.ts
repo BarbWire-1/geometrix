@@ -22,6 +22,7 @@ let poly2 = createPolygon(50,5,2,1)
 
 
 inspectObject('poly', poly)
+inspectObject('poly-lines', poly.lines[0].x1)
 //now update in setInterval
 let connectTo: number = 3;
 
@@ -77,7 +78,7 @@ function changeConnect() {
     poly.next = i + 1;
     i++;
     i = poly.next !== 11 ? i : 0;
-    console.log(`i: ${i}, next: ${poly.next}`)
+    // console.log(`i: ${i}, next: ${poly.next}`)
   
     
 
