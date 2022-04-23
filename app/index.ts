@@ -19,10 +19,10 @@ let poly = createPolygon(50, 5, 2, 1)
 // currently only abstract as no LineElements connected
 let poly2 = createPolygon(50,5,2,1)
 
-
-
+let testFill = poly.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
+console.log(testFill)//empty
 inspectObject('poly', poly)
-inspectObject('poly-lines', poly.lines[0].x1)
+inspectObject('poly-lines', poly.lines[0])//empty
 //now update in setInterval
 let connectTo: number = 3;
 
@@ -52,7 +52,7 @@ const updateColors = () => {
     for (let i = 0; i < poly.points; i++) {
         if (colors !== undefined) {
             
-           outerLines[i].style.fill = colors[i % colors?.length]
+           poly.lines[i].style.fill = colors[i % colors?.length]
         }
     };
 };
@@ -82,9 +82,9 @@ function changeConnect() {
   
     
 
-    // a %= themes.length;
-    // colors = themes[a];
-    // a++;
+    a %= themes.length;
+    colors = themes[a];
+    a++;
 updateColors();
 }
 

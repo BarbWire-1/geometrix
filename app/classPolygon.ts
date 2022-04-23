@@ -4,7 +4,7 @@ import document from 'document'
 
 //GET ELEMENTS FOR POLYGON
 export const gLines = document.getElementById("gLines") as GroupElement;
-export const outerLines = gLines.getElementsByClassName("lines") as LineElement[];
+export const outerLines = gLines.getElementsByClassName("lines") as unknown as Line[];
 
 class Point {
     x: number;
@@ -14,11 +14,27 @@ class Point {
         this.y = y;
     }
 };
+//use this to restrict properties to needed and desired
+interface Line
+{
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    style: {
+        opacity: number;
+        display: 'inherit' |'inline'|'none';
+        fill: string;
+        strokeWidth: number;
+    };
+    iterable: boolean;
+    enumerable: boolean;
+};
+
 
 abstract class APolygon {
     private layout: void;
-    //line: LineElement;
-    lines: LineElement[];//🚫 experimental.not working (yet 🤞🏻)
+    lines: Line[];
    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
        
@@ -27,9 +43,7 @@ abstract class APolygon {
         this._strokeWidth = strokeWidth;
         this._next = next;
         this.layout = this._recalc();
-        this.lines = outerLines;//🚫
-        this._line = this.lines[0]
-       
+        this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
     };
     
    
@@ -41,12 +55,13 @@ abstract class APolygon {
     //     });
     // };
    
-    private _line: LineElement;// 🚫
-    get line() { return this._line }
-    set line(newValue) {
-        this._line = newValue;
-        this._recalc();
-    };
+    // private _line: LineElement;// 🚫
+    // get line() { return this._line }
+    // set line(newValue) {
+    //     this._line = newValue;
+    //     this._recalc();
+    // };
+    
     //GETTER/SETTER
     private _radius: number;
     get radius() { return this._radius }
@@ -110,8 +125,9 @@ abstract class APolygon {
        
         i = 0;
         while (i < this._points) {
+            //let l = this.lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
             let l = outerLines[i];
-            // sts only used lines back to 'inline
+            
             l.style.display = 'inline';
             l.style.strokeWidth = this.strokeWidth;
             //start points
@@ -122,9 +138,9 @@ abstract class APolygon {
             l.x2 = nextPt.x;
             l.y2 = nextPt.y;
             i++;
-        
+            //console.log(this.lines[i].x1)////🚫 Cannot read property 'x1' of undefined
         };
-        console.log(this._line.x1) //🚫 Cannot read property 'x1' of undefined
+        
     };
 };
 
@@ -141,3 +157,13 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 
 
 //TODO 00 make _calcPoints/_iLine one expression.
 // Logic a bit tricky wo return and in a while instead for...
+
+
+/**
+ * Unfortunately most of the features I wanted to try in TS, esp decorators,
+ * don't seem to wotk in this env.
+ * This way, I find it extremly cumbersome.
+ * Maybe I'll finally go without class but define just an interface for the "natural" els.
+ * to define props.
+ * 
+ */
