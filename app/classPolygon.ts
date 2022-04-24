@@ -112,9 +112,6 @@ abstract class APolygon {
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
         };
-        //why did'nt it accept l when I had this in one fun?
-        //had to write outerLines instead... check. typing?
-        // necessary to set back to 'none' before change to remove previous
         outerLines.forEach(el => {
             el.style.display = 'none'
         });
@@ -140,7 +137,9 @@ abstract class APolygon {
         
     };
 };
-//TODO: abstract class
+//TODO: extending class vs abstr class...
+// seems extending abstract is much nicer, as no need to reply all from super, 
+// but directly accesses that!!! I LIKE!!!
 export class Polygon extends APolygon {    
 };
 
@@ -152,7 +151,7 @@ export class Spyrogon extends APolygon {
         this._points = points
         this._strokeWidth = strokeWidth;
         this.redraw = this._recalc();
-        this.redraw = this._recalc()
+        this._next = next;
          
     }
     
@@ -160,18 +159,12 @@ export class Spyrogon extends APolygon {
     get next() { return this._next }
     set next(newValue: number) {
         this._next = newValue;
-       
         this._recalc();
     };
-    // //TODO: why do I need this here, but points not?
-    // // private _radius: number;
-    // get radius() { return this._radius }
-    // set radius(newValue) {
-    //     this._radius = newValue;
-    //     this._recalc();
-    // };
+};
 
-}
+
+
 //TODO add mode to create Polygon or Spyrogon
 export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     if (validInput(points) == true) {

@@ -25,8 +25,11 @@ import { Polygon, Spyrogon, createPolygon } from './classPolygon';
 //     //inspectObject('poly', poly)
 // }
 
-//let test = new Polygon(100, 5, 10);
-let test = new Spyrogon(50, 5, 2, 3)
+//connecting p to p +1
+let test = new Polygon(100, 5, 10);
+
+//extending polygon: connecting p to p + [next]
+//let test = new Spyrogon(50, 5, 2, 3)
 test.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
 inspectObject('test', test)
 
@@ -38,8 +41,8 @@ function updateProps() {
     test.strokeWidth = 2 + (2*i);
     test.radius = 50 + 10 * (i);
     i++;
-    console.log(i)
-    console.log(test.radius)
+    // console.log(i)
+    // console.log(test.radius)
 };
 
 const delay = 2;
