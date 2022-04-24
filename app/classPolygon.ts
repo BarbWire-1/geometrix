@@ -33,9 +33,15 @@ interface Line
 
 
 abstract class APolygon {
+    protected _x: number;
+    protected _y: number;
+    protected _radius: number;
+    protected _points: number;
+    protected _strokeWidth: number;
+    protected _next: number;
+    
     protected redraw: void;
     lines: Line[];
-    
     
     constructor(radius: number, points: number, strokeWidth: number) {
         this._radius = radius;
@@ -51,15 +57,12 @@ abstract class APolygon {
     };
     
     //GETTER/SETTER
-    protected _radius: number;
     get radius() { return this._radius }
-     set radius(newValue) {
+    set radius(newValue) {
         this._radius = newValue;
         this._recalc()
-         //console.log(this._radius)
-     };
+    };
     
-   protected _points: number;
     get points() { return this._points }
     set points(newValue) {
         if (validInput(this.points) == true) {
@@ -71,30 +74,25 @@ abstract class APolygon {
         }
     };
     
-    protected _next: number;
-
-    protected _strokeWidth: number;
-        get strokeWidth() { return this._strokeWidth }
-        set strokeWidth(newValue) {
-            this._strokeWidth = newValue;
+    get strokeWidth() { return this._strokeWidth }
+    set strokeWidth(newValue) {
+        this._strokeWidth = newValue;
             //doesn't need a redraw as set on elements directly!
-        };
-        
-        _x: number;
-        get x() { return this._x }
-        set x(newValue) {
-            this._x = newValue;
-        };
-    
-        _y: number;
-        get y() { return this._y }
-        set y(newValue) {
-            this._y = newValue;
-        };
+    };   
+   
+    get x() { return this._x }
+    set x(newValue) {
+        this._x = newValue;
+    };
+   
+    get y() { return this._y }
+    set y(newValue) {
+        this._y = newValue;
+    };
     
    
     //METHODS
-    _recalc(): void {
+    protected _recalc(): void {
        
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
@@ -140,7 +138,9 @@ abstract class APolygon {
 //TODO: extending class vs abstr class...
 // seems extending abstract is much nicer, as no need to reply all from super, 
 // but directly accesses that!!! I LIKE!!!
-export class Polygon extends APolygon {    
+// needs to use <protected> instead of <private> to be able to 
+export class Polygon extends APolygon {  
+    //this is need to be able to create an object
 };
 
 export class Spyrogon extends APolygon {
@@ -151,9 +151,8 @@ export class Spyrogon extends APolygon {
         this._points = points
         this._strokeWidth = strokeWidth;
         this.redraw = this._recalc();
-        this._next = next;
-         
-    }
+        this._next = next;  
+    };
     
     protected _next: number;
     get next() { return this._next }
