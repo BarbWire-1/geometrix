@@ -2,30 +2,60 @@
 'use strict';
 
 import { dumpProperties, inspectObject } from "./devTools";
-import { createPolygon } from './classPolygon';
+import { Polygon,Spyrogon, createPolygon } from './classPolygon';
 
 //create with defaults
-let poly = createPolygon(50, 5, 2)
+// let poly = createPolygon(50, 5, 2)
+// 
+// 
 
+// poly.x = 168
+// poly.y = 168
+// 
+// // just to see it works :) 
+// setInterval(updateProps, 1000);
+// let i = 0;
+// 
+// function updateProps() {
+//     i %= 10
+//     poly.points = 3+i
+//     poly.strokeWidth = 2 + (2*i);
+//     poly.radius = 50 + 10 * (i);
+//     i++;
+//     //inspectObject('poly', poly)
+// }
 
-//let testFill = poly.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
-poly.x = 168
-poly.y = 168
+let test = new Polygon(100, 5, 10)
+test.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
+inspectObject('test', test)
 
-// just to see it works :) 
-setInterval(updateProps, 1000);
 let i = 0;
-
 function updateProps() {
     i %= 10
-    poly.points = 3+i
-    poly.strokeWidth = 2 + (2*i);
-    poly.radius = 50 + 10 * (i);
+    //test.next = i
+    test.points = 3+i
+    test.strokeWidth = 2 + (2*i);
+    test.radius = 50 + 10 * (i);
     i++;
-    //inspectObject('poly', poly)
-}
+    console.log(i)
+    console.log(test.radius)
+};
+
+const delay = 2;
+const limit = 18;
+let a = 1;
 
 
+const limitedInterval = setInterval(() => {
+    updateProps()
+    if (a > limit) {
+        clearInterval(limitedInterval);
+        console.log('Interval cleared!');
+    };
+    a++;
+}, delay * 1000);
+
+//points gets updated
 
 
 
