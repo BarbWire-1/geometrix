@@ -13,6 +13,7 @@ symbolTest.lines[0].style.fill = 'magenta'//TypeError: Cannot read property 'sty
 inspectObject('symbolTest', symbolTest)
 //TODO this does something, but something weird :)
 //I now mixed single and symbolUse in the same stage - and this declaration-worm is a nightmare 🤣
+//find a way to integrate lines on instantiaiting polygon
 
 // POLYGON - connecting p to p +1
 //create with defaults
