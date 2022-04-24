@@ -145,7 +145,7 @@ export class Polygon extends APolygon {
 
 export class Spyrogon extends APolygon {
     
-    constructor(radius, points, strokeWidth, next: number) {
+    constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
         super(radius, points, strokeWidth)
         this._radius = radius;
         this._points = points
@@ -171,7 +171,6 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     } return;
 };
 
-//TODO restructure index.view to symbol and rewrite to use.children instead of LineElement[]
 
 //TODO 00 make _calcPoints/_iLine one expression.
 // Logic a bit tricky wo return and in a while instead for...
