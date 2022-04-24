@@ -14,6 +14,7 @@ inspectObject('symbolTest', symbolTest)
 //TODO this does something, but something weird :)
 //I now mixed single and symbolUse in the same stage - and this declaration-worm is a nightmare 🤣
 //find a way to integrate lines on instantiaiting polygon
+//polygon-widget.defs!!
 
 // POLYGON - connecting p to p +1
 //create with defaults
@@ -28,40 +29,40 @@ inspectObject('symbolTest', symbolTest)
 // 
 // 
 // // create with custom values
-// //let test = new Spyrogon(50, 5, 2, 3)
+let test = new Spyrogon(50, 5, 2, 3)
 // 
 // //to see connection p => next p
 // test.lines[0].style.fill = 'orange'
 // inspectObject('test', test)
 // 
 // 
-// let i = 0;
-// function updateProps() {
-//     i %= 9;
-//     //console.log(`i: ${i}`)
-//     test.points = 3 + (i)
-//     test.next = 1 + i// not implemented in Polygon
-//     console.log(`next: ${test.next}`)
-//     test.strokeWidth = 2 + i;
-//     test.radius = 50 + 10 * (i);
-//     i++;
-// };
-// 
-// 
-// 
-// const delay = 1;
-// const limit = 20;
-// let a = 1;
-// 
-// 
-// const limitedInterval = setInterval(() => {
-//     updateProps()
-//     if (a > limit) {
-//         clearInterval(limitedInterval);
-//         // console.log('-------------------');
-//         // console.warn('Interval cleared!');
-//     };
-//     a++;
-// }, delay * 1000);
+let i = 0;
+function updateProps() {
+    i %= 9;
+    //console.log(`i: ${i}`)
+    test.points = 3 + (i)
+    test.next = 1 + i// not implemented in Polygon
+    console.log(`next: ${test.next}`)
+    test.strokeWidth = 2 + i;
+    test.radius = 50 + 10 * (i);
+    i++;
+};
+
+
+
+const delay = 1;
+const limit = 20;
+let a = 1;
+
+
+const limitedInterval = setInterval(() => {
+    updateProps()
+    if (a > limit) {
+        clearInterval(limitedInterval);
+        // console.log('-------------------');
+        // console.warn('Interval cleared!');
+    };
+    a++;
+}, delay * 1000);
 
 //TODO NO 1 restructure index.view to symbol and rewrite to use.children instead of LineElement[]
