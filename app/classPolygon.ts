@@ -15,6 +15,7 @@ class Point {
     }
 };
 //use this to restrict properties to needed and desired
+//on the SVG elements
 interface Line
 {
     x1: number;
@@ -30,20 +31,36 @@ interface Line
     iterable: boolean;
     enumerable: boolean;
 };
-
-
-abstract class PolygonBase {
+// abstract structure
+abstract class IPolygon implements Line {
     protected _x: number;
     protected _y: number;
     protected _radius: number;
     protected _points: number;
     protected _strokeWidth: number;
     protected _next: number;
+
+    lines: Line[];
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+        strokeWidth: number;
+    };
+    iterable: boolean;
+    enumerable: boolean; 
     
     protected redraw: void;
-    lines: Line[];
-    
-    constructor(radius: number, points: number, strokeWidth: number) {
+};
+
+
+class PolygonBase extends IPolygon {
+    constructor( radius = 100, points = 5, strokeWidth = 2 ){
+        super()
         this._radius = radius;
         this._points = points
         this._strokeWidth = strokeWidth;
@@ -97,9 +114,9 @@ abstract class PolygonBase {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius: number = this._radius;
-        console.log(this._radius)
+        //console.log(this._radius)
         iRadius -= Math.round(this._strokeWidth / 2);
-        console.log('calculated points!')
+        //console.log('calculated points!')
         const fract: number = (2 * Math.PI / this._points);
         let i: number = 0;
         while (i < this._points) {
@@ -146,7 +163,7 @@ export class Polygon extends PolygonBase {
 export class Spyrogon extends PolygonBase {
     
     constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
-        super(radius, points, strokeWidth)
+        super( radius, points, strokeWidth )
         this._radius = radius;
         this._points = points
         this._strokeWidth = strokeWidth;
@@ -167,7 +184,7 @@ export class Spyrogon extends PolygonBase {
 //TODO add mode to create Polygon or Spyrogon
 export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     if (validInput(points) == true) {
-        return new Polygon(radius, points, strokeWidth);
+        return new Polygon( radius, points, strokeWidth );
     } return;
 };
 

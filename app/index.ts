@@ -25,20 +25,24 @@ inspectObject('test', test)
 
 let i = 0;
 function updateProps() {
-    i %= 8
-    test.next = i
-    test.points = 3+i
-    test.strokeWidth = 2 + (2*i);
+    i %= 9;
+    console.log(`i: ${i}`)
+    test.points = 3 + (i)
+    test.next = i+1// not implemented in Polygon
+    
+    test.strokeWidth = 2 + i;
     test.radius = 50 + 10 * (i);
     i++;
-    // console.log(i)
-    // console.log(test.radius)
+    
+    
+    //console.log(`radius: ${test.radius}`)
+    console.log(`points: ${test.points}`)
 };
 
 
 
-const delay = 2;
-const limit = 18;
+const delay = 1;
+const limit = 20;
 let a = 1;
 
 
@@ -46,7 +50,8 @@ const limitedInterval = setInterval(() => {
     updateProps()
     if (a > limit) {
         clearInterval(limitedInterval);
-        console.log('Interval cleared!');
+        console.log('-------------------');
+        console.warn('Interval cleared!');
     };
     a++;
 }, delay * 1000);
