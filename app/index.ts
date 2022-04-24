@@ -22,6 +22,7 @@ let test = new Spyrogon()
 test.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
 inspectObject('test', test)
 
+
 let i = 0;
 function updateProps() {
     i %= 8
@@ -33,6 +34,8 @@ function updateProps() {
     // console.log(i)
     // console.log(test.radius)
 };
+
+
 
 const delay = 2;
 const limit = 18;
