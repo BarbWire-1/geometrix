@@ -2,10 +2,10 @@
 'use strict';
 
 import { dumpProperties, inspectObject } from "./devTools";
-import { Polygon,Spyrogon, createPolygon } from './classPolygon';
+import { Polygon, Spyrogon, createPolygon } from './classPolygon';
 
 //create with defaults
-// let poly = createPolygon(50, 5, 2)
+
 // 
 // 
 
@@ -25,7 +25,8 @@ import { Polygon,Spyrogon, createPolygon } from './classPolygon';
 //     //inspectObject('poly', poly)
 // }
 
-let test = new Polygon(100, 5, 10)
+//let test = new Polygon(100, 5, 10);
+let test = new Spyrogon(50, 5, 2, 3)
 test.lines[0].style.fill = 'orange'//🥳 GOT IT WORKING!!!
 inspectObject('test', test)
 

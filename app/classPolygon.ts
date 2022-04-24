@@ -59,7 +59,7 @@ abstract class APolygon {
          //console.log(this._radius)
      };
     
-   private _points: number;
+   protected _points: number;
     get points() { return this._points }
     set points(newValue) {
         if (validInput(this.points) == true) {
@@ -73,7 +73,7 @@ abstract class APolygon {
     
     protected _next: number;
 
-    private _strokeWidth: number;
+    protected _strokeWidth: number;
         get strokeWidth() { return this._strokeWidth }
         set strokeWidth(newValue) {
             this._strokeWidth = newValue;
@@ -99,6 +99,7 @@ abstract class APolygon {
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius: number = this._radius;
+        console.log(this._radius)
         iRadius -= Math.round(this._strokeWidth / 2);
         
         const fract: number = (2 * Math.PI / this._points);
@@ -148,7 +149,9 @@ export class Spyrogon extends APolygon {
     constructor(radius, points, strokeWidth, next: number) {
         super(radius, points, strokeWidth)
         this._radius = radius;
-        this._next = next;
+        this._points = points
+        this._strokeWidth = strokeWidth;
+        this.redraw = this._recalc();
         this.redraw = this._recalc()
          
     }
@@ -160,13 +163,13 @@ export class Spyrogon extends APolygon {
        
         this._recalc();
     };
-    //TODO: why do I need this here, but points not?
-    // private _radius: number;
-    get radius() { return this._radius }
-    set radius(newValue) {
-        this._radius = newValue;
-        this._recalc();
-    };
+    // //TODO: why do I need this here, but points not?
+    // // private _radius: number;
+    // get radius() { return this._radius }
+    // set radius(newValue) {
+    //     this._radius = newValue;
+    //     this._recalc();
+    // };
 
 }
 //TODO add mode to create Polygon or Spyrogon
