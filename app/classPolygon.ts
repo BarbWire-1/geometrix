@@ -16,7 +16,8 @@ class Point {
 };
 //use this to restrict properties to needed and desired
 //on the SVG elements
-interface Line
+//TODO difference interface vs type??
+interface Line 
 {
     x1: number;
     y1: number;
