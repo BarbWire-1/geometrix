@@ -208,13 +208,6 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
  * 
  */
 
-type TLine = Line
-let something: TLine;
-something.x1 = 3;
-console.log(something); //Cannot set property 'x1' of undefined
 
-let otherThing: Line;
-otherThing.x1 = 3;
-console.log(otherThing); //Cannot set property 'x1' of undefined
 
 //???
