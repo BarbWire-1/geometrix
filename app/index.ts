@@ -58,11 +58,11 @@ const updateColors = () => {
 };
 poly.points = 12
 // just to see it works :) 
-setInterval(changeConnect, 1000);
+
 let i = 0;
 let a = 0;
 let p = 0;
-function changeConnect() {
+function updateProps() {
     let pts = poly.points;
     // p %= 10;
     // poly.next = p + 1;
@@ -88,7 +88,19 @@ function changeConnect() {
     updateColors();
     //inspectObject('poly', poly)
 }
+const delay = 1;
+const limit = 22;
+let s = 1;
 
+
+const limitedInterval = setInterval(() => {
+    updateProps()
+    if (s > limit) {
+        clearInterval(limitedInterval);
+        console.log('Interval cleared!');
+    };
+    s++;
+}, delay * 1000);
 
 
 
