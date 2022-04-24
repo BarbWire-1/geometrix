@@ -36,11 +36,10 @@ abstract class APolygon {
     private redraw: void;
     lines: Line[];
     
-    constructor(radius: number, points: number, strokeWidth: number, next: number) {
+    constructor(radius: number, points: number, strokeWidth: number) {
         this._radius = radius;
         this._points = points
         this._strokeWidth = strokeWidth;
-        this._next = next
         this.redraw = this._recalc();
         this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
         //evtl later remove this wehn symbol/use
@@ -73,13 +72,6 @@ abstract class APolygon {
     get strokeWidth() { return this._strokeWidth }
     set strokeWidth(newValue) {
         this._strokeWidth = newValue;
-        this._recalc();
-    };
-    
-    private _next: number;
-    get next() { return this._next }
-    set next(newValue) {
-        this._next = newValue;
         this._recalc();
     };
     
@@ -132,7 +124,7 @@ abstract class APolygon {
             l.x1 = p[i].x;
             l.y1 = p[i].y;
             //end points
-            let nextPt = p[(i + this._next) % this._points] ?? p[0];
+            let nextPt = p[(i + 1) % this._points] ?? p[0];
             l.x2 = nextPt.x;
             l.y2 = nextPt.y;
             i++;
@@ -141,12 +133,15 @@ abstract class APolygon {
     };
 };
 
-export class Polygon extends APolygon {    
+class Polygon extends APolygon {    
 };
+class Spyrogon extends APolygon {
+    
+}
 
-export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 1) => {
+export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     if (validInput(points) == true) {
-        return new Polygon(radius, points, strokeWidth, next);
+        return new Polygon(radius, points, strokeWidth);
     } return;
 };
 
