@@ -113,8 +113,6 @@ abstract class APolygon {
             p[i].y = Math.round(iRadius * - Math.cos(i * fract));
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
-           
-
         };
 
         // necessary to set back to 'none' before change to remove previous
