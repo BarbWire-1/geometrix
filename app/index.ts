@@ -26,17 +26,13 @@ inspectObject('test', test)
 let i = 0;
 function updateProps() {
     i %= 9;
-    console.log(`i: ${i}`)
+    //console.log(`i: ${i}`)
     test.points = 3 + (i)
-    test.next = i+1// not implemented in Polygon
-    
+    test.next = 1 + i// not implemented in Polygon
+    console.log(`next: ${test.next}`)
     test.strokeWidth = 2 + i;
     test.radius = 50 + 10 * (i);
     i++;
-    
-    
-    //console.log(`radius: ${test.radius}`)
-    console.log(`points: ${test.points}`)
 };
 
 
