@@ -55,7 +55,7 @@ abstract class APolygon {
     get radius() { return this._radius }
      set radius(newValue) {
         this._radius = newValue;
-         this.redraw;
+        this._recalc()
          //console.log(this._radius)
      };
     
@@ -64,7 +64,7 @@ abstract class APolygon {
     set points(newValue) {
         if (validInput(this.points) == true) {
             this._points = newValue;
-            this.redraw;
+            this._recalc()
         } else {
             console.warn('Please choose a valid number of points.')
             return;
@@ -101,7 +101,7 @@ abstract class APolygon {
         let iRadius: number = this._radius;
         console.log(this._radius)
         iRadius -= Math.round(this._strokeWidth / 2);
-        
+        console.log('calculated points!')
         const fract: number = (2 * Math.PI / this._points);
         let i: number = 0;
         while (i < this._points) {
