@@ -1,91 +1,23 @@
 <svg>
     <rect id="background" />
-<g id="gLines" transform="translate(50%,50%) rotate(0)">
     
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
-    <line class="lines"/>
+<symbol id="polygon-widget" x="50%" y="50%" type="polygon-widget" class="widget-auto polygon-widget" fill="aqua" >
+    <g id="linesG" class="linesG" transform="translate() rotate(0)">
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+        <line class="lines polygon-widget" />
+    </g>
+    <text id="config" display="none" text-length="70" />
+</symbol>
+<use id="poly1" href="#polygon-widget" />
 
-
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-    <line class="linesE"/>
-
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-<g class="rotateLine">
-    <line class="lines2"/>
-</g>
-
-
-
-
-</g>
 </svg>

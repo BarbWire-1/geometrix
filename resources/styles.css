@@ -3,26 +3,17 @@
     height: 100%;
     fill: black;
 }
-#gLines {
-    fill: #72d32c;
+#poly1{
+    fill: 'aqua';
     
 }
 
 .lines {
     stroke-linejoin: round;/*not supported on device*/
-    /*stroke-linecap: round;*//*looking good on device, where gaps in sim*/
+    /*📍looking good on device, where gaps in sim */
+    /* stroke-linecap: round;*/
     fill: inherit;
     display: none;
     opacity:1;
     
-}
-.lines2 {
-    x1: 0;
-    y1: 0;
-    y2: 0;
-    display: none;
-    fill: #0be2ff;
-    opacity: 1;
-    stroke-linejoin: round;/*not supported on device*/
-    /*stroke-linecap: round;/*looking good on device, where gaps in sim*/
 }
