@@ -33,63 +33,58 @@ interface Line
 
 
 abstract class APolygon {
-    private redraw: void;
+    protected _x: number;
+    protected _y: number;
+    protected _radius: number;
+    protected _points: number;
+    protected _strokeWidth: number;
+    protected _next: number;
+    
+    protected redraw: void;
     lines: Line[];
     
-    constructor(radius: number, points: number, strokeWidth: number, next: number) {
+    constructor(radius: number, points: number, strokeWidth: number) {
         this._radius = radius;
         this._points = points
         this._strokeWidth = strokeWidth;
-        this._next = next
         this.redraw = this._recalc();
         this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
         //evtl later remove this wehn symbol/use
         this.x = gLines.groupTransform.translate.x
-        this.y = gLines.groupTransform.translate.y
-        
+        this.y = gLines.groupTransform.translate.y;
+        this._next = 1;
+       
     };
     
     //GETTER/SETTER
-    private _radius: number;
     get radius() { return this._radius }
-     set radius(newValue) {
+    set radius(newValue) {
         this._radius = newValue;
-        this._recalc();
-     };
+        this._recalc()
+    };
     
-    private _points: number;
     get points() { return this._points }
     set points(newValue) {
         if (validInput(this.points) == true) {
             this._points = newValue;
-            this._recalc();
+            this._recalc()
         } else {
             console.warn('Please choose a valid number of points.')
             return;
         }
     };
     
-    private _strokeWidth: number;
     get strokeWidth() { return this._strokeWidth }
     set strokeWidth(newValue) {
         this._strokeWidth = newValue;
-        this._recalc();
-    };
-    
-    private _next: number;
-    get next() { return this._next }
-    set next(newValue) {
-        this._next = newValue;
-        this._recalc();
-    };
-    
-    private _x: number;
+            //doesn't need a redraw as set on elements directly!
+    };   
+   
     get x() { return this._x }
     set x(newValue) {
         this._x = newValue;
     };
    
-    private _y: number;
     get y() { return this._y }
     set y(newValue) {
         this._y = newValue;
@@ -97,13 +92,14 @@ abstract class APolygon {
     
    
     //METHODS
-    private _recalc(): void {
+    protected _recalc(): void {
        
         let p: Point[] = []
         //recalc radius depending on strokeW to fit inside
         let iRadius: number = this._radius;
+        console.log(this._radius)
         iRadius -= Math.round(this._strokeWidth / 2);
-        
+        console.log('calculated points!')
         const fract: number = (2 * Math.PI / this._points);
         let i: number = 0;
         while (i < this._points) {
@@ -114,9 +110,6 @@ abstract class APolygon {
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
         };
-        //why did'nt it accept l when I had this in one fun?
-        //had to write outerLines instead... check. typing?
-        // necessary to set back to 'none' before change to remove previous
         outerLines.forEach(el => {
             el.style.display = 'none'
         });
@@ -125,14 +118,16 @@ abstract class APolygon {
         while (i < this._points) {
             //let l = this.lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
             let l: Line = outerLines[i];
-            
+
             l.style.display = 'inline';
             l.style.strokeWidth = this._strokeWidth;
             //start points
             l.x1 = p[i].x;
             l.y1 = p[i].y;
             //end points
-            let nextPt = p[(i + this._next) % this._points] ?? p[0];
+            let npt = this._next ?? 1
+            let nextPt = p[(i + npt) % this._points] ?? p[0];
+        
             l.x2 = nextPt.x;
             l.y2 = nextPt.y;
             i++;
@@ -140,17 +135,42 @@ abstract class APolygon {
         
     };
 };
-
-export class Polygon extends APolygon {    
+//TODO: extending class vs abstr class...
+// seems extending abstract is much nicer, as no need to reply all from super, 
+// but directly accesses that!!! I LIKE!!!
+// needs to use <protected> instead of <private> to be able to 
+export class Polygon extends APolygon {  
+    //this is need to be able to create an object
 };
 
-export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 1) => {
+export class Spyrogon extends APolygon {
+    
+    constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
+        super(radius, points, strokeWidth)
+        this._radius = radius;
+        this._points = points
+        this._strokeWidth = strokeWidth;
+        this.redraw = this._recalc();
+        this._next = next;  
+    };
+    
+    protected _next: number;
+    get next() { return this._next }
+    set next(newValue: number) {
+        this._next = newValue;
+        this._recalc();
+    };
+};
+
+
+
+//TODO add mode to create Polygon or Spyrogon
+export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
     if (validInput(points) == true) {
-        return new Polygon(radius, points, strokeWidth, next);
+        return new Polygon(radius, points, strokeWidth);
     } return;
 };
 
-//TODO restructure index.view to symbol and rewrite to use.children instead of LineElement[]
 
 //TODO 00 make _calcPoints/_iLine one expression.
 // Logic a bit tricky wo return and in a while instead for...
@@ -164,3 +184,4 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2, next = 
  * to define props.
  * 
  */
+
