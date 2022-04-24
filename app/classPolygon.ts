@@ -32,7 +32,7 @@ interface Line
 };
 
 
-abstract class APolygon {
+abstract class PolygonBase {
     protected _x: number;
     protected _y: number;
     protected _radius: number;
@@ -139,11 +139,11 @@ abstract class APolygon {
 // seems extending abstract is much nicer, as no need to reply all from super, 
 // but directly accesses that!!! I LIKE!!!
 // needs to use <protected> instead of <private> to be able to 
-export class Polygon extends APolygon {  
+export class Polygon extends PolygonBase {  
     //this is need to be able to create an object
 };
 
-export class Spyrogon extends APolygon {
+export class Spyrogon extends PolygonBase {
     
     constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
         super(radius, points, strokeWidth)
