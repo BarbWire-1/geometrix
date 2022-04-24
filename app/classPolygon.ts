@@ -3,8 +3,8 @@ import { validInput } from "./validation";
 import document from 'document'
 
 //GET ELEMENTS FOR POLYGON
-export const gLines = document.getElementById("gLines") as GroupElement;
-export const outerLines = gLines.getElementsByClassName("lines") as unknown as Line[];
+const gLines = document.getElementById("gLines") as GroupElement;
+const outerLines = gLines.getElementsByClassName("lines") as unknown as Line[];
 
 class Point {
     x: number;
@@ -33,53 +33,41 @@ interface Line
 
 
 abstract class APolygon {
-    private layout: void;
+    private redraw: void;
     lines: Line[];
-    _radius: number;
-    _points: number;
-    _next: number;
-   
-   
+    
     constructor(radius: number, points: number, strokeWidth: number, next: number) {
-        //TODO try to expose key insted of privKey (Which I can't set to private here, as gets written)
-        this._radius = this.defineProp(radius, this._radius)
-        this._points = this.defineProp(points, this._points)
-        this._strokeWidth = strokeWidth;// TODO: why does this not behave? check use in methods
-        this._next = this.defineProp(next, this._next)
-        this.layout = this._recalc();
+        this._radius = radius;
+        this._points = points
+        this._strokeWidth = strokeWidth;
+        this._next = next
+        this.redraw = this._recalc();
         this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
+        //evtl later remove this wehn symbol/use
+        this.x = gLines.groupTransform.translate.x
+        this.y = gLines.groupTransform.translate.y
         
     };
     
-   //got adjusted run on this._radius
-    private defineProp(key, privateKey) {
-        Object.defineProperty(this, key, {
-            set(newValue) { privateKey = newValue;},
-            get() { return [privateKey] },
-        }); 
-        return key
-    };
-   //TODO add validation for points to _calcPoints
-    
     //GETTER/SETTER
-    // private _radius: number;
-    // get radius() { return this._radius }
-    //  set radius(newValue) {
-    //     this._radius = newValue;
-    //     this._recalc();
-    //  };
+    private _radius: number;
+    get radius() { return this._radius }
+     set radius(newValue) {
+        this._radius = newValue;
+        this._recalc();
+     };
     
-    // private _points: number;
-    // get points() { return this._points }
-    // set points(newValue) {
-    //     if (validInput(this.points) == true) {
-    //         this._points = newValue;
-    //         this._recalc();
-    //     } else {
-    //         console.warn('Please choose a valid number of points.')
-    //         return;
-    //     }
-    // };
+    private _points: number;
+    get points() { return this._points }
+    set points(newValue) {
+        if (validInput(this.points) == true) {
+            this._points = newValue;
+            this._recalc();
+        } else {
+            console.warn('Please choose a valid number of points.')
+            return;
+        }
+    };
     
     private _strokeWidth: number;
     get strokeWidth() { return this._strokeWidth }
@@ -87,14 +75,26 @@ abstract class APolygon {
         this._strokeWidth = newValue;
         this._recalc();
     };
-    // 
-    // private _next: number;
-    // get next() { return this._next }
-    // set next(newValue) {
-    //     this._next = newValue;
-    //     this._recalc();
-    // };
+    
+    private _next: number;
+    get next() { return this._next }
+    set next(newValue) {
+        this._next = newValue;
+        this._recalc();
+    };
+    
+    private _x: number;
+    get x() { return this._x }
+    set x(newValue) {
+        this._x = newValue;
+    };
    
+    private _y: number;
+    get y() { return this._y }
+    set y(newValue) {
+        this._y = newValue;
+    };
+    
    
     //METHODS
     private _recalc(): void {
@@ -137,7 +137,6 @@ abstract class APolygon {
             l.x2 = nextPt.x;
             l.y2 = nextPt.y;
             i++;
-            //console.log(this.lines[i].x1)////🚫 Cannot read property 'x1' of undefined
         };
         
     };

@@ -2,7 +2,7 @@
 'use strict';
 
 import { dumpProperties, inspectObject } from "./devTools";
-import { gLines, outerLines, createPolygon, Polygon } from './classPolygon';
+import { createPolygon } from './classPolygon';
 
 
 //GET ELEMENTS FOR POLYGON
@@ -40,44 +40,44 @@ colors = themes[2];
 //inspectObject('poly', poly)
 
 //later just x,y of use
-const center = gLines.groupTransform.translate
-center.x = 168
-center.y = 168
+
+poly.x = 168
+poly.y = 168
 
 //TODO: do this in class directly to update for changed settings!!!
 // pass values of object her to lineElements
 
 
 const updateColors = () => {
-    for (let i = 0; i < poly._points; i++) {
+    for (let i = 0; i < poly.points; i++) {
         if (colors !== undefined) {
             
            poly.lines[i].style.fill = colors[i % colors?.length]
         }
     };
 };
-//poly._points = 15
+poly.points = 12
 // just to see it works :) 
 setInterval(changeConnect, 1000);
 let i = 0;
 let a = 0;
 let p = 0;
 function changeConnect() {
-    let pts = poly._points;
-    p %= 10;
-    poly._next = p + 1;
-    poly._points = 3 + p
-    p++;
-    
-    i %= (poly._points);
-    i = i % pts;
+    let pts = poly.points;
+    // p %= 10;
+    // poly.next = p + 1;
+    // poly.points = 3 + p
+    // p++;
+    // 
+    // i %= (poly.points);
+    // i = i % pts;
   
     poly.strokeWidth = 2 + (i % pts);
-    poly._radius = 50 + 10 * (i % pts);
+    poly.radius = 50 + 10 * (i % pts);
     
-    poly._next = i + 1;
+    poly.next = i + 1;
     i++;
-    i = poly._next !== 11 ? i : 0;
+    i = poly.next !== 11 ? i : 0;
     // console.log(`i: ${i}, next: ${poly.next}`)
   
     
@@ -86,7 +86,7 @@ function changeConnect() {
     colors = themes[a];
     a++;
     updateColors();
-    inspectObject('poly', poly)
+    //inspectObject('poly', poly)
 }
 
 
