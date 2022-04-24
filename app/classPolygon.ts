@@ -31,6 +31,12 @@ interface Line
     iterable: boolean;
     enumerable: boolean;
 };
+/**
+ * Originally planned to make an Interface here, but no modifications allowed
+ * so I'd have to do that in each extending class separately.
+ * That's why I go with an abstract class instead.
+ */
+
 // abstract structure
 abstract class IPolygon implements Line {
     protected _x: number;
@@ -51,8 +57,8 @@ abstract class IPolygon implements Line {
         fill: string;
         strokeWidth: number;
     };
-    iterable: boolean;
-    enumerable: boolean; 
+    readonly iterable: boolean;
+    readonly enumerable: boolean; 
     
     protected redraw: void;
 };
@@ -153,9 +159,7 @@ class PolygonBase extends IPolygon {
     };
 };
 //TODO: extending class vs abstr class...
-// seems extending abstract is much nicer, as no need to reply all from super, 
-// but directly accesses that!!! I LIKE!!!
-// needs to use <protected> instead of <private> to be able to 
+
 export class Polygon extends PolygonBase {  
     //this is need to be able to create an object
 };
