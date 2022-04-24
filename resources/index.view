@@ -18,6 +18,7 @@
     </g>
     <text id="config" display="none" text-length="70" />
 </symbol>
-<use id="poly1" href="#polygon-widget" />
+<use id="poly1" href="#polygon-widget" x="50%" y="50%"/>
+<use id="poly2" href="#polygon-widget" x="50" y="50"/>
 
 </svg>

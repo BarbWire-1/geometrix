@@ -10,6 +10,8 @@ let symbolTest = new Polygon();
 symbolTest.lines = document.getElementById('poly1').firstChild.children as unknown as Polygon["lines"]
 
 symbolTest.lines[0].style.fill = 'magenta'//TypeError: Cannot read property 'style' of undefined
+console.log(`sT lines[0].style.fill: ${symbolTest.lines[0].style.fill}`)
+symbolTest.x = 200;
 inspectObject('symbolTest', symbolTest)
 //TODO this does something, but something weird :)
 //I now mixed single and symbolUse in the same stage - and this declaration-worm is a nightmare 🤣
@@ -30,6 +32,8 @@ inspectObject('symbolTest', symbolTest)
 // 
 // // create with custom values
 let test = new Spyrogon(50, 5, 2, 3)
+symbolTest.lines[1].style.fill = 'orange'
+//test.lines = document.getElementById('poly2').firstChild.children as unknown as Polygon["lines"]
 // 
 // //to see connection p => next p
 // test.lines[0].style.fill = 'orange'
@@ -42,9 +46,10 @@ function updateProps() {
     //console.log(`i: ${i}`)
     test.points = 3 + (i)
     test.next = 1 + i// not implemented in Polygon
-    console.log(`next: ${test.next}`)
+    // console.log(`next: ${test.next}`)
     test.strokeWidth = 2 + i;
     test.radius = 50 + 10 * (i);
+    //console.log(`sT radius: ${symbolTest.radius}`)
     i++;
 };
 
@@ -59,8 +64,8 @@ const limitedInterval = setInterval(() => {
     updateProps()
     if (a > limit) {
         clearInterval(limitedInterval);
-        // console.log('-------------------');
-        // console.warn('Interval cleared!');
+        console.log('-------------------');
+        console.warn('Interval cleared!');
     };
     a++;
 }, delay * 1000);

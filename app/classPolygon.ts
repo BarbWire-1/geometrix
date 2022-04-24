@@ -3,6 +3,7 @@ import { validInput } from "./validation";
 import document from 'document'
 
 //GET ELEMENTS FOR POLYGON
+//TODO this can't work for my appeoach, I think :)
 let gLines = document.getElementById("linesG") as GroupElement;
 const outerLines = gLines.getElementsByClassName("lines") as unknown as Line[];
 

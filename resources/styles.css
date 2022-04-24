@@ -7,6 +7,9 @@
     fill: 'aqua';
     
 }
+#poly2 {
+    fill: 'limegreen';
+}
 
 .lines {
     stroke-linejoin: round;/*not supported on device*/
