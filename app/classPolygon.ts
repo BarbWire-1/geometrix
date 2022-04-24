@@ -114,7 +114,8 @@ abstract class APolygon {
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
         };
-
+        //why did'nt it accept l when I had this in one fun?
+        //had to write outerLines instead... check. typing?
         // necessary to set back to 'none' before change to remove previous
         outerLines.forEach(el => {
             el.style.display = 'none'
@@ -123,7 +124,7 @@ abstract class APolygon {
         i = 0;
         while (i < this._points) {
             //let l = this.lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
-            let l = outerLines[i];
+            let l: Line = outerLines[i];
             
             l.style.display = 'inline';
             l.style.strokeWidth = this._strokeWidth;
