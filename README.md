@@ -2,6 +2,7 @@
 A totally useless playfile with regular polygons
 
 It now can be used as widget in TS, having 2 types:
+
 **Polygon** : a regular Polygon (mode 0);
 
 **Spyrogon**: here you can change the connection between the polygon points to create regular geometric shapes with 3 to 12 vertices (mode 1).
