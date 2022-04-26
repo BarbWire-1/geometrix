@@ -197,13 +197,17 @@ class Spyrogon extends PolygonBase {
     };
 };
 
+// check for settings in constructor and create shape 
+// depending on chosen mode    
+el = validInput(points) === true
+    ? mode == 0
+        ? new Polygon(radius, points, strokeWidth)
+        : mode == 1
+            ? new Spyrogon(radius, points, strokeWidth, next)
+            : console.warn('Please check your params!')
+    : undefined;
     
-el = mode == 0
-    ? new Polygon(radius, points, strokeWidth)
-    : mode == 1
-        ? new Spyrogon(radius, points, strokeWidth, next)
-        : console.warn('Please check your params!')
-   return el;
+return el;
 };
 
 export interface Polygon {
