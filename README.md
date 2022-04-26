@@ -10,11 +10,13 @@ It now can be used as widget in TS, having 2 types:
 **Spyrogon**: here you can change the connection between the polygon points to create regular geometric shapes with 3 to 12 vertices (mode 1).
 got some more TODOs on it 😅
 
+
+
 creating a widget is just setting a `<use>` in `index.view` 
 and then instantiate your poly in `app/index.ts` like:
 
 ``` js
-let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
+let poly = createPolygon(0, document.getElementById('poly')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 ```
 This will create shapes with the default values:
@@ -25,11 +27,11 @@ This will create shapes with the default values:
 To choose custom values you can add these attributes like:
 
 ```js
-let poly0 = createPolygon(0, document.getElementById('poly'),120, 12, 10) as Polygon
+let poly1 = createPolygon(0, document.getElementById('poly1'),120, 12, 10) as Polygon
 ```
 or for the Spyrogon like:
 ```js
-let spyro = createPolygon(0, document.getElementById('poly'),150, 8, 4, 3) as Polygon
+let spyro1 = createPolygon(0, document.getElementById('spyro1'),150, 8, 4, 3) as Polygon
 ```
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
