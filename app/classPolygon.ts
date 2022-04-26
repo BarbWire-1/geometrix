@@ -5,7 +5,8 @@ import document from 'document';
 
 
 //GET ELEMENTS FOR POLYGON
-export const createPolygon = (mode,el) => {
+export const createPolygon = (mode, el) => {
+
 let gLines = el.getElementById("linesG") as GroupElement;
 const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
 
@@ -19,8 +20,7 @@ class Point {
 };
 //use this to restrict properties to needed and desired
 //on the SVG elements
-interface Line 
-{
+interface Line {
     x1: number;
     y1: number;
     x2: number;
@@ -43,12 +43,14 @@ interface Line
 
 // abstract structure
 abstract class IPolygon implements Line {
+    
     protected _x: number;
     protected _y: number;
     protected _radius: number;
     protected _points: number;
     protected _strokeWidth: number;
     protected _next: number;
+    protected _fill: string;
 
     lines: Line[];
     x1: number;
@@ -69,19 +71,23 @@ abstract class IPolygon implements Line {
 
 
     class PolygonBase extends IPolygon {
-    lines: Line[]
-    constructor( radius = 100, points = 5, strokeWidth = 2 ){
-        super()
-        this._radius = radius;
-        this._points = points
-        this._strokeWidth = strokeWidth;
-        this.redraw = this._recalc();
-        this.lines = outerLines;// connected to SVG elements as LINE[] def in interface
-        //evtl later remove this wehn symbol/use
-        this.x = gLines.groupTransform.translate.x
-        this.y = gLines.groupTransform.translate.y;
-        this._next = 1;
-       
+        
+        lines: Line[];
+        
+        constructor( radius = 100, points = 5, strokeWidth = 2 ){
+            super();
+            this._radius = radius;
+            this._points = points
+            this._strokeWidth = strokeWidth;
+            this.redraw = this._recalc();
+            this.lines = outerLines;// connection to SVG elements
+            this.x = gLines.groupTransform.translate.x
+            this.y = gLines.groupTransform.translate.y;
+            this._next = 1;
+            // this._fill = outerLines.forEach(el => {
+            //     el.style.fill;
+            //     return String(this.fill)
+            // });
     };
     
     //GETTER/SETTER
@@ -89,7 +95,7 @@ abstract class IPolygon implements Line {
     set radius(newValue) {
         this._radius = newValue;
         this._recalc()
-    };
+        };
     
     get points() { return this._points }
     set points(newValue) {
@@ -105,7 +111,7 @@ abstract class IPolygon implements Line {
     get strokeWidth() { return this._strokeWidth }
     set strokeWidth(newValue) {
         this._strokeWidth = newValue;
-            //doesn't need a redraw as set on elements directly!
+        this._recalc()
     };   
    
     get x() { return this._x }
@@ -121,23 +127,24 @@ abstract class IPolygon implements Line {
    
     //METHODS
     protected _recalc(): void {
-       
         let p: Point[] = []
+        
         //recalc radius depending on strokeW to fit inside
         let iRadius: number = this._radius;
-        //console.log(this._radius)
         iRadius -= Math.round(this._strokeWidth / 2);
-        //console.log('calculated points!')
         const fract: number = (2 * Math.PI / this._points);
+        
         let i: number = 0;
         while (i < this._points) {
             p.push(new Point(0, 0))
+            
             //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
             //to start at top, running clockwise
             p[i].y = Math.round(iRadius * - Math.cos(i * fract));
             p[i].x = Math.round(iRadius * Math.sin(i * fract));
             i++;
         };
+        //set to 'non' if previous was > i
         outerLines.forEach(el => {
             el.style.display = 'none'
         });
@@ -149,24 +156,26 @@ abstract class IPolygon implements Line {
 
             l.style.display = 'inline';
             l.style.strokeWidth = this._strokeWidth;
+            
             //start points
             l.x1 = p[i].x;
             l.y1 = p[i].y;
+            
             //end points
             let npt = this._next ?? 1
             let nextPt = p[(i + npt) % this._points] ?? p[0];
-        
             l.x2 = nextPt.x;
             l.y2 = nextPt.y;
             i++;
+            };
+        
         };
         
-    };
     };
 
 
 class Polygon extends PolygonBase {  
-    //this is need to be able to create an object
+    //this is needed to be able to create an object
 };
 
 class Spyrogon extends PolygonBase {
@@ -189,11 +198,11 @@ class Spyrogon extends PolygonBase {
 };
 
     
-    el = mode == 0
-        ? new Polygon(100, 5, 3)
-        : mode == 1
-            ? new Spyrogon(100, 5, 2, 1)
-            : console.warn('Please check your params!')
+el = mode == 0
+    ? new Polygon(100, 5, 3)
+    : mode == 1
+        ? new Spyrogon(100, 5, 2, 1)
+        : console.warn('Please check your params!')
    return el;
 };
 
@@ -204,21 +213,17 @@ export interface Polygon {
     lines: any []
     x: number;
     y: number;
-}
+    fill: string;
+};
 
-export interface Spyrogon {
-    radius: number;
-    points: number;
-    strokeWidth: number;
-    lines: any[]
-    next: number;
-    x: number;
-    y: number;
-}
+export interface Spyrogon extends Polygon{
+    next: number;  
+};
 
 
 /**
  * What an overkill!!! :))))
+ * I guess that could be done much more efficient (will try to), but was fun
  * Unfortunately most of the features I wanted to try in TS, esp decorators,
  * don't seem to wotk in this env.
  * This way, I find it extremly cumbersome.
@@ -231,4 +236,9 @@ export interface Spyrogon {
 //TODO: extending class vs abstr class...
 //TODO add settings into create?
 //TODO try/catch for different subTypes?
+
+//TODO add style on el
+//TODO default export
+//TODO params as option in createPolygon()?
+
 
