@@ -2,11 +2,11 @@
 'use strict';
 import document from 'document';
 import { dumpProperties, inspectObject } from "./devTools";
-import { createPolygon, Polygon, Spyrogon } from './classPolygon';
+import { createPolygon, Polygon, Spyrogon } from './polygon-widget';
 
 
 
-let poly0 = createPolygon(0, document.getElementById('poly'),120, 12, 10) as Polygon
+let poly0 = createPolygon(0, document.getElementById('poly'),150, 12, 4) as Polygon
 let poly1 = createPolygon(0, document.getElementById('poly1')) as Polygon;
 let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;

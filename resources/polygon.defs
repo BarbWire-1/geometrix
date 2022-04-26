@@ -1,22 +1,21 @@
 <svg>
    
 
-    <symbol id="polygon-widget" x="50%" y="50%" type="polygon-widget" class="widget-auto polygon-widget" fill="aqua">
-        <g id="linesG" class="linesG polygon-widget" transform="translate(0,0) rotate(0)">
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
-            <line class="lines polygon-widget" />
+    <symbol id="polygon-widget" x="50%" y="50%" fill="aqua">
+        <g id="linesG"  transform="translate(0,0) rotate(0)">
+            <line class="lines " />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
         </g>
-        <text id="config" display="none" text-length="70" />
     </symbol>
 
 </svg>
