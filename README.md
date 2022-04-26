@@ -1,6 +1,8 @@
 # geometrix
 A totally useless playfile with regular polygons
 
+![2022-04-20 12 36 21](polygon-widget.png)   
+
 It now can be used as widget in TS, having 2 types:
 
 **Polygon** : a regular Polygon (mode 0);
@@ -29,12 +31,12 @@ or for the Spyrogon like:
 ```js
 let spyro = createPolygon(0, document.getElementById('poly'),150, 8, 4, 3) as Polygon
 ```
-The additional value here defines the next point ( so line goes from p0 to p3)
+The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
 _
 ## work in progress:
 trying to get an idea how to structure using interfaces/classes/types   
-![2022-04-20 12 36 21](polygon-widget.png)   
+
 
 
 
