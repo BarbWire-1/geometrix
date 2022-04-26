@@ -1,11 +1,13 @@
 import { inspectObject } from "./devTools";
 import { validInput } from "./validation";
-import document from 'document'
+import document from 'document';
+
+
 
 //GET ELEMENTS FOR POLYGON
-//TODO this can't work for my appeoach, I think :)
-let gLines = document.getElementById("linesG") as GroupElement;
-const outerLines = gLines.getElementsByClassName("lines") as unknown as Line[];
+export const createPolygon = (mode,el) => {
+let gLines = el.getElementById("linesG") as GroupElement;
+const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
 
 class Point {
     x: number;
@@ -67,7 +69,8 @@ abstract class IPolygon implements Line {
 };
 
 
-class PolygonBase extends IPolygon {
+    class PolygonBase extends IPolygon {
+    lines: Line[]
     constructor( radius = 100, points = 5, strokeWidth = 2 ){
         super()
         this._radius = radius;
@@ -163,11 +166,11 @@ class PolygonBase extends IPolygon {
 };
 //TODO: extending class vs abstr class...
 
-export class Polygon extends PolygonBase {  
+class Polygon extends PolygonBase {  
     //this is need to be able to create an object
 };
 
-export class Spyrogon extends PolygonBase {
+class Spyrogon extends PolygonBase {
     
     constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
         super( radius, points, strokeWidth )
@@ -188,19 +191,37 @@ export class Spyrogon extends PolygonBase {
 
 
 
-//TODO add mode to create Polygon or Spyrogon
-export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
-    if (validInput(points) == true) {
-        return new Polygon( radius, points, strokeWidth );
-    } return;
+//TODO add settings into create?
+
+    
+    el = mode == 0 ? new Polygon(100, 5, 3)
+        : mode == 1 ? new Spyrogon(100, 5, 2, 1)
+            : null;
+   return el;
 };
 
+export interface Polygon {
+    radius: number;
+    points: number;
+    strokeWidth: number;
+    lines: any []
+    x: number;
+    y: number;
+}
 
-//TODO 00 make _calcPoints/_iLine one expression.
-// Logic a bit tricky wo return and in a while instead for...
+export interface Spyrogon {
+    radius: number;
+    points: number;
+    strokeWidth: number;
+    lines: any[]
+    next: number;
+    x: number;
+    y: number;
+}
 
 
 /**
+ * What an overkill!!! :))))
  * Unfortunately most of the features I wanted to try in TS, esp decorators,
  * don't seem to wotk in this env.
  * This way, I find it extremly cumbersome.
@@ -211,4 +232,3 @@ export const createPolygon = (radius = 100, points = 5, strokeWidth = 2) => {
 
 
 
-//???

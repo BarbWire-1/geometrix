@@ -2,54 +2,44 @@
 'use strict';
 import document from 'document';
 import { dumpProperties, inspectObject } from "./devTools";
-import { Polygon, Spyrogon, createPolygon } from './classPolygon';
+import { createPolygon, Polygon, Spyrogon } from './classPolygon';
 
 
 
-let symbolTest = new Polygon();
-symbolTest.lines = document.getElementById('poly1').firstChild.children as unknown as Polygon["lines"]
+let poly = createPolygon(0, document.getElementById('poly')) as Polygon
+let poly1 = createPolygon(0, document.getElementById('poly1')) as Polygon;
+let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
+let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 
-symbolTest.lines[0].style.fill = 'magenta'//TypeError: Cannot read property 'style' of undefined
-console.log(`sT lines[0].style.fill: ${symbolTest.lines[0].style.fill}`)
-symbolTest.x = 200;
-inspectObject('symbolTest', symbolTest)
-//TODO this does something, but something weird :)
-//I now mixed single and symbolUse in the same stage - and this declaration-worm is a nightmare 🤣
-//find a way to integrate lines on instantiaiting polygon
-//polygon-widget.defs!!
 
-// POLYGON - connecting p to p +1
-//create with defaults
-//let test = new Polygon();
+poly.lines.forEach(el => {
+    el.style.fill = 'magenta';
+    el.style.strokWidth = 1;//doesn't get applied
+})
+poly.strokeWidth = 10;//doesn't get applied here
+poly1.radius = 120;
 
-// create with custom values
-//let test = new Polygon(100, 5, 10);
+poly2.lines.forEach(el => {
+    el.style.fill = 'magenta';
+    el.style.strokWidth = 1;//doesn't get applied
+})
 
-// SPYROGON - extending polygon: connecting p to p + [next]
-//create with defaults
-// let test = new Spyrogon()
-// 
-// 
-// // create with custom values
-let test = new Spyrogon(50, 5, 2, 3)
-symbolTest.lines[1].style.fill = 'orange'
-//test.lines = document.getElementById('poly2').firstChild.children as unknown as Polygon["lines"]
-// 
-// //to see connection p => next p
-// test.lines[0].style.fill = 'orange'
-// inspectObject('test', test)
-// 
-// 
+poly2.radius = 140;
+(dumpProperties('poly',poly))
+
 let i = 0;
 function updateProps() {
     i %= 9;
     //console.log(`i: ${i}`)
-    test.points = 3 + (i)
-    test.next = 1 + i// not implemented in Polygon
-    // console.log(`next: ${test.next}`)
-    test.strokeWidth = 2 + i;
-    test.radius = 50 + 10 * (i);
-    //console.log(`sT radius: ${symbolTest.radius}`)
+    spyro.points = 3 + (i)
+    spyro.next = 1 + i// not implemented in Polygon
+    //console.log(`next: ${spyro.next}`)
+    spyro.strokeWidth = 2 + i; //TODO THIS gets applied ?????
+    spyro.radius = 50 + 10 * (i);
+    spyro.lines.forEach(el => {
+        el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';
+    });
+    //console.log(`sT radius: ${spyro.radius}`)
     i++;
 };
 
@@ -70,4 +60,4 @@ const limitedInterval = setInterval(() => {
     a++;
 }, delay * 1000);
 
-//TODO NO 1 restructure index.view to symbol and rewrite to use.children instead of LineElement[]
+//TODO check, why strokeWidth doesn't get applied (not on el, not on el.lines)

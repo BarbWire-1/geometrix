@@ -1,24 +1,10 @@
 <svg>
     <rect id="background" />
     
-<symbol id="polygon-widget" x="50%" y="50%" type="polygon-widget" class="widget-auto polygon-widget" fill="aqua" >
-    <g id="linesG" class="linesG" transform="translate(0,0) rotate(0)">
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-        <line class="lines polygon-widget" />
-    </g>
-    <text id="config" display="none" text-length="70" />
-</symbol>
-<use id="poly1" href="#polygon-widget" x="50%" y="50%"/>
-<use id="poly2" href="#polygon-widget" x="50" y="50"/>
+<use id="spyro" href="#polygon-widget" fill="orange" x="50%" y="50%" />
+<use id="poly" href="#polygon-widget" fill = "magenta" x="50%" y="50%" opacity = "0.5"/>
+<use id="poly1" href="#polygon-widget" fill ="orange" x="50%" y="50%" opacity = "0.5"/>
+<use id="poly2" href="#polygon-widget" fill ="magenta" x="50%" y="50%" opacity = "0.5"/>
+
 
 </svg>
