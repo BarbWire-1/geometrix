@@ -25,9 +25,14 @@ poly0.style.fill = "turquoise"
 console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
+poly0.style.display = 'inline'
+poly0.x = 300
+console.log(poly0.x)
 
 poly2.radius = 140;
 //(dumpProperties('poly0',poly0))
+
+poly2.style.opacity = 1;
 
 let i = 0;
 function updateProps() {

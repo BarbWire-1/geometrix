@@ -29,7 +29,7 @@ import { validInput } from "./validation";
 //GET ELEMENTS FOR POLYGON
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
 
-let gLines = el.getElementById("linesG") as GroupElement;
+//let gLines = el.getElementById("linesG") as GroupElement;
 const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
 
 class Point {
@@ -112,8 +112,8 @@ abstract class IPolygon implements Line {
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this.x = gLines.groupTransform.translate.x
-            this.y = gLines.groupTransform.translate.y;
+            this._x = el.x;
+            this._y = el.y;
             this._next = 1;
             this.style = el.style
     };
@@ -145,19 +145,15 @@ abstract class IPolygon implements Line {
     get x() { return this._x }
     set x(newValue) {
         this._x = newValue;
+        this._recalc()
     };
    
     get y() { return this._y }
     set y(newValue) {
         this._y = newValue;
+       
         };
-        //ALL I tried for style on el is ugly
-        // can set it in svg/css but doesn't get applied from ts for now
-        get fill() { return el.style.fill }
-        set fill(newValue) {
-            el.style.fill = newValue;
-        }
-   
+      
     //METHODS
     protected _recalc(): void {
         let p: Point[] = []
