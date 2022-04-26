@@ -31,7 +31,7 @@ let poly1 = createPolygon(0, document.getElementById('poly1'),120, 12, 10) as Po
 ```
 or for the Spyrogon like:
 ```js
-let spyro1 = createPolygon(0, document.getElementById('spyro1'),150, 8, 4, 3) as Polygon
+let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as Polygon
 ```
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
