@@ -39,20 +39,23 @@ class Point {
         this.x = x;
         this.y = y;
     }
-};
+    };
+    interface PStyle {
+        style: {
+            opacity: number;
+            display: 'inherit' | 'inline' | 'none';
+            fill: string;
+            strokeWidth: number;
+        };
+    }
 //use this to restrict properties to needed and desired
 //on the SVG elements
-interface Line {
+interface Line extends PStyle{
     x1: number;
     y1: number;
     x2: number;
     y2: number;
-    style: {
-        opacity: number;
-        display: 'inherit' |'inline'|'none';
-        fill: string;
-        strokeWidth: number;
-    };
+   
     iterable: boolean;
     enumerable: boolean;
 };
@@ -72,8 +75,8 @@ abstract class IPolygon implements Line {
     protected _points: number;
     protected _strokeWidth: number;
     protected _next: number;
-    protected _fill: string;
-
+    //protected _fill: string;
+   
     lines: Line[];
     x1: number;
     y1: number;
@@ -95,6 +98,12 @@ abstract class IPolygon implements Line {
     class PolygonBase extends IPolygon {
         
         lines: Line[];
+        style: {
+            opacity: number;
+            display: 'inherit' | 'inline' | 'none';
+            fill: string;
+            strokeWidth: number;
+        };
         
         constructor( radius=100, points=5, strokeWidth=2 ){
             super();
@@ -106,10 +115,7 @@ abstract class IPolygon implements Line {
             this.x = gLines.groupTransform.translate.x
             this.y = gLines.groupTransform.translate.y;
             this._next = 1;
-            // this._fill = outerLines.forEach(el => {
-            //     el.style.fill;
-            //     return String(this.fill)
-            // });
+            this.style = el.style
     };
     
     //GETTER/SETTER
@@ -144,8 +150,13 @@ abstract class IPolygon implements Line {
     get y() { return this._y }
     set y(newValue) {
         this._y = newValue;
-    };
-    
+        };
+        //ALL I tried for style on el is ugly
+        // can set it in svg/css but doesn't get applied from ts for now
+        get fill() { return el.style.fill }
+        set fill(newValue) {
+            el.style.fill = newValue;
+        }
    
     //METHODS
     protected _recalc(): void {
@@ -239,7 +250,12 @@ export interface Polygon {
     lines: any []
     x: number;
     y: number;
-    fill: string;
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+        strokeWidth: number;
+    };
 };
 
 export interface Spyrogon extends Polygon{
@@ -265,6 +281,9 @@ export interface Spyrogon extends Polygon{
 
 //TODO add style on el
 //TODO default export
+
+//TODO try all style on el
+//TODO hierarchy of css/svg/ts??
 
 
 
