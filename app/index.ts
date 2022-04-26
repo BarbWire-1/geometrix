@@ -6,7 +6,7 @@ import { createPolygon, Polygon, Spyrogon } from './classPolygon';
 
 
 
-let poly0 = createPolygon(0, document.getElementById('poly')) as Polygon
+let poly0 = createPolygon(0, document.getElementById('poly'),120, 12, 10) as Polygon
 let poly1 = createPolygon(0, document.getElementById('poly1')) as Polygon;
 let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
@@ -15,7 +15,7 @@ let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 poly0.lines.forEach(el => {
     el.style.fill = 'magenta';
 })
-poly0.strokeWidth = 10;
+//poly0.strokeWidth = 10;
 poly1.radius = 120;
 
 poly2.lines.forEach(el => {

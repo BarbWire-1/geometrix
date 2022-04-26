@@ -15,7 +15,23 @@ and then instantiate your poly in `app/index.ts` like:
 let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 ```
-___
+This will create shapes with the default values:
+* radius = 100;
+* points = 5;
+* strokeWidth = 2;
+
+To choose custom values you can add these attributes like:
+
+```js
+let poly0 = createPolygon(0, document.getElementById('poly'),120, 12, 10) as Polygon
+```
+or for the Spyrogon like:
+```js
+let spyro = createPolygon(0, document.getElementById('poly'),150, 8, 4, 3) as Polygon
+```
+The additional value here defines the next point ( so line goes from p0 to p3)
+
+_
 ## work in progress:
 trying to get an idea how to structure using interfaces/classes/types   
 ![2022-04-20 12 36 21](polygon-widget.png)   

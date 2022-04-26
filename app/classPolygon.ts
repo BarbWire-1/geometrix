@@ -5,7 +5,7 @@ import document from 'document';
 
 
 //GET ELEMENTS FOR POLYGON
-export const createPolygon = (mode, el) => {
+export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
 
 let gLines = el.getElementById("linesG") as GroupElement;
 const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
@@ -74,7 +74,7 @@ abstract class IPolygon implements Line {
         
         lines: Line[];
         
-        constructor( radius = 100, points = 5, strokeWidth = 2 ){
+        constructor( radius=100, points=5, strokeWidth=2 ){
             super();
             this._radius = radius;
             this._points = points
@@ -180,7 +180,7 @@ class Polygon extends PolygonBase {
 
 class Spyrogon extends PolygonBase {
     
-    constructor(radius = 100, points = 10, strokeWidth= 2, next= 2) {
+    constructor(radius=100, points=5, strokeWidth=4, next=2) {
         super( radius, points, strokeWidth )
         this._radius = radius;
         this._points = points
@@ -199,9 +199,9 @@ class Spyrogon extends PolygonBase {
 
     
 el = mode == 0
-    ? new Polygon(100, 5, 3)
+    ? new Polygon(radius, points, strokeWidth)
     : mode == 1
-        ? new Spyrogon(100, 5, 2, 1)
+        ? new Spyrogon(radius, points, strokeWidth, next)
         : console.warn('Please check your params!')
    return el;
 };
@@ -239,6 +239,6 @@ export interface Spyrogon extends Polygon{
 
 //TODO add style on el
 //TODO default export
-//TODO params as option in createPolygon()?
+
 
 
