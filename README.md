@@ -50,9 +50,7 @@ trying to get an idea how to structure using interfaces/classes/types
 * number of points,
 * connection between points (next point),
 * fills perline/ fill-themes (1 to ... get applied per %points)
-working now for a single object (class) now *somehow* .
 
-As novice to this, I'd be happy for any ideas... so please feel invited 😁
 
 ...and running all (current) "dynamix"
 
