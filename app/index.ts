@@ -21,7 +21,7 @@ poly1.radius = 120;
 
 poly2.lines.forEach(el => {
     el.style.fill = 'magenta';
-    el.style.strokWidth = 1;//doesn't get applied
+    el.style.strokWidth = 10;//doesn't get applied
 })
 
 poly2.radius = 140;

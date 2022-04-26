@@ -19,7 +19,6 @@ class Point {
 };
 //use this to restrict properties to needed and desired
 //on the SVG elements
-//TODO difference interface vs type??
 interface Line 
 {
     x1: number;
@@ -163,8 +162,8 @@ abstract class IPolygon implements Line {
         };
         
     };
-};
-//TODO: extending class vs abstr class...
+    };
+
 
 class Polygon extends PolygonBase {  
     //this is need to be able to create an object
@@ -189,14 +188,12 @@ class Spyrogon extends PolygonBase {
     };
 };
 
-
-
-//TODO add settings into create?
-
     
-    el = mode == 0 ? new Polygon(100, 5, 3)
-        : mode == 1 ? new Spyrogon(100, 5, 2, 1)
-            : null;
+    el = mode == 0
+        ? new Polygon(100, 5, 3)
+        : mode == 1
+            ? new Spyrogon(100, 5, 2, 1)
+            : console.warn('Please check your params!')
    return el;
 };
 
@@ -230,5 +227,8 @@ export interface Spyrogon {
  * 
  */
 
-
+//TODO difference interface vs type??
+//TODO: extending class vs abstr class...
+//TODO add settings into create?
+//TODO try/catch for different subTypes?
 
