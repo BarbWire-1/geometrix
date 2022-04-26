@@ -1,7 +1,7 @@
 
 'use strict';
 import document from 'document';
-import { dumpProperties, inspectObject } from "./devTools";
+//import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
@@ -27,7 +27,9 @@ console.log(poly0.style.fill)
 console.log(poly0.style.fill) 
 poly0.style.display = 'inline'
 poly0.x = 300
+
 console.log(poly0.x)
+console.log(poly2.x)// 0 häh???
 
 poly2.radius = 140;
 //(dumpProperties('poly0',poly0))

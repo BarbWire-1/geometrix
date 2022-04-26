@@ -2,7 +2,7 @@
    
 
     <symbol id="polygon-widget"  fill="aqua">
-        <g id="linesG"  transform="translate(0,0) rotate(0)">
+        <g id="linesG">
             <line class="lines " />
             <line class="lines" />
             <line class="lines" />
