@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 
-import { inspectObject } from "../devTools";
+//import { inspectObject } from "../devTools";
 import { Line, APolygon, Point } from "./parentClasses";
 
 import { validInput } from "./validation";
@@ -63,18 +63,12 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._radius = newValue;
             this._recalc()
             };
-        
         get points() { return this._points }
         set points(newValue) {
-            if (validInput(this.points) == true) {
-                this._points = newValue;
-                this._recalc()
-            } else {
-                console.warn('Please choose a valid number of points.')
-                return;
-            }
+            validInput(this._points);
+            this._points = newValue;
+            this._recalc()
         };
-        
         get strokeWidth() { return el.style.strokeWidth }
         set strokeWidth(newValue) {
             this._strokeWidth = newValue;
@@ -124,7 +118,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         
             i = 0;
             while (i < this._points) {
-                //let l = this._lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
+    
                 let l: Line = outerLines[i];
 
                 l.style.display = 'inline';
