@@ -86,6 +86,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
    
     class PolygonBase extends APolygon {
+        protected outerLines: Line[];
         center: Point[];  
         lines: Line[];
     
@@ -182,7 +183,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
                 l.x2 = nextPt.x;
                 l.y2 = nextPt.y;
                 i++;
-                };
+            };
             
         };
             
@@ -276,6 +277,8 @@ export interface Spyrogon extends Polygon {
 //TODO hierarchy of css/svg/ts??
 
 //TODO add rotate? on gLines?
+
+//x,y!!!!!!!
 
 
 
