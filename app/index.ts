@@ -28,8 +28,8 @@ console.log(poly0.style.fill)
 poly0.style.display = 'inline'
 poly0.x = 300//😭
 poly0.y = 0
-
-console.log(poly0.x)
+spyro.x =100
+console.log('poly0.x from index.ts: '+poly0.x)
 console.log(poly2.x)// 0 häh???
 
 poly2.radius = 140;

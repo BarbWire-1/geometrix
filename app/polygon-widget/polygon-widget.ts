@@ -83,8 +83,12 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
     const style = el.style
+    // let x = gLines.groupTransform.translate.x;
+    // let y = gLines.groupTransform.translate.y;
+    
     const x = el.x;
-    const y = el.y
+    const y = el.y;
+   
    
     class PolygonBase extends APolygon {
         protected outerLines: Line[];
@@ -131,7 +135,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     
         get x() { return this._x }
             set x(newValue) {
-            console.log(`el.x set:${el.x}`)
+            console.log(`${el.id}.x set:${el.x}`)// is id undefined? oh, not yet created
             this._x = newValue;
         };
     
@@ -276,6 +280,7 @@ export interface Spyrogon extends Polygon {
 //TODO default export
 //TODO add rotate? on gLines?
 //TODO 1.0 x,y!!!!!!! working from css and SVG but not in TS??? WTF???
+//values get logged from set, also those from ts. But they don't get applied
 
 //TODO 2.0 : where is really el needed in class?
 //Can I detangle this and only have elements and creation in function?
