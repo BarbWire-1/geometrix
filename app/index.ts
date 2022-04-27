@@ -51,7 +51,7 @@ function updateProps() {
     spyro.lines.forEach(el => {
         el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';
     });
-    poly0.rotate.angle = 10*i;
+    poly0.rotate.angle = 15*i;
     //spyro.style.fill = 'limegreen'
     //console.log(`sT fill: ${spyro.style.fill}`)
     i++;

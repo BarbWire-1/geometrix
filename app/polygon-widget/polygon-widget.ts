@@ -220,7 +220,7 @@ export interface Spyrogon extends Polygon {
 //TODO difference interface vs type??
 //TODO: extending class vs abstr class...
 
-
+//TODO split all "special" features into extending classes, so only loaded, when used
 
 
 //TODO default export
