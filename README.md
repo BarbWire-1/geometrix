@@ -65,8 +65,9 @@ ___
 * size of circle,
 * number of points,
 * connection between points (next point),
-* fills perline/ fill-themes (1 to ... get applied per %points)
-* I also added rotation and an "offset" to your predefined x,y
+* fill on `<use>`, per line (can work with fill-themes) (1 to ... get applied per %points)
+* rotation
+* scale
 
 ...and running all (current) "dynamix"
 

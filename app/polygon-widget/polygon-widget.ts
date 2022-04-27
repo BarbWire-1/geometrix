@@ -227,8 +227,12 @@ export {Polygon, Spyrogon } from './classesInterfaces'
 
 //TODO how _recalc() could be splitted to only do the necessary calculations depending on caller
 
+//TODO: switch to <Style> instead using el.style?
+
 /**
  * as rotation is a groupTransform and x,y are also set on the g,
  * The settings on x,y in js/ts are the rotation center!!!
  * SVG x,y on use go directly on use!!!!
  */
+
+
