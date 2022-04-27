@@ -13,11 +13,11 @@ It now can be used as widget in TS, having 2 types:
 got some more TODOs on it 😅
 
 
-
+___
 creating a widget is just 
 * copy the folder `polygon-widget`into your app-folder
 * copy the file `polygon.defs` into your resources-folder
-* add `polygon.defs` import in your `widgets.defs
+* add `polygon.defs` import in your `widgets.defs`
 
 
 
@@ -45,6 +45,7 @@ This will create shapes with the default values:
 * radius = 100;
 * points = 5;
 * strokeWidth = 2;
+* next = 1;
 
 To choose custom values you can add these attributes like:
 
@@ -57,16 +58,7 @@ let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as
 ```
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
-_
-I also added rotation and an "offset" to ypur predefined x,y
-
-
- 
-
-
-
-
-
+___
 
 ### dynamically:
 * 3 to 12 vertices,
@@ -74,7 +66,7 @@ I also added rotation and an "offset" to ypur predefined x,y
 * number of points,
 * connection between points (next point),
 * fills perline/ fill-themes (1 to ... get applied per %points)
-
+* I also added rotation and an "offset" to your predefined x,y
 
 ...and running all (current) "dynamix"
 
