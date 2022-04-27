@@ -1,5 +1,7 @@
 # geometrix
 A totally useless playfile with regular polygons
+## work in progress:
+trying to get an idea how to structure using interfaces/classes/types  
 
 ![2022-04-20 12 36 21](polygon-widget.png)   
 
@@ -12,8 +14,28 @@ got some more TODOs on it 😅
 
 
 
-creating a widget is just setting a `<use>` in `index.view` 
-and then instantiate your poly in `app/index.ts` like:
+creating a widget is just 
+* copy the folder `polygon-widget`into your app-folder
+* copy the file `polygon.defs` into your resources-folder
+* add `polygon.defs` import in your `widgets.defs
+
+
+
+```js
+<svg>
+    <defs>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+        <link rel="import" href="polygon.defs" />
+    </defs>
+</svg>
+```
+
+* setting a `<use>` in `index.view` like the following example
+```js
+<use id="poly0" href="#polygon-widget"  x="168" y="168" opacity = "1"/>
+```
+* and then instantiate your poly in `app/index.ts` like:
 
 ``` js
 let poly = createPolygon(0, document.getElementById('poly')) as Polygon;
@@ -36,8 +58,10 @@ let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
 _
-## work in progress:
-trying to get an idea how to structure using interfaces/classes/types   
+I also added rotation and an "offset" to ypur predefined x,y
+
+
+ 
 
 
 

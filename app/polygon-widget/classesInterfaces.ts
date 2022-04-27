@@ -38,3 +38,23 @@ export abstract class APolygon extends Line {
     protected redraw: void;
 };
 
+export interface Polygon {
+    radius: number;
+    points: number;
+    strokeWidth: number;
+    lines: Line[]
+    x: number;
+    y: number;
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+    };
+    rotate: { angle: number }
+};
+
+
+export interface Spyrogon extends Polygon {
+    next: number;
+};
+

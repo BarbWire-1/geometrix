@@ -22,7 +22,7 @@
 
 
 //import { inspectObject } from "../devTools";
-import { Line, APolygon, Point } from "./parentClasses";
+import { Line, APolygon, Point } from "./classesInterfaces";
 
 import { validInput } from "./validation";
 
@@ -172,27 +172,11 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     return el;
 };
 
+export {Polygon, Spyrogon } from './classesInterfaces'
+
     
 
-export interface Polygon {
-    radius: number;
-    points: number;
-    strokeWidth: number;
-    lines: Line[]
-    x: number;
-    y: number;
-    style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        fill: string;
-    };
-    rotate: {angle: number}
-};
 
-
-export interface Spyrogon extends Polygon {
-    next: number;
-};
 
 
 /**
