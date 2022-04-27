@@ -11,6 +11,9 @@
     fill: 'orange';
     x: 200;
 }
+#poly0 {
+    x: 200;
+}
 
 .lines {
     stroke-linejoin: round;/*not supported on device*/

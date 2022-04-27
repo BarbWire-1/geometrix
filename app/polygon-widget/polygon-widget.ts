@@ -74,9 +74,7 @@ abstract class APolygon extends Line {
     protected redraw: void;
 };
 
-//TODO: where is really el needed in class?
-//Can I detangle this and only have elements and creation in function?
-// would this be meaningful?
+
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
 
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
@@ -84,11 +82,15 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
+    const style = el.style
+    const x = el.x;
+    const y = el.y
    
     class PolygonBase extends APolygon {
         protected outerLines: Line[];
         center: Point[];  
-        lines: Line[];
+        //lines: Line[];
+       
     
         constructor( radius=100, points=5, strokeWidth=2 ){
             super();
@@ -97,10 +99,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this._x = el.x
-            this._y = el.y;
+            this._x = x
+            this._y = y;
             this._next = 1;
-            this.style = el.style
+            this.style = style
         };
         
         //GETTER/SETTER
@@ -160,14 +162,14 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
                 p[i].x = Math.round(iRadius * Math.sin(i * fract));
                 i++;
             };
-            //set to 'non' if previous was > i
+            //set to 'none' as if previous i > i would stay inline
             outerLines.forEach(el => {
                 el.style.display = 'none'
             });
         
             i = 0;
             while (i < this._points) {
-                //let l = this.lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
+                //let l = this._lines[i];// 🚫 TypeError: Cannot read property '0' of undefined
                 let l: Line = outerLines[i];
 
                 l.style.display = 'inline';
@@ -267,18 +269,15 @@ export interface Spyrogon extends Polygon {
 
 //TODO difference interface vs type??
 //TODO: extending class vs abstr class...
-//TODO add settings into create?
-//TODO try/catch for different subTypes?
 
-//TODO add style on el
+
+
+
 //TODO default export
-
-//TODO try all style on el
-//TODO hierarchy of css/svg/ts??
-
 //TODO add rotate? on gLines?
+//TODO 1.0 x,y!!!!!!! working from css and SVG but not in TS??? WTF???
 
-//x,y!!!!!!!
-
-
+//TODO 2.0 : where is really el needed in class?
+//Can I detangle this and only have elements and creation in function?
+// would this be meaningful?
 
