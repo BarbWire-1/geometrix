@@ -55,8 +55,8 @@ class Line  {
 // abstract structure
 abstract class APolygon extends Line {
 
-    // protected _x: number;
-    // protected _y: number;
+    protected _x: number;
+    protected _y: number;
     protected _radius: number;
     protected _points: number;
     protected _strokeWidth: number;
@@ -75,7 +75,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
-   
+    let elX = gLines.groupTransform.translate.x -el.x;
+    let elY = gLines.groupTransform.translate.y;
+    
    
     class PolygonBase extends APolygon {
         [x: string]: any;
@@ -90,8 +92,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this.x = el.x
-            this.y = el.y
+            this.x = elX;
+            this.y = elY;
             this._next = 1;
             this.style = el.style
         };
@@ -118,8 +120,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         set strokeWidth(newValue) {
             this._strokeWidth = newValue;
             this._recalc()
-        };   
-   
+        }; 
+        get x() { return this._x }
+        set x(newValue) {
+            this._x = newValue;
+            this._recalc()
+        };
+        
         //METHODS
         protected _recalc(): void {
             let p: Point[] = []
@@ -254,8 +261,7 @@ export interface Spyrogon extends Polygon {
 
 //TODO default export
 //TODO add rotate? on gLines?
-//TODO 1.0 x,y!!!!!!! working from css and SVG but not in TS??? WTF???
-//values get logged from set, also those from ts. But they don't get applied
+
 
 //TODO 2.0 : where is really el needed in class?
 //Can I detangle this and only have elements and creation in function?
@@ -263,12 +269,7 @@ export interface Spyrogon extends Polygon {
 
 //TODO el.x/y are CENTER of widget
 
-//TODO now x,y and style directly on element
-// doesn't need getter/setter
-// mixing levels here, it doesn't overwrite svg, but adds the values!!!
-//OH only works on spyro as recalced, so needs setters though
-//test for style!!!
-//working!!!
-
-//Unknown attribute 'x' in linesG  !!!!! in symbol
-// need to add that althought GroupElement???
+//TODO x,y now workaround on groupTransform as nothing else seemed to worked on static elements
+//There must be something wrong in calculating points or passing values. 
+//If something is set in svg this approach only offsets. Don'like!!!
+//CHECK MATHS!

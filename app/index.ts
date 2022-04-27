@@ -26,7 +26,7 @@ console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
 poly0.style.display = 'inline'
-poly0.x =0
+poly0.x = 100
 spyro.x = 168
 spyro.y = 168;
 console.log('poly0.x from index.ts: '+poly0.x)
