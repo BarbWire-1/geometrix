@@ -26,9 +26,10 @@ console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
 poly0.style.display = 'inline'
-poly0.x = 300//😭
+poly0.x = 0
 poly0.y = 0
-spyro.x =100
+spyro.x = 20
+spyro.y = 0;
 console.log('poly0.x from index.ts: '+poly0.x)
 console.log(poly2.x)// 0 häh???
 

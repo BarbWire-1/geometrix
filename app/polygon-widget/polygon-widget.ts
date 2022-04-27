@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 
+import { inspectObject } from "../devTools";
 import { validInput } from "./validation";
 
 
@@ -34,16 +35,8 @@ class Point {
         this.y = y;
     }
 };
-interface IStyle {
-    style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        fill: string;
-    };
-}
-//use this to restrict properties to needed and desired
-//on the SVG elements
-class Line implements IStyle {
+
+class Line  {
     x1: number;
     y1: number;
     x2: number;
@@ -82,15 +75,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
-    const style = el.style
-    // let x = gLines.groupTransform.translate.x;
-    // let y = gLines.groupTransform.translate.y;
-    
-    const x = el.x;
-    const y = el.y;
    
    
     class PolygonBase extends APolygon {
+        [x: string]: any;
         protected outerLines: Line[];
         center: Point[];  
         //lines: Line[];
@@ -103,10 +91,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this._x = x
-            this._y = y;
+            this.x = el.x
+            this.y = el.y
             this._next = 1;
-            this.style = style
+            this.style = el.style
         };
         
         //GETTER/SETTER
@@ -133,16 +121,19 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._recalc()
         };   
     
-        get x() { return this._x }
-            set x(newValue) {
-            console.log(`${el.id}.x set:${el.x}`)// is id undefined? oh, not yet created
-            this._x = newValue;
-        };
-    
-        get y() { return this._y }
-        set y(newValue) {
-            this._y = newValue;
-            };
+    //     get x() { return this._x }
+    //         set x(newValue) {
+    //         console.log(`this._x from set: ${el.id} ${this._x}`)// is id undefined? oh, not yet created
+    //             console.log(`el.x from set: ${this.id} ${el.x}`)
+    //             inspectObject('el', el)
+    //             this._x = newValue;
+    //             this._recalc()
+    //     };
+    // 
+    //     get y() { return this._y }
+    //     set y(newValue) {
+    //         this._y = newValue;
+    //         };
         
         //METHODS
         protected _recalc(): void {
@@ -159,11 +150,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             let i: number = 0;
             while (i < this._points) {
                 p.push(new Point(0, 0))
+                let centerX = el.x
+                let centerY = el.y
                     
                 //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
                  //to start at top, running clockwise
-                p[i].y = Math.round(iRadius * - Math.cos(i * fract));
-                p[i].x = Math.round(iRadius * Math.sin(i * fract));
+                p[i].x = centerX + Math.round(iRadius * Math.sin(i * fract));
+                p[i].y = centerY + Math.round(iRadius * -Math.cos(i * fract));
                 i++;
             };
             //set to 'none' as if previous i > i would stay inline
