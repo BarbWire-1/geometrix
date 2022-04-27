@@ -56,7 +56,8 @@ function updateProps() {
     spyro.next = 1 + i// not implemented in Polygon
     //console.log(`next: ${spyro.next}`)
     spyro.strokeWidth = 2 + i;
-    spyro.radius = 50 + 10 * (i);
+    spyro.scale.x = 1+ (i)/10;
+    spyro.scale.y = 1+ (i)/50;
     
     spyro.lines.forEach(el => {
         el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';

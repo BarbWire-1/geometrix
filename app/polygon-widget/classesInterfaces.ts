@@ -50,7 +50,8 @@ export interface Polygon {
         display: 'inherit' | 'inline' | 'none';
         fill: string;
     };
-    rotate: { angle: number }
+    rotate: { angle: number };
+    scale: { x: number; y: number }
 };
 
 

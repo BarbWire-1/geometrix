@@ -36,11 +36,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const elX = gLines.groupTransform.translate.x ;
     const elY = gLines.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
-   
+    const scale: { x: number; y: number } = gLines.groupTransform.scale 
+    //scale.y = scale.x
     class Polygon extends APolygon {
        
         protected outerLines: Line[];
         _rotate: { angle: number };
+        _scale: { x: number; y: number }
         
         constructor(radius = 100, points = 5, strokeWidth = 2) {
             
@@ -54,6 +56,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this.y = elY;
             this.style = el.style;
             this._rotate = rotate;
+            this._scale = scale
 
         };
         
@@ -88,6 +91,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         set rotate(newValue) {
             this._rotate = newValue;
             this._recalc()
+        };
+        get scale() { return this._scale }
+        set scale(newValue) {
+            this._scale = newValue;
         };
         
         //METHODS
