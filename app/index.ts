@@ -12,6 +12,17 @@ let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 
 
+//TODO 1 add mode / el as member to support this way to create an object ?
+//would that work at all?
+// let classicObject: Polygon = {
+//     mode: 0,
+//     el: document.getElementById('id'),
+//     radius: 100,
+//     points: 12,
+//     strokeWidth: 4,
+// };
+
+
 // poly0.lines.forEach(el => {
 //     el.style.fill = 'magenta';
 // })
