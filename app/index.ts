@@ -53,10 +53,8 @@ function updateProps() {
     //console.log(`sT radius: ${spyro.radius}`)
     i++;
 };
-//TODO this makes it jump to another center
-// CHECK strokewidth!!! on el
-//???????????????
-spyro.style.strokeWidth =168
+
+
 const delay = 1;
 const limit = 20;
 let a = 1;

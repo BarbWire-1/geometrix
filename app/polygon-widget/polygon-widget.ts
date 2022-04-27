@@ -66,7 +66,7 @@ abstract class APolygon extends Line {
     protected _y: number;
     protected _radius: number;
     protected _points: number;
-    //protected _strokeWidth: number;
+    protected _strokeWidth: number;
     protected _next: number;
     protected _fill: string;
 
@@ -117,7 +117,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             }
         };
         
-        get strokeWidth() { return this._strokeWidth }
+        get strokeWidth() { return el.style.strokeWidth }
         set strokeWidth(newValue) {
             this._strokeWidth = newValue;
             this._recalc()
@@ -235,7 +235,7 @@ export interface Polygon {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
-        strokeWidth: number;
+       
     };
 };
 
@@ -253,8 +253,13 @@ export interface Spyrogon extends Polygon {
  * This way, I find it extremly cumbersome.
  * Maybe I'll finally go without class but define just an interface for the "natural" els.
  * to define props.
- * 
+ * /**
+ * Originally planned to make an Interface here, but no modifications allowed
+ * so I'd have to do that in each extending class separately.
+ * That's why I go with an abstract class instead.
  */
+
+
 
 //TODO difference interface vs type??
 //TODO: extending class vs abstr class...
