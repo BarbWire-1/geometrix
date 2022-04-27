@@ -2,9 +2,9 @@
     <rect id="background" />
     
 <use id="spyro" href="#polygon-widget" x="50%" y="50%" fill="orange" />
-<use id="poly0" href="#polygon-widget"  opacity = "0.5"/>
-<use id="poly1" href="#polygon-widget" fill ="orange"  opacity = "0.5"/>
-<use id="poly2" href="#polygon-widget"  fill ="magenta"  opacity = "0.5"/>
+<use id="poly0" href="#polygon-widget"  x="50%" y="50%" opacity = "0.5"/>
+<use id="poly1" href="#polygon-widget" x="50%" y="50%" fill ="orange"  opacity = "0.5"/>
+<use id="poly2" href="#polygon-widget"  x="50%" y="50%" fill ="magenta"  opacity = "0.5"/>
 
 
 </svg>

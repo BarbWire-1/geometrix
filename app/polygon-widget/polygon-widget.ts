@@ -55,8 +55,8 @@ class Line  {
 // abstract structure
 abstract class APolygon extends Line {
 
-    protected _x: number;
-    protected _y: number;
+    // protected _x: number;
+    // protected _y: number;
     protected _radius: number;
     protected _points: number;
     protected _strokeWidth: number;
@@ -81,7 +81,6 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         [x: string]: any;
         protected outerLines: Line[];
         center: Point[];  
-        //lines: Line[];
        
     
         constructor( radius=100, points=5, strokeWidth=2 ){
@@ -120,26 +119,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = newValue;
             this._recalc()
         };   
-    
-    //     get x() { return this._x }
-    //         set x(newValue) {
-    //         console.log(`this._x from set: ${el.id} ${this._x}`)// is id undefined? oh, not yet created
-    //             console.log(`el.x from set: ${this.id} ${el.x}`)
-    //             inspectObject('el', el)
-    //             this._x = newValue;
-    //             this._recalc()
-    //     };
-    // 
-    //     get y() { return this._y }
-    //     set y(newValue) {
-    //         this._y = newValue;
-    //         };
-        
+   
         //METHODS
         protected _recalc(): void {
-            //el.x = 168;;
-            //console.log(el.x)
-            //el.y = this.y;
             let p: Point[] = []
                 
              //recalc radius depending on strokeW to fit inside
@@ -279,3 +261,11 @@ export interface Spyrogon extends Polygon {
 //Can I detangle this and only have elements and creation in function?
 // would this be meaningful?
 
+//TODO el.x/y are CENTER of widget
+
+//TODO now x,y and style directly on element
+// doesn't need getter/setter
+// mixing levels here, it doesn't overwrite svg, but adds the values!!!
+//OH only works on spyro as recalced, so needs setters though
+//test for style!!!
+//working!!!
