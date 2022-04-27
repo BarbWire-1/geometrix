@@ -26,11 +26,12 @@ console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
 poly0.style.display = 'inline'
-poly0.x = 100
-spyro.x = 168
-spyro.y = 168;
+
+spyro.x = 0;
+spyro.y = -20;
 console.log('poly0.x from index.ts: '+poly0.x)
 console.log(poly2.x)// 0 häh???
+spyro.rotate.angle = 0;
 
 poly2.radius = 140;
 //(dumpProperties('poly0',poly0))
@@ -50,6 +51,7 @@ function updateProps() {
     spyro.lines.forEach(el => {
         el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';
     });
+    poly0.rotate.angle = 10*i;
     //spyro.style.fill = 'limegreen'
     //console.log(`sT fill: ${spyro.style.fill}`)
     i++;

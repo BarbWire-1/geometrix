@@ -26,10 +26,6 @@ import { Line, APolygon, Point } from "./parentClasses";
 
 import { validInput } from "./validation";
 
-
-// -----------------------------------------------------------SUBCLASSES AND INTERFACES------------
-
-
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
 
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
@@ -37,17 +33,17 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
-    let elX = gLines.groupTransform.translate.x ;
-    let elY = gLines.groupTransform.translate.y;
-    
+    const elX = gLines.groupTransform.translate.x ;
+    const elY = gLines.groupTransform.translate.y;
+    const rotate: {angle: number} = gLines.groupTransform.rotate;
    
-    class PolygonBase extends APolygon {
-        [x: string]: any;
-        protected outerLines: Line[];
-        center: Point[];  
+    class Polygon extends APolygon {
        
-    
-        constructor( radius=100, points=5, strokeWidth=2 ){
+        protected outerLines: Line[];
+        _rotate: { angle: number };
+        
+        constructor(radius = 100, points = 5, strokeWidth = 2) {
+            
             super();
             this._radius = radius;
             this._points = points
@@ -56,8 +52,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this.lines = outerLines;// connection to SVG elements
             this.x = elX;
             this.y = elY;
-            this._next = 1;
-            this.style = el.style
+            this.style = el.style;
+            this._rotate = rotate;
+
         };
         
         //GETTER/SETTER
@@ -86,6 +83,16 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         get x() { return this._x }
         set x(newValue) {
             this._x = newValue;
+            this._recalc()
+        };
+        get y() { return this._y }
+        set y(newValue) {
+            this._y = newValue;
+            this._recalc()
+        };
+        get rotate() { return this._rotate }
+        set rotate(newValue) {
+            this._rotate = newValue;
             this._recalc()
         };
         
@@ -139,12 +146,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             
     };
 
-
-    class Polygon extends PolygonBase {  
-        //this is needed to be able to create an object
-    };
-
-    class Spyrogon extends PolygonBase {
+    class Spyrogon extends Polygon {
         
         constructor(radius=100, points=5, strokeWidth=4, next=2) {
             super( radius, points, strokeWidth )
@@ -189,8 +191,8 @@ export interface Polygon {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
-       
     };
+    rotate: {angle: number}
 };
 
 
@@ -230,6 +232,8 @@ export interface Spyrogon extends Polygon {
 // would this be meaningful?
 
 //TODO el.x/y are CENTER of widget
+// I fear el.x/y might be protected? But not sure. so I'll live with this:
+//If x,y should be dynamic => no settings in css or svg!
 
 //TODO x,y now workaround on groupTransform as nothing else seemed to worked on static elements
 //There must be something wrong in calculating points or passing values. 
@@ -237,3 +241,9 @@ export interface Spyrogon extends Polygon {
 //CHECK MATHS!
 
 //TODO how _recalc() could be splitted to only do the necessary calculations depending on caller
+
+/**
+ * as rotation is a groupTransform and x,y are also set on the g,
+ * The settings on x,y in js/ts are the rotation center!!!
+ * SVG x,y on use go directly on use!!!!
+ */
