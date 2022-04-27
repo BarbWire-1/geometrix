@@ -269,3 +269,6 @@ export interface Spyrogon extends Polygon {
 //OH only works on spyro as recalced, so needs setters though
 //test for style!!!
 //working!!!
+
+//Unknown attribute 'x' in linesG  !!!!! in symbol
+// need to add that althought GroupElement???
