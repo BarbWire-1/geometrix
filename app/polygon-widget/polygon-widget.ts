@@ -74,8 +74,11 @@ abstract class APolygon extends Line {
     protected redraw: void;
 };
 
-
+//TODO: where is really el needed in class?
+//Can I detangle this and only have elements and creation in function?
+// would this be meaningful?
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
+
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
     
     //GET ELEMENTS FOR POLYGON
