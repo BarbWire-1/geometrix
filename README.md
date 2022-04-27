@@ -65,7 +65,8 @@ ___
 * size of circle,
 * number of points,
 * connection between points (next point),
-* fill on `<use>`, per line (can work with fill-themes) (1 to ... get applied per %points)
+* all style on use, all except opacity on single lines
+* fill on `<use>`and/or per line (can work with fill-themes) (1 to ... get applied per %points)
 * rotation
 * scale
 
