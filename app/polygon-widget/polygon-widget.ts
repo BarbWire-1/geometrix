@@ -22,50 +22,12 @@
 
 
 import { inspectObject } from "../devTools";
+import { Line, APolygon, Point } from "./parentClasses";
+
 import { validInput } from "./validation";
 
 
 // -----------------------------------------------------------SUBCLASSES AND INTERFACES------------
-
-class Point {
-    x: number;
-    y: number;
-    constructor(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
-    }
-};
-
-class Line  {
-    x1: number;
-    y1: number;
-    x2: number;
-    y2: number;
-    style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        fill: string;
-        strokeWidth: number;
-    };
-
-    iterable: boolean;
-    enumerable: boolean;
-};
-
-// abstract structure
-abstract class APolygon extends Line {
-
-    protected _x: number;
-    protected _y: number;
-    protected _radius: number;
-    protected _points: number;
-    protected _strokeWidth: number;
-    protected _next: number;
-    protected _fill: string;
-
-    lines: Line[];
-    protected redraw: void;
-};
 
 
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
@@ -75,7 +37,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
-    let elX = gLines.groupTransform.translate.x -el.x;
+    let elX = gLines.groupTransform.translate.x ;
     let elY = gLines.groupTransform.translate.y;
     
    
@@ -273,3 +235,5 @@ export interface Spyrogon extends Polygon {
 //There must be something wrong in calculating points or passing values. 
 //If something is set in svg this approach only offsets. Don'like!!!
 //CHECK MATHS!
+
+//TODO how _recalc() could be splitted to only do the necessary calculations depending on caller
