@@ -16,8 +16,16 @@ It now can be used as widget in TS, having 2 types:
 
 ___
 ## Creating a widget is just... 
-* copy the folder `polygon-widget` into your app-folder
-* copy the file `polygon.defs` into your resources-folder
+COPY:
+* the folder `polygon-widget` into your app-folder
+* the file `polygon.defs` into your resources-folder
+
+ADD CODE:
+* import the widget in app/index.ts (Polygon and/or Spyrogon, depending on which you are going to use)
+
+```js
+import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
+```
 * add `polygon.defs` import in your `widgets.defs`
 
 
