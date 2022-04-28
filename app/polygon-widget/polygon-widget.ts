@@ -39,7 +39,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const elY = gLines.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
-  
+    let count = 0;
     
     class Polygon extends APolygon {
        
@@ -100,8 +100,14 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._scale = newValue;
         };
         
+         
         //METHODS
         protected _recalc(): void {
+           
+           
+            count++;
+            console.log(`recalc() called ${count} times.`)
+            
             let p: Point[] = []
                 
              //recalc radius depending on strokeW to fit inside
@@ -245,3 +251,5 @@ export {Polygon, Spyrogon } from './classesInterfaces'
  * x,y of the SVG element. so if you want to change them dynamically, don't set anything in svg/css as it doesn' get overwritten
  * but the values get added.
  */
+
+

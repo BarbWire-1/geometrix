@@ -66,7 +66,7 @@ ___
 * number of points,
 * connection between points (next point),
 * all style on use, all except opacity on single lines
-* fill on `<use>`and/or per line (can work with fill-themes) (1 to ... get applied per %points)
+* fill on `<use>`and/or per line (so can work with fill-themes)
 * rotation
 * scale
 

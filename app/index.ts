@@ -60,9 +60,12 @@ poly2.radius = 80;
 poly2.style.opacity = 1;
 
 let i = 0;
+let counter = 0;
 function updateProps() {
+    counter++;
+    console.warn(`updateProps() runs the ${counter}. time.`)
     i %= 9;
-    console.log(i)
+   
     //console.log(`i: ${i}`)
     spyro.points = 3 + (i)
     spyro.next = 1 + i// not implemented in Polygon
@@ -79,6 +82,8 @@ function updateProps() {
     //console.log(`sT fill: ${spyro.style.fill}`)
     i++;
 };
+//TODO with this updating, recalc() gets called 4 times per interval
+// can I define the caller?
 
 //to stop animation and logging
 const delay = 1;
@@ -94,4 +99,5 @@ const limitedInterval = setInterval(() => {
     };
     a++;
 }, delay * 1000);
+
 
