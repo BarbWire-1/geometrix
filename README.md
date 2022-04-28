@@ -68,7 +68,10 @@ let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
 ___
-
+### Settings on `<use>`in index.view or styles.css
+* x
+* y
+* style (opacity, fill, display)
 ### Dynamic settings in TS:
 
 Element:

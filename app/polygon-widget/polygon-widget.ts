@@ -252,4 +252,5 @@ export {Polygon, Spyrogon } from './classesInterfaces'
  * but the values get added.
  */
 
+//TODO remove display from lines.style?
 
