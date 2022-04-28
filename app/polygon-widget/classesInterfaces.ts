@@ -12,13 +12,7 @@ export class Line {
     y1: number;
     x2: number;
     y2: number;
-    style: {
-        opacity: number;
-        display: 'inherit' | 'inline' | 'none';
-        fill: string;
-        strokeWidth: number;
-    };
-
+    style: Style;
     iterable: boolean;
     enumerable: boolean;
 };

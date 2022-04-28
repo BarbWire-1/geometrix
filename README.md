@@ -1,5 +1,5 @@
 # geometrix
-A totally useless playfile with regular polygons
+A totally useless playfile to create regular polygons in Fitbit OS
 ## work in progress
 trying to get an idea how to structure using interfaces/classes/types  
 
@@ -185,7 +185,7 @@ ___
 ### ...and a huge THANKS!
 to Gondwana from [Gondwanasoft](https://github.com/gondwanasoft) who helped me to understand OOP in JS a bit better, while working on the fitbit-3D-text project. This encouraged me to try something in TS (Not that I know, what I'm doing!).
 
-He now built a [fitbit-widget-template](https://github.com/gondwanasoft/fitbit-widget-template) based on the approach in JS.
+He worked out a [fitbit-widget-template](https://github.com/gondwanasoft/fitbit-widget-template) for creating your own widgets based on an OOP approach in JS.
 
 Any ideas or critcism would be highly appreciated! I just tried, what I thought might work. But I'm totally convinced there will be much better solutions...
 
