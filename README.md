@@ -72,7 +72,9 @@ ___
 * x
 * y
 * style (opacity, fill, display)
-### Dynamic settings in TS:
+<h2>Dynamic settings in TS:<h2>
+<details><summary> </summary><blockquote>
+
 
 Element:
 * radius 
@@ -97,6 +99,8 @@ Element:
         * strokeWidth 
               
 to vary the appearance.
+</blockquote></details>
+
 
 ### Different to usual use:
 * `x` and  `y` are currently a groupTransform, so an **offset** to your settings in css/svg.
