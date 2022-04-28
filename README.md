@@ -14,7 +14,7 @@ got some more TODOs on it 😅
 
 
 ___
-creating a widget is just 
+## Creating a widget is just 
 * copy the folder `polygon-widget`into your app-folder
 * copy the file `polygon.defs` into your resources-folder
 * add `polygon.defs` import in your `widgets.defs`
@@ -103,5 +103,11 @@ ___
 
 
 ![dynamix](dynamix.gif)
+
+___
+### ...and a huge THANKS!
+to Gondwana from [Gondwanasoft](https://github.com/gondwanasoft) who helped me to understand OOP in JS a bit better, while working on the fitbit-3D-text project. He now built a [fitbit-widget-template](https://github.com/gondwanasoft/fitbit-widget-template) based on the approach in JS.
+
+This encouraged me to try something in TS.
 
 
