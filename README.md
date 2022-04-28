@@ -86,10 +86,10 @@ Element:
               
 to vary the appearance.
 
-different to usual use:
-* `x` and  `y` are currently a groupTransform, so an offset(!) to your settings in css/svg.
-* `strokeWidth`can be set directly on element!
-* `next` defines the +x point to wich to connect to
+### Different to usual use:
+* `x` and  `y` are currently a groupTransform, so an **offset** to your settings in css/svg.
+* `strokeWidth` can be set directly on element!
+* `next` defines the +x point to wich to connect to.
 * `rotate` is set directly on element. the value is rotate.angle.  
 
 * `lines` is an array of the lines, building the Polygon.
