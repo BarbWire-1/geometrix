@@ -1,7 +1,7 @@
 
 'use strict';
 import document from 'document';
-//import { dumpProperties, inspectObject } from "./devTools";
+import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
@@ -40,7 +40,7 @@ for (let i = 0; i < poly2.lines.length; i += 2){
 }
 
 
-
+dumpProperties('spyro', spyro,1)
 
 poly0.style.fill = "turquoise"
 console.log(poly0.style.fill)
