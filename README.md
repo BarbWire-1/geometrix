@@ -22,15 +22,17 @@ COPY:
 
 ADD CODE:
 * import the widget in app/index.ts (Polygon and/or Spyrogon, depending on which you are going to use)
+```js  
 
-```js
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
+
 ```
 * add `polygon.defs` import in your `widgets.defs`
 
 
 
 ```js
+
 <svg>
     <defs>
         <link rel="stylesheet" href="styles.css" />
@@ -38,17 +40,23 @@ import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widge
         <link rel="import" href="polygon.defs" />
     </defs>
 </svg>
+
 ```
 
 * setting a `<use>` in `index.view` like the following example
 ```js
+
 <use id="anyId" href="#polygon-widget"  x="168" y="168" opacity = "1"/>
+
 ```
 * and then instantiate your poly in `app/index.ts` like:
 
 ``` js
+
 let anyName = createPolygon(0, document.getElementById('anyId')) as Polygon;
+
 let anyOtherName = createPolygon(1, document.getElementById('anyOtherId')) as Spyrogon;
+
 ```
 This will create shapes with the default values:
 * radius = 100;
@@ -59,11 +67,15 @@ This will create shapes with the default values:
 To choose custom values you can add these attributes like:
 
 ```js
-let poly1 = createPolygon(0, document.getElementById('poly1'),120, 12, 10) as Polygon
+
+let poly1 = createPolygon(0, document.getElementById('poly1'),120, 12, 10) as Polygon;
+
 ```
 or for the Spyrogon like:
 ```js
-let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as Spyrogon
+
+let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as Spyrogon;
+
 ```
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
