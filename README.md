@@ -68,12 +68,13 @@ let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
 ___
-### Settings on `<use>`in index.view or styles.css
+### Settings on `<use>`
+(in index.view or styles.css)
 * x
 * y
 * style (opacity, fill, display)
-<h2>Dynamic settings in TS:<h2>
-<details><summary>click me </summary><blockquote>
+<h2>To see dynamic settings in TS...<h2>
+<details><summary>...click me! </summary><blockquote>
 
 
 Element:
@@ -81,28 +82,39 @@ Element:
 * points
 * strokeWidth
 * next
+* rotate
+* x
+* y
+
+<details><summary>style </summary><blockquote>
+
+* fill
+* opacity
+* display
+ </blockquote></details>
+ 
+
+<details><summary>scale </summary><blockquote>
+
+* x
+* y
+</blockquote></details>
+
+
+<details><summary>lines[index] </summary><blockquote>
+
 * style 
     * fill
     * opacity
     * display
-* rotate
-* scale
-    * x
-    * y
-* x
-* y
-* lines[index]
-   * style 
-        * fill
-        * opacity
-        * display
-        * strokeWidth 
+    * strokeWidth 
               
-to vary the appearance.
+
+</blockquote></details>
 </blockquote></details>
 
-
-### Different to usual use:
+___
+### Currently different to usual use:
 * `x` and  `y` are currently a groupTransform, so an **offset** to your settings in css/svg.
 * `strokeWidth` can be set directly on element!
 * `next` defines the +x point to wich to connect to.
