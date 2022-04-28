@@ -33,11 +33,14 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
+    
+    // get x,y of included elemnts relative to the <use> itself
     const elX = gLines.groupTransform.translate.x ;
     const elY = gLines.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
-    //scale.y = scale.x
+  
+    
     class Polygon extends APolygon {
        
         protected outerLines: Line[];
@@ -235,4 +238,10 @@ export {Polygon, Spyrogon } from './classesInterfaces'
  * SVG x,y on use go directly on use!!!!
  */
 
-
+/**
+ * LIMITATIONS
+ * I can't acces the the <use>s x,y from js/ts this way. Perhaps a question of type?
+ * I actually don't understand or see the problem, but so the x,y in Polygon are actually only relative to the
+ * x,y of the SVG element. so if you want to change them dynamically, don't set anything in svg/css as it doesn' get overwritten
+ * but the values get added.
+ */
