@@ -42,11 +42,11 @@ for (let i = 0; i < poly2.lines.length; i += 2){
 
 dumpProperties('spyro', spyro,1)
 
-poly0.style.fill = "turquoise"
+poly0.style.fill = "limegreen"
 console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
-poly0.style.display = 'inline'
+poly1.strokeWidth = 4
 spyro.radius = 50;
 spyro.x = 0;
 spyro.y = 0;
@@ -62,14 +62,15 @@ poly2.style.opacity = 1;
 let i = 0;
 function updateProps() {
     i %= 9;
+    console.log(i)
     //console.log(`i: ${i}`)
     spyro.points = 3 + (i)
     spyro.next = 1 + i// not implemented in Polygon
     //console.log(`next: ${spyro.next}`)
     spyro.strokeWidth = 2 + i/2;
-    poly1.scale.y = 1+ (i)/20;
-    poly1.scale.x = 1+ (i)/-30;
-    
+    poly1.scale.y = 1+(i)/20;
+    poly1.scale.x = 1+(i)/-30;
+    spyro.radius = 50 +5*i;
     spyro.lines.forEach(el => {
         el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';
     });
@@ -81,7 +82,7 @@ function updateProps() {
 
 //to stop animation and logging
 const delay = 1;
-const limit = 300;
+const limit = 500;
 let a = 1;
 
 const limitedInterval = setInterval(() => {
