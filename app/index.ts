@@ -84,6 +84,10 @@ function updateProps() {
 };
 //TODO with this updating, recalc() gets called 4 times per interval
 // can I define the caller?
+// I think scale, fill and rotate DON'T recalc inside Polygon,
+// so points/next/strokeWidth/radius do.
+// => better to use scale instead of radius?
+// can I measure the differnt footprints?
 
 //to stop animation and logging
 const delay = 1;
