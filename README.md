@@ -18,7 +18,9 @@ ___
 ## Creating a widget is just... 
 
 \
-COPY:
+ COPY:
+
+
 * the folder `polygon-widget` into your app-folder
 * the file `polygon.defs` into your resources-folder
 
@@ -106,10 +108,14 @@ The additional value here defines the next point ( so line0 goes from p0 to p3, 
 
 ___
 ### Settings on `<use>`
+
+\
 (in index.view or styles.css)
 * x
 * y
 * style (opacity, fill, display)
+
+______
 <h2>To see dynamic settings in TS...<h2>
 <details><summary>...click me! </summary><blockquote>
 
@@ -150,8 +156,13 @@ Element:
 </blockquote></details>
 </blockquote></details>
 
-___
-### Currently different to usual use:
+____
+
+
+## Currently different to usual use:
+
+
+
 * `x` and  `y` are currently a groupTransform, so an **offset** to your settings in css/svg.
 * `strokeWidth` can be set directly on element!
 * `next` defines the +x point to wich to connect to.
@@ -162,6 +173,7 @@ ___
    So the settings of `style` on lines need to be done withe a el.lines.forEach for all or a group of lines.
    
    for a single line as el.lines[index]
+   
 ___
 
 (and YEAH!!!! ... running smooth on device with all the "dynamix" )
