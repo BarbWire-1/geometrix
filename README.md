@@ -60,15 +60,41 @@ The additional value here defines the next point ( so line0 goes from p0 to p3, 
 
 ___
 
-### dynamically:
-* 3 to 12 vertices,
-* size of circle,
-* number of points,
-* connection between points (next point),
-* all style on use, all except opacity on single lines
-* fill on `<use>`and/or per line (so can work with fill-themes)
-* rotation
+### Dynamic settings in TS:
+
+Element:
+* radius 
+* points
+* strokeWidth (directly on element!)
+* next (the +x point to wich to connect to)
+* style 
+    * fill
+    * opacity
+    * display
+    * strokeWidth
+* rotate
 * scale
+    * x
+    * y
+* x
+* y
+* lines
+   (This  you can here set:
+   * style 
+        * fill
+        * opacity
+        * display
+        * strokeWidth 
+              
+to vary the appearance.
+
+different to usual use:
+* `rotate` is set directly on element. the value is rotate.angle.  
+* `x` and  `y` are currently a groupTransform, so an offset(!) to your settings in css/svg.
+* `lines` is an array of the lines, building the Polygon.
+
+   so the settings of `style` on lines need to be done withe a el.lines.forEach
+___
 
 (and YEAH!!!! ... running smooth on device with all the "dynamix" )
 
