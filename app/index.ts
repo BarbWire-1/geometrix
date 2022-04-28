@@ -65,7 +65,7 @@ function updateProps() {
     counter++;
     console.warn(`updateProps() runs the ${counter}. time.`)
     i %= 9;
-   
+ 
     //console.log(`i: ${i}`)
     spyro.points = 3 + (i)
     spyro.next = 1 + i// not implemented in Polygon

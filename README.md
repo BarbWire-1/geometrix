@@ -65,21 +65,19 @@ ___
 Element:
 * radius 
 * points
-* strokeWidth (directly on element!)
-* next (the +x point to wich to connect to)
+* strokeWidth
+* next
 * style 
     * fill
     * opacity
     * display
-    * strokeWidth
 * rotate
 * scale
     * x
     * y
 * x
 * y
-* lines
-   (This  you can here set:
+* lines[‘index']
    * style 
         * fill
         * opacity
@@ -89,11 +87,16 @@ Element:
 to vary the appearance.
 
 different to usual use:
-* `rotate` is set directly on element. the value is rotate.angle.  
 * `x` and  `y` are currently a groupTransform, so an offset(!) to your settings in css/svg.
+* `strokeWidth`can be set directly on element!
+* `next` defines the +x point to wich to connect to
+* `rotate` is set directly on element. the value is rotate.angle.  
+
 * `lines` is an array of the lines, building the Polygon.
 
-   so the settings of `style` on lines need to be done withe a el.lines.forEach
+   so the settings of `style` on lines need to be done withe a el.lines.forEach for all or a group of lines;
+   
+   for a single line as el.lines['index']
 ___
 
 (and YEAH!!!! ... running smooth on device with all the "dynamix" )
