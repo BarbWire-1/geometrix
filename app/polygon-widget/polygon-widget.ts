@@ -253,4 +253,8 @@ export {Polygon, Spyrogon } from './classesInterfaces'
  */
 
 //TODO remove display from lines.style?
+//TODO set strokeWidth on el on el.style?
+//TODO simplyfy Polygon to static and add multiple extending modifications?
+
+
 
