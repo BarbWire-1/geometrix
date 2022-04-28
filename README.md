@@ -116,7 +116,7 @@ ___
 * style (opacity, fill, display)
 
 ______
-<h2>To see dynamic settings in TS...<h2>
+<h3>To see dynamic settings in TS...<h3>
 <details><summary>...click me! </summary><blockquote>
 
 
