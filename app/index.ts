@@ -10,7 +10,9 @@ let poly0 = createPolygon(0, document.getElementById('poly0'),150, 12, 4) as Pol
 let poly1 = createPolygon(0, document.getElementById('poly1')) as Polygon;
 let poly2 = createPolygon(0, document.getElementById('poly2')) as Polygon;
 let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
-
+//TODO using defaults runs recalc 3 times 1 for each prop, while setting customValues
+// only runs once. No matter which way I set defaults (on opt param or later.)
+// it seems to create an empty opject first and then set the attributes one by one.
 
 //TODO 1 add mode / el as member to support this way to create an object ?
 //would that work at all?
