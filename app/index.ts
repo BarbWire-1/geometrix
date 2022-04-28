@@ -82,7 +82,7 @@ function updateProps() {
 
 //to stop animation and logging
 const delay = 1;
-const limit = 500;
+const limit = 20;
 let a = 1;
 
 const limitedInterval = setInterval(() => {

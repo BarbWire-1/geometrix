@@ -70,7 +70,8 @@ ___
 * rotation
 * scale
 
-...and running all (current) "dynamix"
+(and YEAH!!!! ... running smooth on device with all the "dynamix" )
+
 
 ![dynamix](dynamix.gif)
 
