@@ -73,7 +73,7 @@ ___
 * y
 * style (opacity, fill, display)
 <h2>Dynamic settings in TS:<h2>
-<details><summary> </summary><blockquote>
+<details><summary>click me </summary><blockquote>
 
 
 Element:
