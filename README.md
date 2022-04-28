@@ -110,6 +110,8 @@ to Gondwana from [Gondwanasoft](https://github.com/gondwanasoft) who helped me t
 
 He now built a [fitbit-widget-template](https://github.com/gondwanasoft/fitbit-widget-template) based on the approach in JS.
 
+Any ideas or critcism would be highly appreciated! I just tried, what what I thought might work. But I'm sure there will be much better solutions...
+
 
 
 
