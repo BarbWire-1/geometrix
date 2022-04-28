@@ -16,20 +16,19 @@ It now can be used as widget in TS, having 2 types:
 
 ___
 ## Creating a widget is just... 
+
+\
 COPY:
 * the folder `polygon-widget` into your app-folder
 * the file `polygon.defs` into your resources-folder
 
+\
 ADD CODE:
-* import the widget in app/index.ts (Polygon and/or Spyrogon, depending on which you are going to use)
-```js  
 
-import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
+### Resources/widgets.defs
 
-```
-* add `polygon.defs` import in your `widgets.defs`
-
-
+\
+Add `polygon.defs` import in your `widgets.defs`
 
 ```js
 
@@ -41,16 +40,34 @@ import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widge
     </defs>
 </svg>
 
+
 ```
 
-* setting a `<use>` in `index.view` like the following example
+### Resources/index.view
+
+
+\
+Set a `<use>` in `index.view` like the following example
+
 ```js
 
 <use id="anyId" href="#polygon-widget"  x="168" y="168" opacity = "1"/>
 
 ```
-* and then instantiate your poly in `app/index.ts` like:
+  
+     
+### App/index.ts
 
+\
+Import the widget in app/index.ts (Polygon and/or Spyrogon, depending on which you are going to use)
+
+```js  
+
+import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
+
+```
+\
+And then instantiate your poly in `app/index.ts` like:
 ``` js
 
 let anyName = createPolygon(0, document.getElementById('anyId')) as Polygon;
@@ -58,25 +75,33 @@ let anyName = createPolygon(0, document.getElementById('anyId')) as Polygon;
 let anyOtherName = createPolygon(1, document.getElementById('anyOtherId')) as Spyrogon;
 
 ```
+\
 This will create shapes with the default values:
 * radius = 100;
 * points = 5;
 * strokeWidth = 2;
 * next = 1;
 
+\
 To choose custom values you can add these attributes like:
+
+
 
 ```js
 
 let poly1 = createPolygon(0, document.getElementById('poly1'),120, 12, 10) as Polygon;
 
 ```
+
+\
 or for the Spyrogon like:
 ```js
 
 let spyro1 = createPolygon(1, document.getElementById('spyro1'),150, 8, 4, 3) as Spyrogon;
 
 ```
+
+\
 The additional value here defines the next point ( so line0 goes from p0 to p3, line1 from p1 to p4...)
 
 ___
