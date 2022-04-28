@@ -15,7 +15,7 @@ let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 //TODO 1 add mode / el as member to support this way to create an object ?
 //would that work at all?
 // let classicObject: Polygon = {
-//     mode: 0,
+//
 //     el: document.getElementById('id'),
 //     radius: 100,
 //     points: 12,
@@ -28,7 +28,7 @@ let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 // })
 //poly0.strokeWidth = 10;
 poly1.radius = 120;
-poly1.points = 7
+poly1.points = 4
 poly2.points = 12;
 poly2.lines.forEach(el => {
     el.style.fill = 'magenta';
@@ -47,9 +47,9 @@ console.log(poly0.style.fill)
 //poly0.style.fill = 'limegreen'
 console.log(poly0.style.fill) 
 poly0.style.display = 'inline'
-
+spyro.radius = 50;
 spyro.x = 0;
-spyro.y = -60;
+spyro.y = 0;
 console.log('poly0.x from index.ts: '+poly0.x)
 console.log(poly2.x)// 0 häh???
 spyro.rotate.angle = 0;
@@ -66,9 +66,9 @@ function updateProps() {
     spyro.points = 3 + (i)
     spyro.next = 1 + i// not implemented in Polygon
     //console.log(`next: ${spyro.next}`)
-    spyro.strokeWidth = 2 + i;
-    spyro.scale.x = 1+ (i)/10;
-    spyro.scale.y = 1+ (i)/50;
+    spyro.strokeWidth = 2 + i/2;
+    poly1.scale.y = 1+ (i)/20;
+    poly1.scale.x = 1+ (i)/-30;
     
     spyro.lines.forEach(el => {
         el.style.fill = i % 2 == 0 ? 'magenta' : 'orange';
@@ -81,7 +81,7 @@ function updateProps() {
 
 //to stop animation and logging
 const delay = 1;
-const limit = 50;
+const limit = 300;
 let a = 1;
 
 const limitedInterval = setInterval(() => {
