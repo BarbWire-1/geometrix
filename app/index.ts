@@ -88,8 +88,7 @@ function updateProps() {
 // so points/next/strokeWidth/radius do.
 // => better to use scale instead of radius?
 // can I measure the differnt footprints?
-// Obviously creating object with custom-values gets calculated 2 times: defaults => custom
-// so better remove defaults? or choose another way like value = custom ?? default?
+
 
 //to stop animation and logging
 const delay = 1;
