@@ -1,7 +1,11 @@
 # geometrix
-A totally useless playfile to create regular polygons in Fitbit OS
-## work in progress
+A totally useless playfile to create regular polygons in Fitbit OS\
 trying to get an idea how to structure using interfaces/classes/types  
+## work in progress
+❗️ THERE'S DEFINITELY SOMETHING WRONG WITH el.x/el.y ❗️\
+(working on it)
+
+
 
 ![2022-04-20 12 36 21](polygon-widget.png)   
 
