@@ -2,7 +2,7 @@
 A totally useless playfile to create regular polygons in Fitbit OS\
 trying to get an idea how to structure using interfaces/classes/types  
 ## work in progress
-❗️ THERE'S DEFINITELY SOMETHING WRONG WITH el.x/el.y ❗️\
+❗️ THERE'S DEFINITELY SOMETHING WRONG WITH el.x/el.y from TS ❗️\
 (working on it)
 
 
@@ -21,7 +21,6 @@ It now can be used as widget in TS, having 2 types:
 ___
 ## Creating a widget is just... 
 
-\
  COPY:
 
 
@@ -120,11 +119,10 @@ ___
 * style (opacity, fill, display)
 
 ______
-<h3>To see dynamic settings in TS...<h3>
+<h3>To see dynamic settings in TS...<h4>
 <details><summary>...click me! </summary><blockquote>
 
 
-Element:
 * radius 
 * points
 * strokeWidth
@@ -167,7 +165,7 @@ ____
 
 
 
-* `x` and  `y` are currently a groupTransform, so an **offset** to your settings in css/svg.
+* `x` and  `y` from TS are currently a groupTransform, so an **offset** to your settings in css/svg.
 * `strokeWidth` can be set directly on element!
 * `next` defines the +x point to wich to connect to.
 * `rotate` is set directly on element. the value is rotate.angle.  
@@ -178,9 +176,15 @@ ____
    
    for a single line as el.lines[index]
    
+LIMITATIONS:
+\
+To change position dynamically you need to have NO coords in SVG/CSS.\
+Due to the offset-workaround, rotation won't rotate as expected if x,y are set in TS
+(I fear I've got a logic problem)
+
 ___
 
-(and YEAH!!!! ... running smooth on device with all the "dynamix" )
+(but YEAH!!!! ...running smooth on device with all the "dynamix" )
 
 
 ![dynamix](dynamix.gif)
