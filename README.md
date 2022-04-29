@@ -138,7 +138,6 @@ ______
 * display
  </blockquote></details>
  
-
 <details><summary>scale </summary><blockquote>
 
 * x
@@ -176,7 +175,7 @@ ____
    
    for a single line as el.lines[index]
    
-LIMITATIONS:
+KNOWN ISSUES:
 \
 To change position dynamically you need to have NO coords in SVG/CSS.\
 Due to the offset-workaround, rotation won't rotate as expected if x,y are set in TS
