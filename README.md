@@ -3,7 +3,7 @@ A totally useless playfile to create regular polygons in Fitbit OS\
 trying to get an idea how to structure using interfaces/classes/types  
 ## work in progress
 ❗️ THERE'S DEFINITELY SOMETHING WRONG WITH el.x/el.y from TS ❗️\
-(working on it)
+(working on it, but maybe the approach itself is fundamentally wrong!)
 
 
 
