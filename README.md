@@ -160,19 +160,17 @@ ______
 ____
 
 
-## Currently different to usual use:
+## Currently different to *normal* use:
 
 
 
-
+* The coordinates `(x,y)` of the element define its **center-point**.
 * `strokeWidth` can be set directly on element!
-Additionally for single lines
+(additionally for single lines).
 * `next` defines the +x point to wich to connect to.
 * `lines` is an array of the lines, building the Polygon.
 
-   So the settings of `style` on lines need to be done withe a el.lines.forEach for all or a group of lines.
-   
-   for a single line as el.lines[index]
+   So the settings for `style` on lines need to be done within a loop or per `[index]`.
    
 
 ___
