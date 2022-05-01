@@ -13,7 +13,7 @@ let i = 0;
 function updateProps() {
     //i %= 24;
     poly0.rotate.angle = 15 * i;
-    console.log(`poly0.rotate.angle = ${poly0.rotate}`)
+    console.log(`poly0.rotate.angle = ${poly0.rotate.angle}`)
 
     i++;
 };
