@@ -41,6 +41,5 @@ poly0.y = 168;
 console.log(poly0.y)
 
 
-spyro.x = 100;
 
 
