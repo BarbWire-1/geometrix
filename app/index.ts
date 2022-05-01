@@ -23,47 +23,9 @@ let spyro = createPolygon(1, document.getElementById('spyro')) as Spyrogon;
 // };
 
 
-// poly0.lines.forEach(el => {
-//     el.style.fill = 'magenta';
-// })
-//poly0.strokeWidth = 10;
-// poly1.radius = 120;
-// poly1.points = 4
-// poly2.points = 12;
-// poly2.lines.forEach(el => {
-//     el.style.fill = 'magenta';
-// });
-// for (let i = 0; i < poly2.lines.length; i += 2){
-//     poly2.lines[i].style.fill = 'limegreen';
-//         
-// 
-// }
-// 
-// 
-// dumpProperties('spyro', spyro,1)
-// 
-// poly0.style.fill = "limegreen"
-// console.log(poly0.style.fill)
-// //poly0.style.fill = 'limegreen'
-// console.log(poly0.style.fill) 
-// poly1.strokeWidth = 4
-// spyro.radius = 50;
-// spyro.x = 0;
-// spyro.y = 0;
-// console.log('poly0.x from index.ts: '+poly0.x)
-// console.log(poly2.x)// 0 häh???
-// spyro.rotate.angle = 0;
-// 
-// poly2.radius = 80;
-// //(dumpProperties('poly0',poly0))
-// 
-// poly2.style.opacity = 1;
-
 let i = 0;
-let counter = 0;
 function updateProps() {
-    counter++;
-    console.warn(`updateProps() runs the ${counter}. time.`)
+   
     i %= 9;
  
     //console.log(`i: ${i}`)
@@ -82,13 +44,6 @@ function updateProps() {
     //console.log(`sT fill: ${spyro.style.fill}`)
     i++;
 };
-//TODO with this updating, recalc() gets called 4 times per interval
-// can I define the caller?
-// I think scale, fill and rotate DON'T recalc inside Polygon,
-// so points/next/strokeWidth/radius do.
-// => better to use scale instead of radius?
-// can I measure the differnt footprints?
-
 
 //to stop animation and logging
 const delay = 1;
@@ -104,5 +59,7 @@ const limitedInterval = setInterval(() => {
     };
     a++;
 }, delay * 1000);
+
+spyro.x = 100;
 
 

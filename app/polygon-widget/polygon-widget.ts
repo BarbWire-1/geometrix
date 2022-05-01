@@ -106,7 +106,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
            
            
             count++;
-            console.log(`recalc() called ${count} times.`)
+            //console.log(`recalc() called from ${el.id} ${count} times.`)
             
             let p: Point[] = []
                 
