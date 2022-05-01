@@ -35,11 +35,15 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
     
     // get x,y of included elemnts relative to the <use> itself
-    const elX = gLines.groupTransform.translate.x ;
-    const elY = gLines.groupTransform.translate.y;
+    let elX = gLines.groupTransform.translate.x ;
+    let elY = gLines.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
+    
+    
+
     let count = 0;
+    console.log(`${el.id}: x = ${el.x}`)//poly0: x = 100 
     
     class Polygon extends APolygon {
        
@@ -47,7 +51,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         _rotate: { angle: number };
         _scale: { x: number; y: number }
         
-        constructor(radius = 100, points = 5, strokeWidth = 2) {
+        constructor(radius = 100, points = 5, strokeWidth = 2, x = 0, y = 0) {
             
             super();
             this._radius = radius;
@@ -55,8 +59,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this.x = elX;
-            this.y = elY;
+            this._x = x;
+            this._y = x;
             this.style = el.style;
             this._rotate = rotate;
             this._scale = scale
@@ -123,8 +127,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
                     
                 //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
                  //to start at top, running clockwise
-                p[i].x = centerX + Math.round(iRadius * Math.sin(i * fract));
-                p[i].y = centerY + Math.round(iRadius * -Math.cos(i * fract));
+                p[i].x = centerX +
+                    Math.round(iRadius * Math.sin(i * fract));
+                p[i].y = centerY +
+                    Math.round(iRadius * -Math.cos(i * fract));
                 i++;
             };
             //set to 'none' as if previous i > i would stay inline
