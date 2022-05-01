@@ -127,7 +127,7 @@ ______
 * points
 * strokeWidth
 * next
-* rotate
+* rotate.angle
 * x
 * y
 
@@ -166,9 +166,8 @@ ____
 
 
 * `strokeWidth` can be set directly on element!
+Additionally for single lines
 * `next` defines the +x point to wich to connect to.
-* `rotate` is set directly on element. the value is rotate.angle.  
-
 * `lines` is an array of the lines, building the Polygon.
 
    So the settings of `style` on lines need to be done withe a el.lines.forEach for all or a group of lines.
