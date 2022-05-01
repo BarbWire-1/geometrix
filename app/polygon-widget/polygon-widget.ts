@@ -66,6 +66,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
             this._x = elX // deperate but useless try
+            this.x = el.x
             this._y = elY = el.x;
             this.style = el.style;
             this._rotate = rotate;
@@ -90,7 +91,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = newValue;
             this._recalc()
         }; 
-        get x() { console.log(`${this.id}: x = ${this._x}`); return this._x }//poly0: x = 100 
+        get x() { console.log(`${this.id}.x should be ${this._x}`); return this._x }//poly0: x = 100 
         // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
         set x(newValue) {
             console.log(`set(newValue): ${newValue}`);//set(newValue): 168 // set in ts
