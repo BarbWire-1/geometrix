@@ -31,27 +31,32 @@ import { validInput } from "./validation";
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
     
     //GET ELEMENTS FOR POLYGON
+    const moveG = el.getElementById("moveG") as GroupElement;
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
     
     // get x,y of included elemnts relative to the <use> itself
-    let elX = gLines.groupTransform.translate.x ;
-    let elY = gLines.groupTransform.translate.y;
+    let elX = moveG.groupTransform.translate.x ;
+    let elY = moveG.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
-    
+    // elX = el.x
+    // elY = el.y
+    el.x += elX 
 
     let count = 0;
-    console.log(`${el.id}: x = ${el.x}`)//poly0: x = 100 // in SVG
+    console.log(`Before wrap in class ${el.id}.x = ${el.x}`)//poly0.x = 100 // in SVG
+    console.log(`Before wrap in class ${elX}.x = ${elX}`)
     
     class Polygon extends APolygon {
         readonly id: any;
         protected outerLines: Line[];
-        _rotate: { angle: number };
-        _scale: { x: number; y: number }
+        protected _rotate: { angle: number };
+        protected _scale: { x: number; y: number }
+        protected elX: number;
         
-        constructor(radius = 100, points = 5, strokeWidth = 2,x=0, y=0) {
+        constructor(radius = 100, points = 5, strokeWidth = 2) {
             
             super();
             this.id = el.id;
@@ -60,8 +65,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this._x = x = el.x;// deperate but useless try
-            this._y = x = el.y;
+            this._x = elX // deperate but useless try
+            this._y = elY = el.x;
             this.style = el.style;
             this._rotate = rotate;
             this._scale = scale
@@ -85,16 +90,21 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = newValue;
             this._recalc()
         }; 
-        get x() { console.log(`${this.id}: x = ${this._x}`); return this._x }
+        get x() { console.log(`${this.id}: x = ${this._x}`); return this._x }//poly0: x = 100 
         // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
         set x(newValue) {
+            console.log(`set(newValue): ${newValue}`);//set(newValue): 168 // set in ts
+            console.log(this._x) // 168
             this._x = newValue;
-            this._recalc()
+            console.log(`set ... = newValue): ${this._x}`)//168
+            console.log(`set(newValue)...elX: ${elX}`) //0!!!❌
+            console.log(`set(newValue)...this.x: ${this.x}`) //168
+            //this._recalc()
         };
         get y() { return this._y }
         set y(newValue) {
             this._y = newValue;
-            this._recalc()
+            //this._recalc()
         };
         get rotate() { return this._rotate }
         set rotate(newValue) {

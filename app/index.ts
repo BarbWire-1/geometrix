@@ -39,5 +39,5 @@ console.log(poly0.x)// 100 set in svg, gets applied
 poly0.x = 168;
 console.log(poly0.x)//168 read, but not applied
 
-
+poly0.lines[0].x1
 
