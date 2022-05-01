@@ -31,13 +31,13 @@ import { validInput } from "./validation";
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
     
     //GET ELEMENTS FOR POLYGON
-    const moveG = el.getElementById("moveG") as GroupElement;
+    //const moveG = el.getElementById("moveG") as GroupElement;
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
     
     // get x,y of included elemnts relative to the <use> itself
-    let elX = moveG.groupTransform.translate.x ;
-    let elY = moveG.groupTransform.translate.y;
+    // let elX = moveG.groupTransform.translate.x ;
+    // let elY = moveG.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
@@ -47,7 +47,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     //el.x = 0
     let count = 0;
     console.log(`Before wrap in class ${el.id}.x = ${el.x}`)//poly0.x = 100 // in SVG
-    console.log(`Before wrap in class elX.x = ${elX}`)
+    //console.log(`Before wrap in class elX.x = ${elX}`)
     
     class Polygon extends APolygon {
         readonly id: any;
@@ -55,20 +55,20 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         protected _rotate: { angle: number };
         protected _scale: { x: number; y: number }
         protected elX: number;
+        protected el: any;
         
         constructor(radius = 100, points = 5, strokeWidth = 2, x=0, y=0) {
             
             super();
+            this.el = el
             this.id = el.id;
             this._radius = radius;
             this._points = points
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
-            this.lines = outerLines;// connection to SVG elements
-            
-            this._x = x // deperate but useless try
-            
-            this._y = elY = el.x;
+            this.lines = outerLines;
+            this._x = x;
+            this._y = y;
             this.style = el.style;
             this._rotate = rotate;
             this._scale = scale
@@ -93,22 +93,15 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._recalc()
         }; 
         
-        get x() { console.log(`${this.id}.x should be ${this._x}`); return this._x }//poly0: x = 100 
+        get x() { console.log(`${this.id}.x should be ${this._x}`); return this.el.x}//poly0: x = 100 
         // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
         set x(newValue) {
-            console.log(`set(newValue): ${newValue}`);//set(newValue): 168 // set in ts
-            console.log(this._x) // 168
-            this._x = newValue;
-            console.log(`set ... = newValue el.x: ${el.x}`)//168
-            console.log(`set(newValue)...elX: ${elX}`) //0!!!❌
-            console.log(`set(newValue)...this.x: ${this.x}`) //168
-            //this._recalc()
+            this.el.x = newValue;
         };
         
         get y() { return this._y }
         set y(newValue) {
-            this._y = newValue;
-            //this._recalc()
+            this.el.y = newValue;
         };
         get rotate() { return this._rotate }
         set rotate(newValue) {
@@ -123,7 +116,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
          
         //METHODS
         protected _recalc(): void {
-            el.x = elX
+           // el.x = elX
            
             count++;
             console.log(`recalc() called ${count} times.`)
@@ -143,10 +136,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
                     
                 //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
                  //to start at top, running clockwise
-                p[i].x = //centerX +
-                    Math.round(iRadius * Math.sin(i * fract));
-                p[i].y = //centerY +
-                    Math.round(iRadius * -Math.cos(i * fract));
+                p[i].x = Math.round(iRadius * Math.sin(i * fract));
+                p[i].y = Math.round(iRadius * -Math.cos(i * fract));
                 i++;
             };
             //set to 'none' as if previous i > i would stay inline
