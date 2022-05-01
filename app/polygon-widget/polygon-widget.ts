@@ -23,7 +23,6 @@
 
 //import { inspectObject } from "../devTools";
 import { Line, APolygon, Point } from "./classesInterfaces";
-
 import { validInput } from "./validation";
 
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
@@ -31,23 +30,10 @@ import { validInput } from "./validation";
 export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, next=1) => {
     
     //GET ELEMENTS FOR POLYGON
-    //const moveG = el.getElementById("moveG") as GroupElement;
     const gLines = el.getElementById("linesG") as GroupElement;
     const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
-    
-    // get x,y of included elemnts relative to the <use> itself
-    // let elX = moveG.groupTransform.translate.x ;
-    // let elY = moveG.groupTransform.translate.y;
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
-    
-    //elX = el.x
-    // elY = el.y
-    //el.x += elX 
-    //el.x = 0
-    let count = 0;
-    console.log(`Before wrap in class ${el.id}.x = ${el.x}`)//poly0.x = 100 // in SVG
-    //console.log(`Before wrap in class elX.x = ${elX}`)
     
     class Polygon extends APolygon {
         readonly id: any;
@@ -57,7 +43,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         protected elX: number;
         protected el: any;
         
-        constructor(radius = 100, points = 5, strokeWidth = 2, x=0, y=0) {
+        constructor(radius = 100, points = 5, strokeWidth = 2) {
             
             super();
             this.el = el
@@ -67,8 +53,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;
-            this._x = x;
-            this._y = y;
+            this._x = el.x;
+            this._y = el.y;
             this.style = el.style;
             this._rotate = rotate;
             this._scale = scale
@@ -93,20 +79,20 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._recalc()
         }; 
         
-        get x() { console.log(`${this.id}.x should be ${this._x}`); return this.el.x}//poly0: x = 100 
-        // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
+        get x() {return this.el.x}
         set x(newValue) {
             this.el.x = newValue;
         };
         
-        get y() { return this._y }
+        get y() { return this.el.y }
         set y(newValue) {
             this.el.y = newValue;
         };
+        
+        // TODO split from static?
         get rotate() { return this._rotate }
         set rotate(newValue) {
             this._rotate = newValue;
-            //this._recalc()
         };
         get scale() { return this._scale }
         set scale(newValue) {
@@ -114,13 +100,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         };
         
          
-        //METHODS
+        //THE MATHS
         protected _recalc(): void {
-           // el.x = elX
            
-            count++;
-            console.log(`recalc() called ${count} times.`)
-            
             let p: Point[] = []
                 
              //recalc radius depending on strokeW to fit inside
@@ -131,9 +113,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             let i: number = 0;
             while (i < this._points) {
                 p.push(new Point(0, 0))
-                let centerX = el.x
-                let centerY = el.y
-                    
+               
                 //calcs x,y to start pt0 at (0,-radius)relative to PolygonCenter
                  //to start at top, running clockwise
                 p[i].x = Math.round(iRadius * Math.sin(i * fract));
@@ -196,7 +176,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             : mode == 1
                 ? new Spyrogon(radius, points, strokeWidth, next)
                 : console.warn('Please check your params!')
-        : undefined;
+        : console.warn('Please check your params!');
         
     return el;
 };

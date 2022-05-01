@@ -15,8 +15,6 @@ export interface Line {
     style: Style;
     iterable: boolean;
     enumerable: boolean;
-    
-    
 };
 
 // abstract structure

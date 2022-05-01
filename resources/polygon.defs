@@ -2,25 +2,22 @@
    
 
     <symbol id="polygon-widget" fill="aqua">
-        <circle cx="0" cy="0" r="10" fill="red" />
-        <g id="moveG">
-            <circle cx="0" cy="0" r="8" fill="#0062ff" />
-                <g id="linesG">
-                    <circle cx="0" cy="0" r="4" fill="#62ff00" />
-                    <line class="lines " />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                    <line class="lines" />
-                </g>
+          
+         <g id="linesG">
+            <line class="lines " />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
+            <line class="lines" />
         </g>
+  
     </symbol>
 
 </svg>
