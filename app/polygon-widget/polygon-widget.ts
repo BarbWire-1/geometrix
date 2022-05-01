@@ -41,13 +41,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
-    // elX = el.x
+    //elX = el.x
     // elY = el.y
-    el.x += elX 
-
+    //el.x += elX 
+    //el.x = 0
     let count = 0;
     console.log(`Before wrap in class ${el.id}.x = ${el.x}`)//poly0.x = 100 // in SVG
-    console.log(`Before wrap in class ${elX}.x = ${elX}`)
+    console.log(`Before wrap in class elX.x = ${elX}`)
     
     class Polygon extends APolygon {
         readonly id: any;
@@ -56,7 +56,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         protected _scale: { x: number; y: number }
         protected elX: number;
         
-        constructor(radius = 100, points = 5, strokeWidth = 2) {
+        constructor(radius = 100, points = 5, strokeWidth = 2, x=0, y=0) {
             
             super();
             this.id = el.id;
@@ -65,8 +65,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this._x = elX // deperate but useless try
-            this.x = el.x
+            
+            this._x = x // deperate but useless try
+            
             this._y = elY = el.x;
             this.style = el.style;
             this._rotate = rotate;
@@ -91,17 +92,19 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = newValue;
             this._recalc()
         }; 
+        
         get x() { console.log(`${this.id}.x should be ${this._x}`); return this._x }//poly0: x = 100 
         // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
         set x(newValue) {
             console.log(`set(newValue): ${newValue}`);//set(newValue): 168 // set in ts
             console.log(this._x) // 168
             this._x = newValue;
-            console.log(`set ... = newValue): ${this._x}`)//168
+            console.log(`set ... = newValue el.x: ${el.x}`)//168
             console.log(`set(newValue)...elX: ${elX}`) //0!!!❌
             console.log(`set(newValue)...this.x: ${this.x}`) //168
             //this._recalc()
         };
+        
         get y() { return this._y }
         set y(newValue) {
             this._y = newValue;
@@ -120,7 +123,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
          
         //METHODS
         protected _recalc(): void {
-           
+            el.x = elX
            
             count++;
             console.log(`recalc() called ${count} times.`)
