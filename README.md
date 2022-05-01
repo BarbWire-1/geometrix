@@ -1,6 +1,7 @@
 # geometrix
 A totally useless playfile to create regular polygons in Fitbit OS\
-trying to get an idea how to structure using interfaces/classes/types  
+trying to get an idea how to structure using interfaces/classes/types\
+Aim was not to build on the existing Elements' prototypechain, bu create own types. 
 ## work in progress
 
 

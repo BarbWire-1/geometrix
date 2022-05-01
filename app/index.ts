@@ -12,8 +12,8 @@ let poly0 = createPolygon(0, document.getElementById('poly0'),100, 3, 4) as Poly
 let i = 0;
 function updateProps() {
     //i %= 24;
-    poly0.rotate.angle = 15 * i;
-    console.log(`poly0.rotate.angle = ${poly0.rotate.angle}`)
+    poly0.rotate = 15 * i;
+    console.log(`poly0.rotate.angle = ${poly0.rotate}`)
 
     i++;
 };
@@ -39,6 +39,8 @@ console.log(poly0.x)
 
 poly0.y = 168;
 console.log(poly0.y)
+
+poly0.lines[0].style.strokeWidth = 10;
 
 
 

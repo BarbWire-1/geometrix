@@ -12,7 +12,12 @@ export interface Line {
     y1: number;
     x2: number;
     y2: number;
-    style: Style;
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+        strokeWidth?: number;
+    };
     iterable: boolean;
     enumerable: boolean;
 };
@@ -23,7 +28,7 @@ export abstract class APolygon implements Line {
     readonly y1: number;
     readonly x2: number;
     readonly y2: number;
-    style: Style;
+    
     readonly iterable: boolean;
     readonly enumerable: boolean;
 
@@ -36,6 +41,11 @@ export abstract class APolygon implements Line {
     protected _fill: string;
 
     lines: Line[];
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+    };
     protected redraw: void;
 };
 
@@ -51,7 +61,7 @@ export interface Polygon {
         display: 'inherit' | 'inline' | 'none';
         fill: string;
     };
-    rotate: { angle: number };
+    rotate: number;
     scale: { x: number; y: number }
 };
 
