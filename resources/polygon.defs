@@ -1,8 +1,9 @@
 <svg>
    
 
-    <symbol id="polygon-widget" x="0" y="0" fill="aqua">
-        <g id="linesG">
+    <symbol id="polygon-widget" fill="aqua">
+          
+         <g id="linesG">
             <line class="lines " />
             <line class="lines" />
             <line class="lines" />
@@ -16,6 +17,7 @@
             <line class="lines" />
             <line class="lines" />
         </g>
+  
     </symbol>
 
 </svg>

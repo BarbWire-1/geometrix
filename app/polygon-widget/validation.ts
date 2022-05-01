@@ -4,7 +4,7 @@ let range = {
     max: 12
 };
 
-export const isInt = (n: number) => {
+const isInt = (n: number) => {
     let isValid: boolean = false;
     if (n === Math.round(n)) {
         isValid = true;
@@ -12,15 +12,13 @@ export const isInt = (n: number) => {
      return isValid;
 };
 
-export const inRange = (n: number, min: number, max: number) => {
+const inRange = (n: number, min: number, max: number) => {
     let isValid: boolean = false;
     if (n >= min && n <= max) {
         isValid = true;
     }
     return isValid;
 };
-
-
 
 export const validInput = (n) => {
     let isValid: boolean = false;

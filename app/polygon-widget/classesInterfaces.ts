@@ -7,7 +7,7 @@ export class Point {
     }
 };
 
-export class Line {
+export interface Line {
     x1: number;
     y1: number;
     x2: number;
@@ -18,7 +18,14 @@ export class Line {
 };
 
 // abstract structure
-export abstract class APolygon extends Line {
+export abstract class APolygon implements Line {
+    readonly x1: number;
+    readonly y1: number;
+    readonly x2: number;
+    readonly y2: number;
+    style: Style;
+    readonly iterable: boolean;
+    readonly enumerable: boolean;
 
     protected _x: number;
     protected _y: number;

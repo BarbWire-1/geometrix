@@ -2,8 +2,7 @@
 A totally useless playfile to create regular polygons in Fitbit OS\
 trying to get an idea how to structure using interfaces/classes/types  
 ## work in progress
-❗️ THERE'S DEFINITELY SOMETHING WRONG WITH el.x/el.y from TS ❗️\
-(working on it, but maybe the approach itself is fundamentally wrong!)
+
 
 
 
@@ -164,7 +163,7 @@ ____
 
 
 
-* `x` and  `y` from TS are currently a groupTransform, so an **offset** to your settings in css/svg.
+
 * `strokeWidth` can be set directly on element!
 * `next` defines the +x point to wich to connect to.
 * `rotate` is set directly on element. the value is rotate.angle.  
@@ -175,11 +174,6 @@ ____
    
    for a single line as el.lines[index]
    
-KNOWN ISSUES:
-\
-To change position dynamically you need to have NO coords in SVG/CSS.\
-Due to the offset-workaround, rotation won't rotate as expected if x,y are set in TS
-(I fear I've got a logic problem)
 
 ___
 
