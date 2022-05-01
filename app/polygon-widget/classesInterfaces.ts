@@ -53,7 +53,7 @@ export interface Polygon {
     radius: number;
     points: number;
     strokeWidth: number;
-    lines: Line[]
+    readonly lines: Line[]
     x: number;
     y: number;
     style: {
