@@ -5,6 +5,7 @@ trying to get an idea how to structure using interfaces/classes/types
 
 
 
+
 ![2022-04-20 12 36 21](polygon-widget.png)   
 
 It now can be used as widget in TS, having 2 types:

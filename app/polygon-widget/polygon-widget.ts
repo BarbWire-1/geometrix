@@ -103,6 +103,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         //THE MATHS
         protected _recalc(): void {
            
+
             let p: Point[] = []
                 
              //recalc radius depending on strokeW to fit inside

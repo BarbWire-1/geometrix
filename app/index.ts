@@ -1,7 +1,7 @@
 
 'use strict';
 import document from 'document';
-import { dumpProperties, inspectObject } from "./devTools";
+//import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
@@ -14,6 +14,7 @@ function updateProps() {
     //i %= 24;
     poly0.rotate.angle = 15 * i;
     console.log(`poly0.rotate.angle = ${poly0.rotate.angle}`)
+
     i++;
 };
 
@@ -39,5 +40,7 @@ console.log(poly0.x)
 poly0.y = 168;
 console.log(poly0.y)
 
+
+spyro.x = 100;
 
 
