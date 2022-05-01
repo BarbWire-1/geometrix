@@ -1,0 +1,28 @@
+To test the behaviour/appliance of el.x/el.y I now added circles to 0,0 as coord-marks of
+
+1. symbol (0,0) red dot
+2. linesG (0,0) green dot
+
+I now can read values from svg and ts where only svg gets applied
+As expected, the g moves with el
+
+VERY STRANGE OBSERVATION:
+Although I have got only ONE element, there is another pair of center dots 
+in centerScreen.
+
+I now set x = 100 on el in svg
+And the el.x = 168 in index.ts, which gets read, but not applied.
+Even if I remove the setting to 168, this dot is always there.
+
+I already wondered ealier, why the elements are automatically center-screened,
+even if NO coords are set at all.
+
+But WHY are these circles appearing? I thought the symbol itself doesn't get displayed?
+Did I somehow mix levels and created a redundant el?
+I take the graphical el and create an object with the name of that, containing it...
+That sounds actually wrong.
+So I can only go on CONTENT of the graphical el, but not on itself.
+THAT must be the reason, why the sim crashes when referring to el!
+I create an itself containing object!
+Does this explain the second pair of center marks?
+

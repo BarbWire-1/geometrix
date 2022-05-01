@@ -1,0 +1,41 @@
+AIM:
+Create a simply reusable PolygonElement
+
+The polygon gets created by calculating 3 up to 12 points
+regularly arranged on a circle.
+
+abstract Settings:
+private: Point
+centerX
+centerY
+
+populated:
+    radius,
+    number of points,
+    strokeWidth (used to adjust radius to fit the poly inside the abstract circle)
+    
+methods:
+privte:
+    calcPoints
+    length
+    gradient(?) (to calc points depending on progress)
+populated:    
+    connectTo (defines sequence in which points get connected )
+ 
+
+class Point,  
+interface incl. all optional,
+
+partial types:
+    class1: abstract calculations
+    class2: results class1 + connection to lines
+    
+how to handle style?
+(allow fill on each line or only full poly? 
+evt both by exposing all lines but 'inherit' as pre?)
+
+
+OR GO WITH ROTATED LINES INSTEAD?
+(would need <g>s in symbol, but much less calculation)
+    
+        

@@ -43,26 +43,25 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     
 
     let count = 0;
-    console.log(`${el.id}: x = ${el.x}`)//poly0: x = 100 
+    console.log(`${el.id}: x = ${el.x}`)//poly0: x = 100 // in SVG
     
     class Polygon extends APolygon {
-       
+        readonly id: any;
         protected outerLines: Line[];
         _rotate: { angle: number };
         _scale: { x: number; y: number }
         
-        constructor(radius = 100, points = 5, strokeWidth = 2, x = 0, y = 0) {
+        constructor(radius = 100, points = 5, strokeWidth = 2,x=0, y=0) {
             
             super();
+            this.id = el.id;
             this._radius = radius;
             this._points = points
             this._strokeWidth = strokeWidth;
             this.redraw = this._recalc();
             this.lines = outerLines;// connection to SVG elements
-            this._x = x;
-            this._y = x;
-            this.x = el.x;
-            this.y = el.y
+            this._x = x = el.x;// deperate but useless try
+            this._y = x = el.y;
             this.style = el.style;
             this._rotate = rotate;
             this._scale = scale
@@ -86,7 +85,8 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._strokeWidth = newValue;
             this._recalc()
         }; 
-        get x() { return this._x }
+        get x() { console.log(`${this.id}: x = ${this._x}`); return this._x }
+        // this logs the correct value. set in SVG or overwritten from TS, but doesn't get applied
         set x(newValue) {
             this._x = newValue;
             this._recalc()
@@ -99,7 +99,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         get rotate() { return this._rotate }
         set rotate(newValue) {
             this._rotate = newValue;
-            this._recalc()
+            //this._recalc()
         };
         get scale() { return this._scale }
         set scale(newValue) {
@@ -198,71 +198,4 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
 
 export {Polygon, Spyrogon } from './classesInterfaces'
 
-    
-
-
-
-
-/**
- * What an overkill!!! :))))
- * I guess that could be done much more efficient (will try to), but was fun
- * Unfortunately most of the features I wanted to try in TS, esp decorators,
- * don't seem to wotk in this env.
- * This way, I find it extremly cumbersome.
- * Maybe I'll finally go without class but define just an interface for the "natural" els.
- * to define props.
- * /**
- * Originally planned to make an Interface here, but no modifications allowed
- * so I'd have to do that in each extending class separately.
- * That's why I go with an abstract class instead.
- */
-
-
-
-//TODO difference interface vs type??
-//TODO: extending class vs abstr class...
-
-//TODO split all "special" features into extending classes, so only loaded, when used
-
-
-//TODO default export
-//TODO add rotate? on gLines?
-
-
-//TODO 2.0 : where is really el needed in class?
-//Can I detangle this and only have elements and creation in function?
-// would this be meaningful?
-
-//TODO el.x/y are CENTER of widget
-// I fear el.x/y might be protected? But not sure. so I'll live with this:
-//If x,y should be dynamic => no settings in css or svg!
-
-//TODO x,y now workaround on groupTransform as nothing else seemed to worked on static elements
-//There must be something wrong in calculating points or passing values. 
-//If something is set in svg this approach only offsets. Don'like!!!
-//CHECK MATHS!
-
-//TODO how _recalc() could be splitted to only do the necessary calculations depending on caller
-
-//TODO: switch to <Style> instead using el.style?
-
-/**
- * as rotation is a groupTransform and x,y are also set on the g,
- * The settings on x,y in js/ts are the rotation center!!!
- * SVG x,y on use go directly on use!!!!
- */
-
-/**
- * LIMITATIONS
- * I can't acces the the <use>s x,y from js/ts this way. Perhaps a question of type?
- * I actually don't understand or see the problem, but so the x,y in Polygon are actually only relative to the
- * x,y of the SVG element. so if you want to change them dynamically, don't set anything in svg/css as it doesn' get overwritten
- * but the values get added.
- */
-
-//TODO remove display from lines.style?
-//TODO set strokeWidth on el on el.style?
-//TODO simplyfy Polygon to static and add multiple extending modifications?
-
-
-
+ 
