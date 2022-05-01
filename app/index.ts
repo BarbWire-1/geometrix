@@ -1,7 +1,7 @@
 
 'use strict';
 import document from 'document';
-import { dumpProperties, inspectObject } from "./devTools";
+//import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
