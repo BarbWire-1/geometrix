@@ -26,3 +26,5 @@ THAT must be the reason, why the sim crashes when referring to el!
 I create an itself containing object!
 Does this explain the second pair of center marks?
 
+added <moveG>  centerMark blue, wrapping <linesG>
+idea: set x,y on moveG to translate an keep the transformation center at 0,0 of linesG
