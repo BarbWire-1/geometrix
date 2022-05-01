@@ -27,4 +27,7 @@ I create an itself containing object!
 Does this explain the second pair of center marks?
 
 added <moveG>  centerMark blue, wrapping <linesG>
-idea: set x,y on moveG to translate an keep the transformation center at 0,0 of linesG
+idea: set x,y on moveG to translate an keep the transformation center at 0,0 of linesG,
+but this also doesn'tget applied???
+Don't see the forrest...
+Or is this whole approach stupid???
