@@ -1,7 +1,7 @@
 
 'use strict';
 import document from 'document';
-//import { dumpProperties, inspectObject } from "./devTools";
+import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
@@ -43,5 +43,5 @@ console.log(poly0.y)
 poly0.lines[0].style.strokeWidth = 10;
 
 
-
+dumpProperties('poly0',poly0,1)
 
