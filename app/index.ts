@@ -44,5 +44,6 @@ poly0.lines[0].style.strokeWidth = 10;
 
 
 dumpProperties('poly0', poly0, 1)
-//poly0.lines[0].x1 = 100;
+poly0.lines[0].style.display = 'none'
+poly0.lines[0].x1 = 100;
 

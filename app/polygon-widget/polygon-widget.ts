@@ -22,7 +22,7 @@
 
 
 //import { inspectObject } from "../devTools";
-import { Line, APolygon, Point, readonlyLine } from "./classesInterfaces";
+import { Line, APolygon, Point, iLine } from "./classesInterfaces";
 import { validInput } from "./validation";
 
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
@@ -31,13 +31,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
-    const outerLines = el.getElementsByClassName("lines") as unknown as readonlyLine[];
+    const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
     class Polygon extends APolygon {
         readonly id: any;
-        protected outerLines: readonlyLine[];
+        protected outerLines: Line[];
         protected _rotate: { angle: number };
         protected _scale: { x: number; y: number }
         protected elX: number;
@@ -129,7 +129,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             i = 0;
             while (i < this._points) {
     
-                let l: Line = outerLines[i];
+                let l: iLine = outerLines[i];
 
                 l.style.display = 'inline';
                 l.style.strokeWidth = this._strokeWidth;
