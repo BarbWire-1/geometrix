@@ -40,18 +40,8 @@ export abstract class APolygon implements Line {
     readonly y1: number;
     readonly x2: number;
     readonly y2: number;
-    
     readonly iterable: boolean;
     readonly enumerable: boolean;
-
-    protected _x: number;
-    protected _y: number;
-    protected _radius: number;
-    protected _points: number;
-    protected _strokeWidth: number;
-    protected _next: number;
-    protected _fill: string;
-
     lines: Line[];
     style: {
         opacity: number;
