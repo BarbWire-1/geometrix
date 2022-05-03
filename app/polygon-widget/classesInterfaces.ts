@@ -21,9 +21,23 @@ export interface Line {
     iterable: boolean;
     enumerable: boolean;
 };
+export interface readonlyLine {
+    readonly x1: number;
+    readonly y1: number;
+    readonly x2: number;
+    readonly y2: number;
+    style: {
+        opacity: number;
+        display: 'inherit' | 'inline' | 'none';
+        fill: string;
+        strokeWidth?: number;
+    };
+    iterable: boolean;
+    enumerable: boolean;
+};
 
 // abstract structure
-export abstract class APolygon implements Line {
+export abstract class APolygon implements readonlyLine {
     readonly x1: number;
     readonly y1: number;
     readonly x2: number;
@@ -40,7 +54,7 @@ export abstract class APolygon implements Line {
     protected _next: number;
     protected _fill: string;
 
-    lines: Line[];
+    lines: readonlyLine[];
     style: {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
@@ -53,7 +67,7 @@ export interface Polygon {
     radius: number;
     points: number;
     strokeWidth: number;
-    readonly lines: Line[]
+    readonly lines: readonlyLine[]
     x: number;
     y: number;
     style: {

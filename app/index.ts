@@ -43,5 +43,6 @@ console.log(poly0.y)
 poly0.lines[0].style.strokeWidth = 10;
 
 
-dumpProperties('poly0',poly0,1)
+dumpProperties('poly0', poly0, 1)
+//poly0.lines[0].x1 = 100;
 
