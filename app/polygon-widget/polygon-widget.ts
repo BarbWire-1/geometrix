@@ -36,18 +36,25 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
     class Polygon extends APolygon {
-        readonly id: any;
+        //readonly id: any;
         protected outerLines: Line[];
         protected _rotate: { angle: number };
         protected _scale: { x: number; y: number }
         protected elX: number;
         protected el: any;
+        protected _x: number;
+        protected _y: number;
+        protected _radius: number;
+        protected _points: number;
+        protected _strokeWidth: number;
+        protected _next: number;
+        protected _fill: string;
         
         constructor(radius = 100, points = 5, strokeWidth = 2) {
             
             super();
             this.el = el
-            this.id = el.id;
+            //this.id = el.id;
             this._radius = radius;
             this._points = points
             this._strokeWidth = strokeWidth;
@@ -102,7 +109,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
          
         //THE MATHS
         protected _recalc(): void {
-           
+           //TODO do calculating and assigning in one?
 
             let p: Point[] = []
                 
