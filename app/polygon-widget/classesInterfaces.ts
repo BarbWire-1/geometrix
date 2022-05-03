@@ -83,4 +83,4 @@ export interface Polygon {
 export interface Spyrogon extends Polygon {
     next: number;
 };
-
+//TODO do I actually need 2 interfaces? one readonly one incl. the writable props???

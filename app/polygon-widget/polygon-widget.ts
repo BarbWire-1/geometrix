@@ -187,25 +187,3 @@ export { Polygon, Spyrogon } from './classesInterfaces'
 //TODO restructure objects. Wrong use of underscore, I'd say ;)
 //TODO try to protect lines x,y somehow. Not sure how to, as must be public to write to inside recalc
 //and then can't be changed for polygon?
-
-interface Person {
-    name: string;
-    age: number;
-}
-
-interface ReadonlyPerson {
-    readonly name: string;
-    readonly age: number;
-}
-
-let writablePerson: Person = {
-    name: "Person McPersonface",
-    age: 42,
-};
-
-// works
-let readonlyPerson: ReadonlyPerson = writablePerson;
-
-console.log(readonlyPerson.age); // prints '42'
-writablePerson.age++;
-console.log(readonlyPerson.age); // prints '43'
