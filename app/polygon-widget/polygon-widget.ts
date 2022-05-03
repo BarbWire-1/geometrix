@@ -22,7 +22,7 @@
 
 
 //import { inspectObject } from "../devTools";
-import { Line, APolygon, Point } from "./classesInterfaces";
+import { Line, APolygon, Point, readonlyLine } from "./classesInterfaces";
 import { validInput } from "./validation";
 
 // ---------------------------------------------------------------------POLYGON-WIDGET------------
@@ -31,13 +31,13 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     
     //GET ELEMENTS FOR POLYGON
     const gLines = el.getElementById("linesG") as GroupElement;
-    const outerLines = el.getElementsByClassName("lines") as unknown as Line[];
+    const outerLines = el.getElementsByClassName("lines") as unknown as readonlyLine[];
     const rotate: {angle: number} = gLines.groupTransform.rotate;
     const scale: { x: number; y: number } = gLines.groupTransform.scale 
     
     class Polygon extends APolygon {
         readonly id: any;
-        protected outerLines: Line[];
+        protected outerLines: readonlyLine[];
         protected _rotate: { angle: number };
         protected _scale: { x: number; y: number }
         protected elX: number;
@@ -187,5 +187,3 @@ export { Polygon, Spyrogon } from './classesInterfaces'
 //TODO restructure objects. Wrong use of underscore, I'd say ;)
 //TODO try to protect lines x,y somehow. Not sure how to, as must be public to write to inside recalc
 //and then can't be changed for polygon?
-
- 
