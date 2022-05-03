@@ -7,7 +7,7 @@ export class Point {
     }
 };
 
-export interface Line {
+export interface iLine {
     x1: number;
     y1: number;
     x2: number;
@@ -18,10 +18,9 @@ export interface Line {
         fill: string;
         strokeWidth?: number;
     };
-    iterable: boolean;
-    enumerable: boolean;
+    
 };
-export interface readonlyLine {
+export interface Line {
     readonly x1: number;
     readonly y1: number;
     readonly x2: number;
@@ -32,12 +31,11 @@ export interface readonlyLine {
         fill: string;
         strokeWidth?: number;
     };
-    iterable: boolean;
-    enumerable: boolean;
+    
 };
 
 // abstract structure
-export abstract class APolygon implements readonlyLine {
+export abstract class APolygon implements Line {
     readonly x1: number;
     readonly y1: number;
     readonly x2: number;
@@ -54,7 +52,7 @@ export abstract class APolygon implements readonlyLine {
     protected _next: number;
     protected _fill: string;
 
-    lines: readonlyLine[];
+    lines: Line[];
     style: {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
@@ -67,7 +65,7 @@ export interface Polygon {
     radius: number;
     points: number;
     strokeWidth: number;
-    readonly lines: readonlyLine[]
+    readonly lines: Line[]
     x: number;
     y: number;
     style: {
