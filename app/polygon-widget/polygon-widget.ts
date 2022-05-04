@@ -111,10 +111,11 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         protected _recalc(): void {
            //TODO do calculating and assigning in one?
             //set all not "used" lines to 'none'
-            outerLines.forEach(el => {
-                if (el[i] > points)
+            for (let i = 0; i > points && i < 12; i++) {
+                outerLines.forEach(el => {
                     el.style.display = 'none'
-            });
+                });
+            }
 
             let p: Point[] = []
                 
