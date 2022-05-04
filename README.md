@@ -2,7 +2,7 @@
 A widget to create regular polygons in Fitbit OS\
 trying to get an idea how to structure using interfaces/classes/types\
 
-(Aim was not to build on the existing Elements' prototypechain, but create types having their own properties and only those needed and only expose those for custom settings.)
+(Aim was not to build on the existing Elements' prototypechain, but create types having their own properties, only those needed and to only expose those for custom settings.)
 ## work in progress
 
 
