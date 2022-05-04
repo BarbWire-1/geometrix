@@ -111,12 +111,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         protected _recalc(): void {
            //TODO do calculating and assigning in one?
             //set all not "used" lines to 'none'
-            for (let i = 0; i > points && i < 12; i++) {
                 outerLines.forEach(el => {
                     el.style.display = 'none'
                 });
-            }
-
             let p: Point[] = []
                 
              //recalc radius depending on strokeW to fit inside
@@ -139,7 +136,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
     
                 let l: iLine = outerLines[i];
                 l.style.strokeWidth = this._strokeWidth;
-                    
+                l.style.display = 'inline'   
                 //start points
                 l.x1 = p[i].x;
                 l.y1 = p[i].y;
