@@ -80,7 +80,7 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             this._points = newValue;
             this._recalc()
         };
-        get strokeWidth() { return el.style.strokeWidth }
+        get strokeWidth() { return el.strokeWidth }
         set strokeWidth(newValue) {
             this._strokeWidth = newValue;
             this._recalc()
