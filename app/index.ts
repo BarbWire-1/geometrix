@@ -53,3 +53,6 @@ poly0.lines[0].style.display = 'none'
 //active lines will be reset to 'inline'!
 //Keep that or add any exception?
 
+//TODO split css
+//remove strokeWidth from defaults to be able to access from css?
+
