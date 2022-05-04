@@ -7,6 +7,8 @@ export class Point {
     }
 };
 
+//innerLine to get access to coords
+//in class Polygon
 export interface iLine {
     x1: number;
     y1: number;
@@ -16,10 +18,11 @@ export interface iLine {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
-        strokeWidth?: number;
+        strokeWidth: number;
     };
     
 };
+// exposed Line with protected coords
 export interface Line {
     readonly x1: number;
     readonly y1: number;
@@ -29,7 +32,7 @@ export interface Line {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
-        strokeWidth?: number;
+        strokeWidth: number;
     };
     
 };
@@ -47,10 +50,12 @@ export abstract class APolygon implements Line {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
+        strokeWidth: number;
     };
     protected redraw: void;
 };
 
+// exposed
 export interface Polygon {
     radius: number;
     points: number;
@@ -62,6 +67,7 @@ export interface Polygon {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
+        strokeWidth: number;
     };
     rotate: { angle: number };
     scale: { x: number; y: number }

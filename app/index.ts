@@ -47,4 +47,8 @@ dumpProperties('poly0', poly0, 1)
 poly0.lines[0].style.display = 'none'
 //poly0.lines[0].x1 = 100;
 inspectObject('poly0', poly0)
-
+poly0.strokeWidth = 20
+poly0.lines[0].style.display = 'none'
+//TODO if any recalc after setting to 'none',
+//active lines will be reset to 'inline'!
+//Keep that or add any exception?
