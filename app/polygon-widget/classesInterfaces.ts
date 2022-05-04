@@ -67,7 +67,7 @@ export interface Polygon {
         opacity: number;
         display: 'inherit' | 'inline' | 'none';
         fill: string;
-        strokeWidth: number;
+        readonly strokeWidth: number;
     };
     rotate: { angle: number };
     scale: { x: number; y: number }

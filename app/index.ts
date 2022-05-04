@@ -52,3 +52,4 @@ poly0.lines[0].style.display = 'none'
 //TODO if any recalc after setting to 'none',
 //active lines will be reset to 'inline'!
 //Keep that or add any exception?
+
