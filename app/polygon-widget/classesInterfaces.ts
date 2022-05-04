@@ -37,7 +37,7 @@ export interface Line {
     
 };
 
-// abstract structure
+// abstract structure for inner use
 export abstract class APolygon implements Line {
     readonly x1: number;
     readonly y1: number;
@@ -55,7 +55,7 @@ export abstract class APolygon implements Line {
     protected redraw: void;
 };
 
-// exposed
+// exposed properties
 export interface Polygon {
     radius: number;
     points: number;
