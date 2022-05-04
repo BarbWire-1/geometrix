@@ -20,7 +20,7 @@
     /*📍looking good on device, where gaps in sim */
     /* stroke-linecap: round;*/
     fill: inherit;
-    display: none;
+    display: inline;
     opacity:1;
     
 }

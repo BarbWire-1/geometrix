@@ -110,6 +110,11 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
         //THE MATHS
         protected _recalc(): void {
            //TODO do calculating and assigning in one?
+            //set all not "used" lines to 'none'
+            outerLines.forEach(el => {
+                if (el[i] > points)
+                    el.style.display = 'none'
+            });
 
             let p: Point[] = []
                 
@@ -128,17 +133,10 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
                 p[i].y = Math.round(iRadius * -Math.cos(i * fract));
                 i++;
             };
-            //set to 'none' as if previous i > i would stay inline
-            outerLines.forEach(el => {
-                el.style.display = 'none'
-            });
-        
             i = 0;
             while (i < this._points) {
     
                 let l: iLine = outerLines[i];
-
-                l.style.display = 'inline';
                 l.style.strokeWidth = this._strokeWidth;
                     
                 //start points
