@@ -172,7 +172,7 @@ ____
 * `next` defines the +x point to wich to connect to.
 * `lines` is an array of the lines, building the Polygon.
 
-   So the settings for `style` on lines need to be done within a loop or per `[index]`.
+   So the settings for `style` on lines need to be done within a loop or per `[index]` OR on `class` lines (To set in css eG)
    
 
 ___
