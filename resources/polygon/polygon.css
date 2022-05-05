@@ -1,0 +1,9 @@
+.lines {
+    stroke-linejoin: round;/*not supported on device*/
+    /*📍looking good on device, where gaps in sim */
+    /* stroke-linecap: round;*/
+    fill: inherit;
+    display: inline;
+    opacity:1;
+    
+}

@@ -26,7 +26,7 @@ ___
 
 
 * the folder `polygon-widget` into your app-folder
-* the file `polygon.defs` into your resources-folder
+* the folder `polygon` into your resources-folder
 
 \
 ADD CODE:
@@ -34,15 +34,16 @@ ADD CODE:
 ### Resources/widgets.defs
 
 \
-Add `polygon.defs` import in your `widgets.defs`
+Add `polygon.defs` and `polygon.css` imports in your `widgets.defs`
 
 ```js
 
 <svg>
     <defs>
         <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="polygon/polygon.css" />
         <link rel="import" href="/mnt/sysassets/system_widget.defs" />
-        <link rel="import" href="polygon.defs" />
+        <link rel="import" href="polygon/polygon.defs" />
     </defs>
 </svg>
 
