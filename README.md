@@ -188,7 +188,7 @@ to Gondwana from [Gondwanasoft](https://github.com/gondwanasoft) who helped me t
 
 He worked out a [fitbit-widget-template](https://github.com/gondwanasoft/fitbit-widget-template) for creating your own widgets based on an OOP approach in JS.
 
-Any ideas or critcism would be highly appreciated! I just tried, what I thought might work. But I'm totally convinced there will be much better solutions...
+Any ideas or critcism would be highly appreciated! I just tried, what I thought might work. But I'm pretty sure, that this is far away from "how things should be done"...
 
 
 
