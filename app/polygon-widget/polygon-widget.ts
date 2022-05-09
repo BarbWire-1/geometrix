@@ -188,5 +188,6 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
 export { Polygon, Spyrogon } from './classesInterfaces'
 
 //TODO restructure objects. Wrong use of underscore, I'd say ;)
-//TODO try to protect lines x,y somehow. Not sure how to, as must be public to write to inside recalc
-//and then can't be changed for polygon?
+
+//TODO add progress
+//TODO check if fun composition might be used useful here to pass different needed vals to extending classes
