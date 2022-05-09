@@ -179,9 +179,9 @@ export const createPolygon = (mode, el, radius=100, points=5, strokeWidth=2, nex
             ? new Polygon(radius, points, strokeWidth)
             : mode == 1
                 ? new Spyrogon(radius, points, strokeWidth, next)
-                : console.warn('Please check your params!')
-        : console.warn('Please check your params!');
-        
+                : undefined
+        : undefined;
+    
     return el;
 };
 

@@ -6,8 +6,8 @@ import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widge
 
 
 
-let poly0 = createPolygon(0, document.getElementById('poly0'),100, 5, 4) as Polygon
-poly0.points = 3
+let poly0 = createPolygon(0, document.getElementById('poly0'),100, 12, 4) as Polygon
+//poly0.points = 3
 
 let i = 0;
 function updateProps() {
