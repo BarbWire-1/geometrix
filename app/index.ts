@@ -1,7 +1,6 @@
 
 'use strict';
 import document from 'document';
-import { dumpProperties, inspectObject } from "./devTools";
 import { createPolygon, Polygon, Spyrogon } from './polygon-widget/polygon-widget';
 
 
@@ -43,10 +42,10 @@ console.log(poly0.y)
 poly0.lines[0].style.strokeWidth = 10;
 
 
-dumpProperties('poly0', poly0, 1)
+
 poly0.lines[0].style.display = 'none'
 //poly0.lines[0].x1 = 100;
-inspectObject('poly0', poly0)
+
 poly0.strokeWidth = 20
 poly0.lines[0].style.display = 'none'
 //TODO if any recalc after setting to 'none',
